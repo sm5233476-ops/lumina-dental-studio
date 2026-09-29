@@ -1,7 +1,7 @@
 /* ==========================================================================
-   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (FINAL POLISHED SPEC)
+   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (FINAL PERFECT SPEC)
    Benchmark: Apa Aesthetic (Beverly Hills) & Tend (NYC)
-   Transparent-to-Blue Glass Navbar • Open Nav Spacing • Zero Mobile Overflow
+   Zero White Navbar Leak • Midnight Navy Luxury • Flawless Mobile & Desktop
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -52,6 +52,7 @@ html, body {
   overflow-x: clip; /* Hard clip prevents any horizontal scroll */
   position: relative;
   -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-deep); /* Body background locked to Midnight Navy */
 }
 
 html {
@@ -63,7 +64,6 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-pure);
   color: var(--text-dark);
   line-height: 1.65;
   font-weight: 500;
@@ -110,6 +110,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   width: 100%;
   overflow: hidden;
+  background-color: var(--bg-pure);
 }
 
 .section-badge-center {
@@ -264,11 +265,11 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. SLEEK TOP ANNOUNCEMENT STRIP (Scrolls Away Naturally)
+   1. SLEEK TOP ANNOUNCEMENT STRIP (Midnight Navy Theme)
    ========================================================================== */
 .top-announcement-strip {
   position: relative;
-  background-color: #060C1D;
+  background-color: #070D1E; /* Seamless deep navy tone */
   color: #94A3B8;
   font-size: 0.76rem;
   padding: 8px 0;
@@ -319,24 +320,24 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   2. HAUTE LUXURY NAVBAR (100% Transparent Top -> Royal Blue Glass on Scroll)
+   2. HAUTE LUXURY NAVBAR (LOCKED TO MIDNIGHT NAVY — ZERO WHITE LEAK!)
    ========================================================================== */
 .navbar-wrapper {
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent; /* 100% transparent at top, NO grey tint! */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+  background-color: #0A1128; /* Locked to website's Midnight Navy from start! */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-/* Smooth Transition to Royal Deep Blue Frosted Glass on Scroll */
+/* On scroll: Smooth transformation to royal navy blue glass from Screenshot 2 */
 .navbar-scrolled {
-  background: rgba(10, 17, 40, 0.92); /* Deep blue-navy luxury tone */
+  background-color: rgba(10, 17, 40, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.25);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -344,7 +345,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 24px;
+  padding: 16px 24px;
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
@@ -375,7 +376,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 0.12em;
-  color: #FFFFFF;
+  color: #FFFFFF; /* High-contrast crisp white */
   line-height: 1;
   white-space: nowrap;
 }
@@ -389,13 +390,13 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
 }
 
-/* Open, Generous Nav Links (No Clumping!) */
+/* Open, Generous Nav Links */
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 28px; /* Generous spacing between items */
-  margin-left: 48px; /* Breathing room away from Lumina logo */
+  gap: 28px;
+  margin-left: 48px;
 }
 
 .nav-links li {
@@ -490,7 +491,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   3. HERO SECTION (Crisp Flat Luxury Typography)
+   3. HERO SECTION
    ========================================================================== */
 .hero-section {
   background-color: var(--bg-deep);
@@ -2001,14 +2002,12 @@ h1, h2, h3, h4, h5 {
   }
 
   .desktop-only {
-    display: none !important; /* Hides long desktop text, keeping mobile to 1 clean line */
+    display: none !important;
   }
 
   /* MOBILE NAVBAR: Clean, Spacious, Zero Cramming */
   .navbar-wrapper {
-    background: rgba(10, 17, 40, 0.85); /* Dark glass on mobile by default */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: #0A1128; /* Locked to dark navy */
   }
 
   .navbar {
