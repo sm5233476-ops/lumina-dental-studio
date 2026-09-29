@@ -1,12 +1,10 @@
 /**
- * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (BEVERLY HILLS ATELIER)
+ * LUMINA DENTAL STUDIO — $3,000 MASTER JAVASCRIPT
  * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Navbar Dynamic Dark Glass Blur on Scroll
- * 3. Before & After Macro Teeth Slider (Clip-Path Powered - Zero Mobile Overflow)
- * 4. Ultra-Compact Social Proof Ticker Engine (Dynamic Rotation)
- * 5. Slide-Over VIP Booking Drawer Engine
- * 6. Interactive Smile Investment & Financing Calculator
- * 7. Mobile Drawer & Centered Toast Notification Helper
+ * 2. Floating Cylindrical Island Glow on Scroll
+ * 3. Slide-Over VIP Booking Drawer Engine
+ * 4. Interactive Smile Investment & Financing Calculator
+ * 5. Mobile Drawer Toggle & Centered Toast Notifications
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,15 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. NAVBAR GLASS BLUR ON SCROLL
+     2. FLOATING CYLINDRICAL NAVBAR DYNAMIC GLOW ON SCROLL
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
   
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
-      mainHeader.classList.add('navbar-scrolled');
+      if (mainHeader) mainHeader.classList.add('navbar-scrolled');
     } else {
-      mainHeader.classList.remove('navbar-scrolled');
+      if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
     }
   }, { passive: true });
 
@@ -73,91 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. CLIP-PATH DENTAL TEETH SLIDER (ZERO MOBILE OVERFLOW)
-     ========================================================================== */
-  const sliderContainer = document.getElementById('baSliderContainer');
-  const handle = document.getElementById('baHandle');
-
-  if (sliderContainer && handle) {
-    let isSliding = false;
-
-    const setSliderPosition = (clientX) => {
-      const rect = sliderContainer.getBoundingClientRect();
-      let offsetX = clientX - rect.left;
-      
-      if (offsetX < 0) offsetX = 0;
-      if (offsetX > rect.width) offsetX = rect.width;
-
-      const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
-      sliderContainer.style.setProperty('--clip-pos', `${percentage}%`);
-    };
-
-    // Desktop Mouse Drag Events
-    sliderContainer.addEventListener('mousedown', (e) => {
-      isSliding = true;
-      setSliderPosition(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => {
-      isSliding = false;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isSliding) return;
-      setSliderPosition(e.clientX);
-    });
-
-    // Mobile / Tablet Touch Events
-    sliderContainer.addEventListener('touchstart', (e) => {
-      isSliding = true;
-      if (e.touches.length > 0) {
-        setSliderPosition(e.touches[0].clientX);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isSliding = false;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isSliding || e.touches.length === 0) return;
-      setSliderPosition(e.touches[0].clientX);
-    }, { passive: true });
-  }
-
-  /* ==========================================================================
-     5. ULTRA-COMPACT LIVE SOCIAL PROOF TICKER ROTATOR
-     ========================================================================== */
-  const tickerTextEl = document.getElementById('tickerText');
-  const tickerEl = document.getElementById('socialProofTicker');
-
-  const compactSocialProof = [
-    "Dr. Sterling booked All-on-4 • 6m ago",
-    "Elena R. reserved 10 Veneers • 14m ago",
-    "Sir Charles W. booked IV Sedation • 22m ago",
-    "Marcus V. confirmed Implants • 31m ago",
-    "VIP Patient intake confirmed • 4m ago"
-  ];
-
-  if (tickerTextEl && tickerEl) {
-    let tickerIndex = 0;
-
-    setInterval(() => {
-      tickerEl.style.opacity = '0';
-      tickerEl.style.transform = 'translateY(6px)';
-
-      setTimeout(() => {
-        tickerIndex = (tickerIndex + 1) % compactSocialProof.length;
-        tickerTextEl.textContent = compactSocialProof[tickerIndex];
-        
-        tickerEl.style.opacity = '1';
-        tickerEl.style.transform = 'translateY(0)';
-      }, 300);
-    }, 6000); // Smoothly rotates every 6 seconds
-  }
-
-  /* ==========================================================================
-     6. SLIDE-OVER VIP BOOKING MODAL DRAWER
+     4. SLIDE-OVER VIP BOOKING MODAL DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
@@ -324,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     7. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
+     5. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -374,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     8. CENTERED TOAST NOTIFICATION HELPER
+     6. CENTERED TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
@@ -386,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
 
-  // Smooth scroll for nav anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');

@@ -1,43 +1,46 @@
 /* ==========================================================================
-   LUMINA DENTAL & IMPLANT STUDIO — $3,000 MASTER SPEC (BEVERLY HILLS ATELIER)
-   Aesthetic: Seamless Midnight Navy Luxury • Zero Viewport Overflow
-   Compact Social Proof Mini-Pill • Iridescent Micro-Glow & 120fps Fluidity
+   LUMINA DENTAL STUDIO — $3,000 FINAL MASTER STYLESHEET
+   Features:
+   1. Floating Cylindrical Island Navbar (Glowing Cyan Capsule)
+   2. 3D Animated Typography & Liquid Shimmer Text
+   3. Apa Aesthetic Signature Smile Portfolio & Zero-Anxiety Spa
+   4. 100% Strict Mobile Viewport Safety (Zero Overflow)
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
 :root {
-  --bg-deep:      #0A1128;   /* Midnight Deep Navy */
-  --bg-pure:      #FFFFFF;   /* Clinical Pure White */
-  --bg-frost:     #F8FAFC;   /* Soft slate porcelain */
-  --bg-card:      rgba(255, 255, 255, 0.95);
+  --bg-deep:        #0A1128;   /* Midnight Deep Navy */
+  --bg-pure:        #FFFFFF;   /* Clinical Pure White */
+  --bg-frost:       #F8FAFC;   /* Soft slate porcelain */
+  --bg-card:        rgba(255, 255, 255, 0.96);
   
-  --cyan-mint:    #00F2FE;   /* Medical Trust Glowing Mint/Cyan */
-  --deep-blue:    #4FACFE;   /* Primary Luxury Gradient Companion */
-  --gold-accent:  #F59E0B;   /* Subtle Star Ratings & Premium VIP Touches */
-  --danger-red:   #EF4444;   /* Emergency Accent */
+  --cyan-mint:      #00F2FE;   /* Medical Trust Glowing Mint/Cyan */
+  --deep-blue:      #4FACFE;   /* Primary Luxury Gradient Companion */
+  --gold-accent:    #F59E0B;   /* Subtle Star Ratings & Premium VIP Touches */
+  --danger-red:     #EF4444;   /* Emergency Accent */
   
-  --text-dark:    #0F172A;   /* High-contrast crisp body */
-  --text-slate:   #64748B;   /* Sophisticated secondary captions */
-  --text-muted:   #94A3B8;   /* Subtle borders and disabled items */
-  --text-white:   #FFFFFF;
+  --text-dark:      #0F172A;   /* High-contrast crisp body */
+  --text-slate:     #64748B;   /* Sophisticated secondary captions */
+  --text-muted:     #94A3B8;   /* Subtle borders and disabled items */
+  --text-white:     #FFFFFF;
   
-  --border-light: rgba(226, 232, 240, 0.85);
-  --border-glow:  rgba(0, 242, 254, 0.35);
+  --border-light:   rgba(226, 232, 240, 0.85);
+  --border-capsule: rgba(0, 242, 254, 0.35); /* Glowing cyan border */
   
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading:   'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:      'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   
-  --shadow-sm:    0 2px 4px rgba(10, 17, 40, 0.04);
-  --shadow-md:    0 8px 24px rgba(10, 17, 40, 0.08);
-  --shadow-lg:    0 20px 40px rgba(10, 17, 40, 0.12);
-  --shadow-glow:  0 0 30px rgba(0, 242, 254, 0.28);
+  --shadow-sm:      0 2px 4px rgba(10, 17, 40, 0.04);
+  --shadow-md:      0 8px 24px rgba(10, 17, 40, 0.08);
+  --shadow-lg:      0 20px 40px rgba(10, 17, 40, 0.12);
+  --shadow-glow:    0 0 25px rgba(0, 242, 254, 0.22);
   
-  --radius-sm:    8px;
-  --radius-md:    16px;
-  --radius-lg:    24px;
-  --radius-full:  9999px;
+  --radius-sm:      8px;
+  --radius-md:      16px;
+  --radius-lg:      24px;
+  --radius-full:    9999px;
   
-  --transition:   all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition:     all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- HARD RESET: Zero Mobile Viewport Stretch --- */
@@ -50,7 +53,7 @@
 html, body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: clip; /* Modern hard clip prevents any horizontal page scrolling */
+  overflow-x: clip; /* Hard clip prevents any horizontal scroll */
   position: relative;
   -webkit-text-size-adjust: 100%;
 }
@@ -91,7 +94,7 @@ button {
   transition: var(--transition);
 }
 
-/* --- Clean Modern Luxury Typography (Zero Cursive) --- */
+/* --- Typography & Global Layout --- */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
   letter-spacing: -0.03em;
@@ -107,7 +110,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .section {
-  padding: 85px 0;
+  padding: 95px 0;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -130,8 +133,8 @@ h1, h2, h3, h4, h5 {
   color: #0284C7;
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  padding: 5px 12px;
+  letter-spacing: 0.14em;
+  padding: 5px 14px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(79, 172, 254, 0.25);
   text-transform: uppercase;
@@ -140,17 +143,17 @@ h1, h2, h3, h4, h5 {
 }
 
 .section-title {
-  font-size: clamp(1.9rem, 4vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 16px;
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  font-weight: 900;
+  margin-bottom: 18px;
   word-break: break-word;
 }
 
 .section-sub {
   color: var(--text-slate);
   font-size: 1.05rem;
-  max-width: 700px;
-  margin: 0 auto 46px auto;
+  max-width: 720px;
+  margin: 0 auto 50px auto;
   line-height: 1.7;
 }
 
@@ -158,12 +161,34 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
-/* Gradients with standard background-clip (0 Warnings) */
-.gradient-text {
-  background: linear-gradient(135deg, var(--cyan-mint) 0%, var(--deep-blue) 100%);
+/* ==========================================================================
+   3D TYPOGRAPHY & ANIMATED LIQUID-LIGHT HEADLINES
+   ========================================================================== */
+.title-3d-effect {
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 0 rgba(0, 242, 254, 0.2),
+    0 4px 6px rgba(10, 17, 40, 0.8),
+    0 10px 25px rgba(0, 242, 254, 0.3);
+}
+
+.shimmer-3d-text {
+  background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 45%, #FFFFFF 70%, #00F2FE 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmer3D 4.5s linear infinite;
+  filter: drop-shadow(0 4px 14px rgba(0, 242, 254, 0.45));
+}
+
+@keyframes shimmer3D {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.title-3d-section {
+  text-shadow: 0 2px 4px rgba(10, 17, 40, 0.08);
 }
 
 .gradient-text-navy {
@@ -208,16 +233,16 @@ h1, h2, h3, h4, h5 {
   font-size: 0.98rem;
 }
 
-.btn-primary-gradient {
+.btn-capsule-glow {
   background: linear-gradient(135deg, var(--cyan-mint) 0%, var(--deep-blue) 100%);
   color: var(--bg-deep);
-  box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 242, 254, 0.35);
   font-weight: 800;
 }
 
-.btn-primary-gradient:hover {
+.btn-capsule-glow:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 242, 254, 0.45);
+  box-shadow: 0 12px 28px rgba(0, 242, 254, 0.5);
 }
 
 .btn-glass {
@@ -274,46 +299,36 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. SEAMLESS DARK LUXURY ANNOUNCEMENT BAR
+   1. FLOATING CYLINDRICAL CAPSULE HEADER (Awwwards Dynamic Island)
    ========================================================================== */
-.announcement-bar {
-  background-color: #060C1D; /* Seamless deep navy tone */
-  color: #CBD5E1;
-  font-size: 0.78rem;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  position: relative;
-  z-index: 101;
+.floating-header-container {
+  position: fixed;
+  top: 14px;
+  left: 0;
   width: 100%;
-  overflow: hidden;
-}
-
-.announcement-inner {
+  z-index: 1000;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: 8px;
+  pointer-events: none; /* Children handle pointer events */
 }
 
-.announcement-left, .announcement-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.live-pulse-badge {
+/* Floating Cylindrical Micro-Announcement Pill */
+.capsule-announcement {
+  pointer-events: auto;
+  background: rgba(10, 17, 40, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  font-size: 0.7rem;
+  color: #CBD5E1;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(0, 242, 254, 0.15);
-  color: var(--cyan-mint);
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  font-weight: 800;
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .pulse-dot {
@@ -330,99 +345,90 @@ h1, h2, h3, h4, h5 {
   100% { transform: scale(0.9); opacity: 1; }
 }
 
-.phone-link {
+.capsule-sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.capsule-link {
   color: var(--cyan-mint);
   font-weight: 700;
 }
 
-.financing-tag {
-  color: #94A3B8;
-}
-
-.announcement-cta {
-  color: var(--cyan-mint);
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.announcement-cta:hover {
+.capsule-highlight {
   color: #FFFFFF;
+  font-weight: 600;
 }
 
-/* ==========================================================================
-   2. SEAMLESS DARK LUXURY NAVBAR (Safed Patti Khatam!)
-   ========================================================================== */
-.navbar-wrapper {
-  position: sticky;
-  top: 0;
+/* Main Cylindrical Floating Island Navbar */
+.cylindrical-navbar-wrapper {
+  pointer-events: auto;
   width: 100%;
-  z-index: 100;
-  background: rgba(10, 17, 40, 0.85); /* Seamless midnight navy glass */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
-.navbar-scrolled {
-  background: rgba(10, 17, 40, 0.98);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.navbar {
+.cylindrical-navbar {
+  width: 92%;
+  max-width: 1140px;
+  height: 64px;
+  background: rgba(10, 17, 40, 0.82); /* Seamless midnight navy */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: var(--radius-full); /* Pure cylindrical capsule */
+  border: 1.5px solid var(--border-capsule); /* Iridescent cyan glowing border */
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), var(--shadow-glow);
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
+  transition: var(--transition);
 }
 
-/* Rodeo Drive Diamond Crown Crest Logo */
-.brand-logo {
+.navbar-scrolled .cylindrical-navbar {
+  background: rgba(10, 17, 40, 0.96);
+  border-color: rgba(0, 242, 254, 0.6);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 242, 254, 0.3);
+}
+
+/* Brand Wordmark Inside Capsule */
+.brand-capsule-logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.luxury-crest-mark {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.brand-spark-gem {
+  color: var(--cyan-mint);
+  font-size: 1.25rem;
+  line-height: 1;
+  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.8));
 }
 
-.crest-svg {
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 6px rgba(0, 242, 254, 0.4));
-}
-
-.crest-sm {
-  width: 28px;
-  height: 28px;
-}
-
-.brand-text {
+.brand-text-group {
   display: flex;
   flex-direction: column;
 }
 
-.brand-title {
+.brand-title-3d {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.3rem;
-  letter-spacing: 0.16em;
-  color: #FFFFFF; /* High-contrast crisp white */
+  font-size: 1.25rem;
+  letter-spacing: 0.22em; /* Expansive luxury kerning */
+  color: #FFFFFF;
   line-height: 1;
 }
 
-.brand-subtitle {
-  font-size: 0.56rem;
+.brand-title-light {
+  color: #FFFFFF;
+}
+
+.brand-sub-luxury {
+  font-size: 0.54rem;
   font-weight: 800;
   letter-spacing: 0.18em;
   color: #94A3B8;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
 .nav-links {
@@ -433,11 +439,11 @@ h1, h2, h3, h4, h5 {
 }
 
 .nav-links a {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: #CBD5E1;
   position: relative;
-  padding: 5px 0;
+  padding: 4px 0;
 }
 
 .nav-links a::after {
@@ -465,7 +471,7 @@ h1, h2, h3, h4, h5 {
   gap: 10px;
 }
 
-.nav-phone-pill {
+.capsule-phone-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -478,39 +484,41 @@ h1, h2, h3, h4, h5 {
   color: #FFFFFF;
 }
 
-.nav-phone-pill:hover {
-  background: rgba(255, 255, 255, 0.12);
+.capsule-phone-btn:hover {
   border-color: var(--cyan-mint);
   color: var(--cyan-mint);
-}
-
-.nav-book-btn {
-  padding: 9px 18px;
-  font-size: 0.86rem;
 }
 
 .mobile-toggle-btn {
   display: none;
   flex-direction: column;
   gap: 5px;
-  width: 30px;
-  padding: 4px;
+  width: 28px;
+  padding: 2px;
 }
 
 .mobile-toggle-btn span {
   display: block;
-  height: 2.5px;
+  height: 2px;
   width: 100%;
-  background-color: #FFFFFF; /* Crisp white hamburger bars */
+  background-color: #FFFFFF;
   border-radius: 2px;
 }
 
-/* Mobile Drawer */
+/* Mobile Dropdown Drawer Below Capsule */
 .mobile-drawer {
   display: none;
-  background: #0A1128;
+  position: absolute;
+  top: 72px;
+  width: 92%;
+  max-width: 500px;
+  background: rgba(10, 17, 40, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-capsule);
+  border-radius: var(--radius-lg);
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .mobile-nav-links {
@@ -534,12 +542,12 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   3. HERO SECTION
+   2. HERO SECTION
    ========================================================================== */
 .hero-section {
   background-color: var(--bg-deep);
   color: var(--text-white);
-  padding: 75px 0 100px 0;
+  padding: 130px 0 100px 0; /* Clears floating capsule header */
   position: relative;
   overflow: hidden;
 }
@@ -594,13 +602,13 @@ h1, h2, h3, h4, h5 {
   flex-wrap: wrap;
 }
 
-.star-rating {
+.gold-sparkle {
   color: var(--gold-accent);
   letter-spacing: 2px;
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 4.4vw, 4rem);
+  font-size: clamp(2.3rem, 4.4vw, 4.1rem);
   font-weight: 900;
   color: #FFFFFF;
   line-height: 1.1;
@@ -821,9 +829,9 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   4. "THE ZERO-ANXIETY SPA EXPERIENCE" SECTION
+   3. THE ZERO-ANXIETY SPA EXPERIENCE
    ========================================================================== */
-.comfort-section {
+.spa-section {
   background-color: var(--bg-frost);
 }
 
@@ -835,7 +843,7 @@ h1, h2, h3, h4, h5 {
 
 .comfort-card {
   background: #FFFFFF;
-  padding: 30px 24px;
+  padding: 32px 24px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
@@ -891,7 +899,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   5. HIGH-TICKET TREATMENTS GRID (120FPS FLUID ELEVATION & GLOW)
+   4. HIGH-TICKET TREATMENTS GRID (120FPS FLUID ELEVATION)
    ========================================================================== */
 .treatments-section {
   background-color: var(--bg-pure);
@@ -1051,168 +1059,118 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   6. GENUINE TEETH BEFORE & AFTER SLIDER (CLIP-PATH - ZERO OVERFLOW)
+   5. THE SIGNATURE SMILE PORTFOLIO (Apa Aesthetic Benchmark)
    ========================================================================== */
-.gallery-section {
+.portfolio-section {
   background-color: var(--bg-frost);
 }
 
-.ba-slider-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  aspect-ratio: 16 / 10;
-  margin: 0 auto 20px auto;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  user-select: none;
-  touch-action: pan-y;
-  cursor: ew-resize;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 20px 45px rgba(10, 17, 40, 0.15);
-  background: #000000;
-}
-
-.ba-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-/* Top before layer is clipped using CSS variable --clip-pos (Default 50%) */
-.ba-before-img {
-  clip-path: inset(0 calc(100% - var(--clip-pos, 50%)) 0 0);
-  z-index: 2;
-}
-
-.ba-after-img {
-  z-index: 1;
-}
-
-.ba-label {
-  position: absolute;
-  bottom: 16px;
-  padding: 6px 14px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  border-radius: var(--radius-full);
-  letter-spacing: 0.05em;
-  backdrop-filter: blur(8px);
-  pointer-events: none;
-}
-
-.label-before {
-  left: 16px;
-  z-index: 4;
-  background: rgba(10, 17, 40, 0.85);
-  color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.label-after {
-  right: 16px;
-  z-index: 4;
-  background: rgba(0, 242, 254, 0.9);
-  color: #0A1128;
-}
-
-.ba-handle {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: var(--clip-pos, 50%);
-  width: 40px;
-  margin-left: -20px;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.ba-handle-line {
-  flex-grow: 1;
-  width: 3px;
-  background: #FFFFFF;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-}
-
-.ba-handle-button {
-  width: 40px;
-  height: 40px;
-  background: #FFFFFF;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
-  border: 2px solid var(--cyan-mint);
-}
-
-.slider-helper-hint {
-  text-align: center;
-  color: var(--text-slate);
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 40px;
-}
-
-.case-study-details {
+.smile-portfolio-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 800px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1140px;
   margin: 0 auto;
 }
 
-.case-card {
+.portfolio-card {
   background: #FFFFFF;
-  padding: 24px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
+  overflow: hidden;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
 }
 
-.case-tag {
-  font-size: 0.72rem;
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.portfolio-img-box {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #050B1B;
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.portfolio-card:hover .portfolio-img {
+  transform: scale(1.04);
+}
+
+.portfolio-floating-pill {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background: rgba(10, 17, 40, 0.88);
+  backdrop-filter: blur(10px);
+  color: var(--cyan-mint);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+}
+
+.portfolio-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.portfolio-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.patient-id {
+  font-size: 0.74rem;
   font-weight: 800;
   color: #0284C7;
-  margin-bottom: 6px;
 }
 
-.case-card h4 {
-  font-size: 1.15rem;
+.patient-loc {
+  font-size: 0.72rem;
+  color: var(--text-slate);
+}
+
+.portfolio-title {
+  font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
-.case-card p {
-  font-size: 0.88rem;
+.portfolio-desc {
+  font-size: 0.9rem;
   color: var(--text-slate);
-  margin-bottom: 6px;
-  line-height: 1.55;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex-grow: 1;
 }
 
-.case-card p strong {
-  color: var(--text-dark);
-}
-
-.case-quote {
-  margin-top: 12px;
-  padding-top: 12px;
+.portfolio-quote {
+  padding-top: 14px;
   border-top: 1px dashed var(--border-light);
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--text-dark);
   font-weight: 600;
 }
 
 /* ==========================================================================
-   7. SMILE INVESTMENT & FINANCING CALCULATOR
+   6. SMILE INVESTMENT & FINANCING CALCULATOR
    ========================================================================== */
 .calculator-section {
   background-color: var(--bg-pure);
@@ -1351,7 +1309,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   8. MEET DR. STERLING & SPECIALISTS
+   7. MEET DR. STERLING & SPECIALISTS
    ========================================================================== */
 .specialists-section {
   background-color: var(--bg-frost);
@@ -1474,7 +1432,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   9. PATIENT REVIEWS & SOCIAL PROOF
+   8. PATIENT REVIEWS & SOCIAL PROOF
    ========================================================================== */
 .reviews-section {
   background-color: var(--bg-pure);
@@ -1566,7 +1524,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   10. LUXURY FOOTER
+   9. LUXURY FOOTER
    ========================================================================== */
 .footer-section {
   background-color: #050B1B;
@@ -1683,7 +1641,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   11. SLIDE-OVER VIP BOOKING MODAL DRAWER (ZERO OFF-SCREEN OVERFLOW)
+   10. SLIDE-OVER VIP BOOKING MODAL DRAWER (ZERO OVERFLOW)
    ========================================================================== */
 .vip-drawer-overlay {
   position: fixed;
@@ -1768,7 +1726,6 @@ h1, h2, h3, h4, h5 {
   flex-grow: 1;
 }
 
-/* Stepper inside Drawer */
 .wizard-stepper {
   display: flex;
   align-items: center;
@@ -2016,49 +1973,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 16px;
 }
 
-/* ==========================================================================
-   12. ULTRA-COMPACT DISCREET MINI SOCIAL PROOF TICKER (Never Covers Content)
-   ========================================================================== */
-.social-proof-ticker {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 990;
-  background: rgba(10, 17, 40, 0.85); /* Dark translucent glass */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 242, 254, 0.35);
-  border-radius: var(--radius-full);
-  padding: 7px 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  max-width: 330px;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  pointer-events: none; /* User can click behind it effortlessly */
-}
-
-.ticker-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #10B981;
-  border-radius: 50%;
-  flex-shrink: 0;
-  animation: pulse-ring 1.8s infinite ease-out;
-}
-
-.ticker-text {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Toast Feedback Centered */
+/* Centered Toast Feedback */
 .toast-notification {
   position: fixed;
   top: 16px;
@@ -2121,25 +2036,37 @@ h1, h2, h3, h4, h5 {
     padding: 0 16px;
   }
 
-  .announcement-bar {
-    padding: 6px 0;
+  /* Mobile Floating Header */
+  .floating-header-container {
+    top: 8px;
+    gap: 6px;
   }
 
-  .announcement-inner {
-    flex-direction: column;
-    text-align: center;
-    gap: 4px;
+  .capsule-announcement {
+    padding: 3px 10px;
+    font-size: 0.65rem;
   }
 
-  .announcement-left, .announcement-right {
-    justify-content: center;
+  .capsule-highlight, .capsule-sep:last-of-type {
+    display: none; /* Keep announcement compact on phone */
   }
 
-  .announcement-right .financing-tag {
-    display: none;
+  .cylindrical-navbar {
+    width: 94%;
+    height: 56px;
+    padding: 0 16px;
   }
 
-  .nav-links, .nav-phone-pill, .nav-book-btn {
+  .brand-title-3d {
+    font-size: 1.1rem;
+    letter-spacing: 0.16em;
+  }
+
+  .brand-sub-luxury {
+    font-size: 0.48rem;
+  }
+
+  .nav-links, .capsule-phone-btn, .nav-book-btn {
     display: none;
   }
 
@@ -2147,8 +2074,12 @@ h1, h2, h3, h4, h5 {
     display: flex;
   }
 
+  .mobile-drawer {
+    top: 62px;
+  }
+
   .hero-section {
-    padding: 40px 0 70px 0;
+    padding: 120px 0 60px 0;
   }
 
   .hero-title {
@@ -2183,12 +2114,12 @@ h1, h2, h3, h4, h5 {
     grid-template-columns: 1fr;
   }
 
-  .case-study-details {
+  .smile-portfolio-grid {
     grid-template-columns: 1fr;
   }
 
-  .ba-slider-container {
-    aspect-ratio: 4 / 3;
+  .portfolio-img-box {
+    height: 230px;
   }
 
   .form-row-2 {
@@ -2210,31 +2141,11 @@ h1, h2, h3, h4, h5 {
   .vip-booking-drawer {
     max-width: 100%;
   }
-
-  /* Ultra-compact mini pill on mobile - sits discreetly in bottom corner */
-  .social-proof-ticker {
-    bottom: 16px;
-    left: 14px;
-    max-width: 250px;
-    padding: 6px 12px;
-  }
-
-  .ticker-text {
-    font-size: 0.66rem;
-  }
 }
 
 @media (max-width: 480px) {
   .hero-title {
     font-size: 1.85rem;
-  }
-
-  .brand-title {
-    font-size: 1.15rem;
-  }
-
-  .brand-subtitle {
-    font-size: 0.52rem;
   }
 
   .calc-monthly-price {
