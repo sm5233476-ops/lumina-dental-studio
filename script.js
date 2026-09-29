@@ -1,9 +1,9 @@
 /**
- * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT ($3,000 MASTER SPEC)
+ * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (BEVERLY HILLS ATELIER)
  * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Navbar Dynamic Glass Blur on Scroll
+ * 2. Navbar Dynamic Dark Glass Blur on Scroll
  * 3. Before & After Macro Teeth Slider (Clip-Path Powered - Zero Mobile Overflow)
- * 4. Live Social Proof Ticker Engine (Dynamic Rotation)
+ * 4. Ultra-Compact Social Proof Ticker Engine (Dynamic Rotation)
  * 5. Slide-Over VIP Booking Drawer Engine
  * 6. Interactive Smile Investment & Financing Calculator
  * 7. Mobile Drawer & Centered Toast Notification Helper
@@ -126,36 +126,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. LIVE SOCIAL PROOF TICKER ROTATOR (BOTTOM-LEFT CORNER)
+     5. ULTRA-COMPACT LIVE SOCIAL PROOF TICKER ROTATOR
      ========================================================================== */
   const tickerTextEl = document.getElementById('tickerText');
   const tickerEl = document.getElementById('socialProofTicker');
 
-  const socialProofMessages = [
-    "Dr. Sterling confirmed an All-on-4 consultation 6m ago",
-    "Elena R. reserved 10 Porcelain Veneers preview 14m ago",
-    "Sir Charles W. booked Twilight IV Sedation surgery 22m ago",
-    "Marcus V. finalized Full-Arch Zirconia consultation 31m ago",
-    "VIP Patient intake confirmed from Bel Air, CA 4m ago"
+  const compactSocialProof = [
+    "Dr. Sterling booked All-on-4 • 6m ago",
+    "Elena R. reserved 10 Veneers • 14m ago",
+    "Sir Charles W. booked IV Sedation • 22m ago",
+    "Marcus V. confirmed Implants • 31m ago",
+    "VIP Patient intake confirmed • 4m ago"
   ];
 
   if (tickerTextEl && tickerEl) {
     let tickerIndex = 0;
 
     setInterval(() => {
-      // Smooth fade out
       tickerEl.style.opacity = '0';
-      tickerEl.style.transform = 'translateY(8px)';
+      tickerEl.style.transform = 'translateY(6px)';
 
       setTimeout(() => {
-        tickerIndex = (tickerIndex + 1) % socialProofMessages.length;
-        tickerTextEl.textContent = socialProofMessages[tickerIndex];
+        tickerIndex = (tickerIndex + 1) % compactSocialProof.length;
+        tickerTextEl.textContent = compactSocialProof[tickerIndex];
         
-        // Smooth fade in
         tickerEl.style.opacity = '1';
         tickerEl.style.transform = 'translateY(0)';
-      }, 350);
-    }, 6500); // Rotates every 6.5 seconds
+      }, 300);
+    }, 6000); // Smoothly rotates every 6 seconds
   }
 
   /* ==========================================================================
