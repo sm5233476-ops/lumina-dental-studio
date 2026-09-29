@@ -1,7 +1,7 @@
 /* ==========================================================================
-   LUMINA DENTAL & IMPLANT STUDIO — MASTER STYLESHEET (PERFECT ZERO-OVERFLOW)
-   Design Language: Modern Luxury Clinical Aesthetics
-   100% Strict Mobile Viewport Safety • Clip-Path Teeth Slider • Zero Cursive
+   LUMINA DENTAL & IMPLANT STUDIO — $3,000 LUXURY MASTER SPEC (FLAGSHIP TIER)
+   Aesthetic: Beverly Hills Luxury Minimalism (Apa Aesthetic & Tend NYC Benchmark)
+   100% Zero-Overflow • Clip-Path Dental Slider • Live Social Proof Ticker
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -37,7 +37,7 @@
   --radius-lg:    24px;
   --radius-full:  9999px;
   
-  --transition:   all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition:   all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- HARD RESET: Zero Mobile Viewport Stretch --- */
@@ -50,7 +50,7 @@
 html, body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: clip; /* Modern hard clip prevents any horizontal page scrolling */
+  overflow-x: clip; /* Hard clip prevents any horizontal page scrolling */
   position: relative;
   -webkit-text-size-adjust: 100%;
 }
@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .section {
-  padding: 85px 0;
+  padding: 90px 0;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5 {
   transition: var(--transition);
   max-width: 100%;
   word-break: break-word;
-  white-space: normal; /* Prevents button overflowing screen */
+  white-space: normal;
   text-align: center;
 }
 
@@ -372,7 +372,6 @@ h1, h2, h3, h4, h5 {
   padding: 12px 20px;
 }
 
-/* Rodeo Drive Diamond Dental Crest Logo */
 .brand-logo {
   display: flex;
   align-items: center;
@@ -754,7 +753,7 @@ h1, h2, h3, h4, h5 {
   width: 32px;
   height: 32px;
   background: rgba(0, 242, 254, 0.15);
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -815,7 +814,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   4. ANXIETY-FREE & COMFORT SECTION
+   4. NEW: "THE ZERO-ANXIETY SPA EXPERIENCE" SECTION
    ========================================================================== */
 .comfort-section {
   background-color: var(--bg-frost);
@@ -824,12 +823,12 @@ h1, h2, h3, h4, h5 {
 .comfort-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 22px;
+  gap: 24px;
 }
 
 .comfort-card {
   background: #FFFFFF;
-  padding: 28px 24px;
+  padding: 30px 24px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
@@ -839,21 +838,21 @@ h1, h2, h3, h4, h5 {
 }
 
 .comfort-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(79, 172, 254, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 242, 254, 0.16);
+  border-color: rgba(79, 172, 254, 0.45);
 }
 
 .comfort-icon-box {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(79, 172, 254, 0.15));
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #0284C7;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .feature-icon {
@@ -862,30 +861,30 @@ h1, h2, h3, h4, h5 {
 }
 
 .comfort-card-title {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
 .comfort-card-text {
   color: var(--text-slate);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.65;
   margin-bottom: 18px;
   flex-grow: 1;
 }
 
 .comfort-perk {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #0369A1;
   background: #F0F9FF;
-  padding: 7px 10px;
+  padding: 7px 12px;
   border-radius: var(--radius-sm);
 }
 
 /* ==========================================================================
-   5. HIGH-TICKET TREATMENTS GRID
+   5. HIGH-TICKET TREATMENTS GRID (120FPS FLUID ELEVATION & GLOW)
    ========================================================================== */
 .treatments-section {
   background-color: var(--bg-pure);
@@ -894,7 +893,7 @@ h1, h2, h3, h4, h5 {
 .treatments-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 26px;
+  gap: 28px;
 }
 
 .treatment-card {
@@ -905,13 +904,16 @@ h1, h2, h3, h4, h5 {
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: var(--transition);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   position: relative;
+  will-change: transform, box-shadow;
 }
 
+/* 120fps fluid elevation and subtle cyan/mint iridescent border glow */
 .treatment-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 242, 254, 0.22);
+  border-color: rgba(0, 242, 254, 0.45);
 }
 
 .featured-treatment {
@@ -948,7 +950,7 @@ h1, h2, h3, h4, h5 {
 
 .treatment-image-wrapper {
   position: relative;
-  height: 200px;
+  height: 210px;
   overflow: hidden;
 }
 
@@ -956,7 +958,7 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .treatment-card:hover .treatment-img {
@@ -965,14 +967,14 @@ h1, h2, h3, h4, h5 {
 
 .treatment-price-pill {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 12px;
+  left: 12px;
   background: rgba(10, 17, 40, 0.88);
   backdrop-filter: blur(8px);
   color: #FFFFFF;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -989,7 +991,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .treatment-category {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #0284C7;
   text-transform: uppercase;
@@ -1002,14 +1004,14 @@ h1, h2, h3, h4, h5 {
 }
 
 .treatment-heading {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
 .treatment-summary {
   color: var(--text-slate);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   margin-bottom: 16px;
   line-height: 1.6;
 }
@@ -1021,7 +1023,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .treatment-points li {
-  font-size: 0.84rem;
+  font-size: 0.85rem;
   color: var(--text-dark);
   font-weight: 600;
   margin-bottom: 6px;
@@ -1038,12 +1040,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .treatment-card-footer {
-  padding-top: 14px;
+  padding-top: 16px;
   border-top: 1px solid var(--border-light);
 }
 
 /* ==========================================================================
-   6. INTERACTIVE DENTAL TEETH COMPARISON SLIDER (CLIP-PATH BASED - ZERO OVERFLOW)
+   6. GENUINE TEETH BEFORE & AFTER SLIDER (CLIP-PATH POWERED - ZERO OVERFLOW)
    ========================================================================== */
 .gallery-section {
   background-color: var(--bg-frost);
@@ -1709,7 +1711,7 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
-  visibility: hidden; /* CRITICAL: Never stretch mobile viewport */
+  visibility: hidden;
   pointer-events: none;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
 }
@@ -2008,6 +2010,61 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 16px;
 }
 
+/* ==========================================================================
+   12. NEW: LIVE SOCIAL PROOF TICKER (BOTTOM-LEFT CORNER)
+   ========================================================================== */
+.social-proof-ticker {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 990;
+  background: rgba(10, 17, 40, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  border-radius: var(--radius-full);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  max-width: 380px;
+  animation: tickerFloat 4s ease-in-out infinite alternate;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+@keyframes tickerFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.ticker-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10B981;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse-ring 1.8s infinite ease-out;
+}
+
+.ticker-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticker-text {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+}
+
+.ticker-loc {
+  font-size: 0.65rem;
+  color: var(--cyan-mint);
+  font-weight: 600;
+}
+
 /* Toast Feedback Centered (Never breaks mobile right boundary) */
 .toast-notification {
   position: fixed;
@@ -2125,6 +2182,10 @@ h1, h2, h3, h4, h5 {
     height: 260px;
   }
 
+  .comfort-grid {
+    grid-template-columns: 1fr;
+  }
+
   .treatments-grid {
     grid-template-columns: 1fr;
   }
@@ -2155,6 +2216,15 @@ h1, h2, h3, h4, h5 {
 
   .vip-booking-drawer {
     max-width: 100%;
+  }
+
+  /* Social proof ticker fits neatly on phones */
+  .social-proof-ticker {
+    bottom: 84px; /* Sits cleanly above mobile chat icon */
+    left: 14px;
+    right: 14px;
+    max-width: none;
+    padding: 8px 14px;
   }
 }
 

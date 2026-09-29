@@ -1,11 +1,12 @@
 /**
- * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (PERFECT EDITION)
+ * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT ($3,000 MASTER SPEC)
  * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Navbar Dynamic Glass Blur
+ * 2. Navbar Dynamic Glass Blur on Scroll
  * 3. Before & After Macro Teeth Slider (Clip-Path Powered - Zero Mobile Overflow)
- * 4. Slide-Over VIP Booking Drawer Engine
- * 5. Interactive Smile Investment & Financing Calculator
- * 6. Mobile Drawer & Centered Toast Notification Dispatcher
+ * 4. Live Social Proof Ticker Engine (Dynamic Rotation)
+ * 5. Slide-Over VIP Booking Drawer Engine
+ * 6. Interactive Smile Investment & Financing Calculator
+ * 7. Mobile Drawer & Centered Toast Notification Helper
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target); // Animate once cleanly
+          observer.unobserve(entry.target);
         }
       });
     }, {
@@ -84,13 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = sliderContainer.getBoundingClientRect();
       let offsetX = clientX - rect.left;
       
-      // Clamp between 0 and container width
       if (offsetX < 0) offsetX = 0;
       if (offsetX > rect.width) offsetX = rect.width;
 
       const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
-      
-      // Updates CSS variable directly (Moves handle + clips image at 120fps GPU speed)
       sliderContainer.style.setProperty('--clip-pos', `${percentage}%`);
     };
 
@@ -128,7 +126,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. SLIDE-OVER VIP BOOKING MODAL DRAWER
+     5. LIVE SOCIAL PROOF TICKER ROTATOR (BOTTOM-LEFT CORNER)
+     ========================================================================== */
+  const tickerTextEl = document.getElementById('tickerText');
+  const tickerEl = document.getElementById('socialProofTicker');
+
+  const socialProofMessages = [
+    "Dr. Sterling confirmed an All-on-4 consultation 6m ago",
+    "Elena R. reserved 10 Porcelain Veneers preview 14m ago",
+    "Sir Charles W. booked Twilight IV Sedation surgery 22m ago",
+    "Marcus V. finalized Full-Arch Zirconia consultation 31m ago",
+    "VIP Patient intake confirmed from Bel Air, CA 4m ago"
+  ];
+
+  if (tickerTextEl && tickerEl) {
+    let tickerIndex = 0;
+
+    setInterval(() => {
+      // Smooth fade out
+      tickerEl.style.opacity = '0';
+      tickerEl.style.transform = 'translateY(8px)';
+
+      setTimeout(() => {
+        tickerIndex = (tickerIndex + 1) % socialProofMessages.length;
+        tickerTextEl.textContent = socialProofMessages[tickerIndex];
+        
+        // Smooth fade in
+        tickerEl.style.opacity = '1';
+        tickerEl.style.transform = 'translateY(0)';
+      }, 350);
+    }, 6500); // Rotates every 6.5 seconds
+  }
+
+  /* ==========================================================================
+     6. SLIDE-OVER VIP BOOKING MODAL DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
@@ -295,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     6. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
+     7. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -345,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     7. CENTERED TOAST NOTIFICATION HELPER
+     8. CENTERED TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
@@ -357,6 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
 
+  // Smooth scroll for nav anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
