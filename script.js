@@ -1,16 +1,45 @@
 /**
- * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (MOBILE-PERFECT EDITION)
- * 1. Navbar Glass Blur on Scroll
- * 2. Mobile Drawer Navigation Toggle
- * 3. Slide-Over VIP Booking Drawer Engine
- * 4. Interactive Smile Investment & Financing Calculator
- * 5. Toast Notification Dispatcher & Smooth Routing
+ * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (PERFECT EDITION)
+ * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
+ * 2. Navbar Dynamic Glass Blur
+ * 3. Before & After Macro Teeth Slider (Clip-Path Powered - Zero Mobile Overflow)
+ * 4. Slide-Over VIP Booking Drawer Engine
+ * 5. Interactive Smile Investment & Financing Calculator
+ * 6. Mobile Drawer & Centered Toast Notification Dispatcher
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
-     1. NAVBAR GLASS BLUR ON SCROLL
+     1. BEVERLY HILLS SCROLL-REVEAL ANIMATION ENGINE
+     ========================================================================== */
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target); // Animate once cleanly
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
+    });
+
+    revealElements.forEach((el, index) => {
+      const delay = (index % 3) * 0.08;
+      el.style.transitionDelay = `${delay}s`;
+      revealObserver.observe(el);
+    });
+  } else {
+    revealElements.forEach(el => el.classList.add('is-revealed'));
+  }
+
+  /* ==========================================================================
+     2. NAVBAR GLASS BLUR ON SCROLL
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
   
@@ -23,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   /* ==========================================================================
-     2. MOBILE NAVIGATION DRAWER
+     3. MOBILE NAVIGATION DRAWER
      ========================================================================== */
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
@@ -43,28 +72,84 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     3. SLIDE-OVER VIP BOOKING MODAL DRAWER
+     4. CLIP-PATH DENTAL TEETH SLIDER (ZERO MOBILE OVERFLOW)
+     ========================================================================== */
+  const sliderContainer = document.getElementById('baSliderContainer');
+  const handle = document.getElementById('baHandle');
+
+  if (sliderContainer && handle) {
+    let isSliding = false;
+
+    const setSliderPosition = (clientX) => {
+      const rect = sliderContainer.getBoundingClientRect();
+      let offsetX = clientX - rect.left;
+      
+      // Clamp between 0 and container width
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+
+      const percentage = Math.max(0, Math.min(100, (offsetX / rect.width) * 100));
+      
+      // Updates CSS variable directly (Moves handle + clips image at 120fps GPU speed)
+      sliderContainer.style.setProperty('--clip-pos', `${percentage}%`);
+    };
+
+    // Desktop Mouse Drag Events
+    sliderContainer.addEventListener('mousedown', (e) => {
+      isSliding = true;
+      setSliderPosition(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isSliding = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isSliding) return;
+      setSliderPosition(e.clientX);
+    });
+
+    // Mobile / Tablet Touch Events
+    sliderContainer.addEventListener('touchstart', (e) => {
+      isSliding = true;
+      if (e.touches.length > 0) {
+        setSliderPosition(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isSliding = false;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isSliding || e.touches.length === 0) return;
+      setSliderPosition(e.touches[0].clientX);
+    }, { passive: true });
+  }
+
+  /* ==========================================================================
+     5. SLIDE-OVER VIP BOOKING MODAL DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
   const closeDrawerBtn = document.getElementById('closeDrawerBtn');
   const openDrawerButtons = document.querySelectorAll('.open-booking-drawer');
 
-  // Open Drawer Function
   const openDrawer = () => {
     if (vipDrawer && vipOverlay) {
       vipOverlay.classList.add('active');
       vipDrawer.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Stop background scrolling
+      vipDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
     }
   };
 
-  // Close Drawer Function
   const closeDrawer = () => {
     if (vipDrawer && vipOverlay) {
       vipOverlay.classList.remove('active');
       vipDrawer.classList.remove('open');
-      document.body.style.overflow = ''; // Re-enable scrolling
+      vipDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
     }
   };
 
@@ -78,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
   if (vipOverlay) vipOverlay.addEventListener('click', closeDrawer);
 
-  // Close on Escape Key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeDrawer();
   });
@@ -100,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const dBookingForm = document.getElementById('drawerBookingForm');
   const dBtnReset = document.getElementById('dBtnReset');
 
-  // Pre-fill tomorrow as default booking date
   const dBookingDate = document.getElementById('dBookingDate');
   if (dBookingDate) {
     const tomorrow = new Date();
@@ -112,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dBookingDate.value = `${yyyy}-${mm}-${dd}`;
   }
 
-  // Time slot chips selection
   const timeChips = document.querySelectorAll('.time-chip');
   const dSelectedTimeSlot = document.getElementById('dSelectedTimeSlot');
 
@@ -126,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Step 1 -> Step 2
   if (dBtnToStep2) {
     dBtnToStep2.addEventListener('click', () => {
       dStep1.classList.remove('active');
@@ -136,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 2 -> Step 1
   if (dBtnBackToStep1) {
     dBtnBackToStep1.addEventListener('click', () => {
       dStep2.classList.remove('active');
@@ -146,7 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 2 -> Step 3
   if (dBtnToStep3) {
     dBtnToStep3.addEventListener('click', () => {
       if (!dBookingDate.value) {
@@ -160,7 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 3 -> Step 2
   if (dBtnBackToStep2) {
     dBtnBackToStep2.addEventListener('click', () => {
       dStep3.classList.remove('active');
@@ -170,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Final Submission inside Drawer
   if (dBookingForm) {
     dBookingForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -190,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const dateVal = dBookingDate.value;
       const timeVal = dSelectedTimeSlot ? dSelectedTimeSlot.value : 'Morning';
 
-      // Update Confirmation Screen
       const nameEl = document.getElementById('dConfirmedName');
       const treatEl = document.getElementById('dReceiptTreatment');
       const dateEl = document.getElementById('dReceiptDate');
@@ -199,16 +275,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (treatEl) treatEl.textContent = treatmentVal;
       if (dateEl) dateEl.textContent = `${dateVal} (${timeVal})`;
 
-      // Switch to success view
       dStep3.classList.remove('active');
       dStepSuccess.classList.add('active');
       dInd3.classList.add('active');
 
-      showToast(`VIP Suite Reserved for ${fName}! SMS dispatched.`);
+      showToast(`VIP Suite Reserved for ${fName}! SMS sent.`);
     });
   }
 
-  // Reset Drawer Wizard
   if (dBtnReset) {
     dBtnReset.addEventListener('click', () => {
       dBookingForm.reset();
@@ -221,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
+     6. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -241,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCost = parseFloat(selectedOption.getAttribute('data-price')) || 18500;
     let downPayment = parseFloat(downSlider.value) || 0;
 
-    // Cap down payment if higher than total cost
     if (downPayment >= totalCost) {
       downPayment = totalCost - 500;
       downSlider.value = downPayment;
@@ -269,11 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Initial Calculation Run
   updateCalculator();
 
   /* ==========================================================================
-     5. TOAST NOTIFICATION HELPER & SMOOTH ROUTING
+     7. CENTERED TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
@@ -285,7 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
 
-  // Smooth scroll for nav anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
