@@ -4,90 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Lumina Dental Studio | Beverly Hills</title>
-  <meta name="description" content="Beverly Hills premier private dental atelier. 100% pain-free IV twilight sedation, handcrafted porcelain veneers, and same-day dental implants.">
+  <meta name="description" content="Beverly Hills premier private dental studio. 100% pain-free IV twilight sedation, handcrafted porcelain veneers, and same-day dental implants.">
   
-  <!-- Clean Luxury Modern Fonts: Outfit & Plus Jakarta Sans -->
+  <!-- Clean Luxury Modern Fonts: Plus Jakarta Sans & Outfit (Zero Cursive) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F2FE'><circle cx='12' cy='12' r='9' stroke='%2300F2FE' stroke-width='2' fill='none'/><path d='M12 7v10M7 12h10' stroke='%2300F2FE' stroke-width='2'/></svg>">
 </head>
 <body>
 
-  <!-- 1. FLOATING CYLINDRICAL CAPSULE HEADER (Awwwards Dynamic Island) -->
-  <div class="floating-header-container">
-    
-    <!-- Top Cylindrical Micro-Announcement Pill -->
-    <aside class="capsule-announcement">
-      <span class="pulse-dot"></span>
-      <span class="capsule-text">Wilshire Blvd Flagship • Beverly Hills</span>
-      <span class="capsule-sep">•</span>
-      <a href="tel:5552347645" class="capsule-link">(555) 234-SMILE</a>
-      <span class="capsule-sep">•</span>
-      <span class="capsule-highlight">0% APR Financing</span>
-    </aside>
-
-    <!-- Main Cylindrical Floating Island Navbar (Glowing Border) -->
-    <header class="cylindrical-navbar-wrapper" id="main-header">
-      <nav class="cylindrical-navbar">
-        <!-- Sleek Architectural Wordmark Logo -->
-        <a href="#" class="brand-capsule-logo" aria-label="Lumina Dental Studio">
-          <span class="brand-spark-gem">✦</span>
-          <div class="brand-text-group">
-            <span class="brand-title-3d">L U M I N A</span>
-            <span class="brand-sub-luxury">BEVERLY HILLS • DENTAL STUDIO</span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation Links -->
-        <ul class="nav-links">
-          <li><a href="#spa">Spa Experience</a></li>
-          <li><a href="#procedures">Procedures</a></li>
-          <li><a href="#portfolio">Smile Portfolio</a></li>
-          <li><a href="#investment">Investment</a></li>
-          <li><a href="#specialist">Dr. Sterling</a></li>
-          <li><a href="#reviews">Testimonials</a></li>
-        </ul>
-
-        <!-- Action Items -->
-        <div class="nav-actions">
-          <a href="tel:5552347645" class="capsule-phone-btn" title="Call Concierge">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
-              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-            </svg>
-            <span>(555) 234-7645</span>
-          </a>
-          
-          <button class="btn btn-capsule-glow open-booking-drawer">Book Consultation</button>
-          
-          <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
-            <span></span><span></span>
-          </button>
-        </div>
-      </nav>
-
-      <!-- Mobile Dropdown Drawer -->
-      <div class="mobile-drawer" id="mobileDrawer">
-        <ul class="mobile-nav-links">
-          <li><a href="#spa" class="m-link">Spa Experience</a></li>
-          <li><a href="#procedures" class="m-link">Procedures</a></li>
-          <li><a href="#portfolio" class="m-link">Smile Portfolio</a></li>
-          <li><a href="#investment" class="m-link">Investment</a></li>
-          <li><a href="#specialist" class="m-link">Meet Dr. Sterling</a></li>
-          <li><a href="#reviews" class="m-link">Testimonials</a></li>
-        </ul>
-        <div class="mobile-drawer-cta">
-          <button class="btn btn-capsule-glow btn-full open-booking-drawer">Reserve VIP Consultation</button>
-          <a href="tel:5552347645" class="btn btn-glass btn-full">Direct Line: (555) 234-SMILE</a>
-        </div>
+  <!-- 1. Sleek Static Announcement Strip (Scrolls Away Naturally) -->
+  <aside class="top-announcement-strip">
+    <div class="container strip-inner">
+      <div class="strip-left">
+        <span class="location-dot"></span>
+        <span>Wilshire Blvd Flagship • Beverly Hills, CA</span>
       </div>
-    </header>
-  </div>
+      <div class="strip-right">
+        <span>Concierge Line: <a href="tel:5552347645" class="strip-tel">(555) 234-SMILE</a></span>
+        <span class="strip-divider">•</span>
+        <span class="strip-financing">0% APR Financing for up to 24 Months</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. Haute Luxury Sticky Glass Navbar -->
+  <header class="navbar-wrapper" id="main-header">
+    <nav class="container navbar">
+      <!-- Clean Beverly Hills Architectural Wordmark (Never Wraps, Zero Tech Pins) -->
+      <a href="#" class="brand-wordmark" aria-label="Lumina Dental Studio">
+        <span class="brand-crest-dot">✦</span>
+        <div class="brand-text-lockup">
+          <span class="brand-main">L U M I N A</span>
+          <span class="brand-sub">BEVERLY HILLS • DENTAL STUDIO</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <ul class="nav-links">
+        <li><a href="#spa">The Spa Experience</a></li>
+        <li><a href="#procedures">Procedures</a></li>
+        <li><a href="#portfolio">Smile Portfolio</a></li>
+        <li><a href="#investment">Investment</a></li>
+        <li><a href="#specialist">Dr. Sterling</a></li>
+        <li><a href="#reviews">Testimonials</a></li>
+      </ul>
+
+      <!-- Nav Actions (Book button hidden on mobile to prevent squishing) -->
+      <div class="nav-actions">
+        <a href="tel:5552347645" class="nav-phone-pill" title="Call Concierge">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>(555) 234-7645</span>
+        </a>
+        
+        <button class="btn btn-luxury-primary nav-book-btn open-booking-drawer">Book Consultation</button>
+        
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <ul class="mobile-nav-links">
+        <li><a href="#spa" class="m-link">The Spa Experience</a></li>
+        <li><a href="#procedures" class="m-link">Procedures</a></li>
+        <li><a href="#portfolio" class="m-link">Smile Portfolio</a></li>
+        <li><a href="#investment" class="m-link">Investment</a></li>
+        <li><a href="#specialist" class="m-link">Meet Dr. Sterling</a></li>
+        <li><a href="#reviews" class="m-link">Testimonials</a></li>
+      </ul>
+      <div class="mobile-drawer-cta">
+        <button class="btn btn-luxury-primary btn-full open-booking-drawer">Reserve VIP Consultation</button>
+        <a href="tel:5552347645" class="btn btn-glass btn-full">Direct Line: (555) 234-SMILE</a>
+      </div>
+    </div>
+  </header>
 
   <main>
-    <!-- 2. BEVERLY HILLS HERO SECTION (3D ANIMATED TYPOGRAPHY) -->
+    <!-- 3. Beverly Hills Ultra-Luxury Hero Section (Zero 3D Emboss) -->
     <section class="hero-section" id="hero">
       <div class="hero-ambient-orb orb-1"></div>
       <div class="hero-ambient-orb orb-2"></div>
@@ -99,10 +100,10 @@
             <span>BEVERLY HILLS PRIVATE AESTHETIC SUITE</span>
           </div>
 
-          <!-- 3D Layered Animated Headline -->
-          <h1 class="hero-title title-3d-effect">
+          <!-- Ultra-Crisp Flat Luxury Typography -->
+          <h1 class="hero-title">
             The Modern Standard for a <br>
-            <span class="shimmer-3d-text">Flawless, Confident</span> <br>
+            <span class="gradient-text">Flawless, Confident</span> <br>
             Smile.
           </h1>
 
@@ -111,7 +112,7 @@
           </p>
 
           <div class="hero-cta-group">
-            <button class="btn btn-capsule-glow btn-large open-booking-drawer">
+            <button class="btn btn-luxury-primary btn-large open-booking-drawer">
               <span>Reserve Private Consultation →</span>
             </button>
             <a href="#portfolio" class="btn btn-glass-hero btn-large">
@@ -184,13 +185,13 @@
       </div>
     </section>
 
-    <!-- 3. The Zero-Anxiety Spa Experience Section -->
+    <!-- 4. The Zero-Anxiety Spa Experience Section -->
     <section class="section spa-section" id="spa">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">THE ZERO-ANXIETY SPA EXPERIENCE</span>
         </div>
-        <h2 class="section-title text-center title-3d-section reveal-on-scroll">
+        <h2 class="section-title text-center reveal-on-scroll">
           Luxury Hospitality Designed to <br><span class="gradient-text-navy">Eliminate Dental Fear Forever.</span>
         </h2>
         <p class="section-sub text-center reveal-on-scroll">
@@ -254,13 +255,13 @@
       </div>
     </section>
 
-    <!-- 4. High-Ticket Clinical Procedures Menu -->
+    <!-- 5. High-Ticket Clinical Procedures Menu -->
     <section class="section treatments-section" id="procedures">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">CLINICAL PROCEDURES MENU</span>
         </div>
-        <h2 class="section-title text-center title-3d-section reveal-on-scroll">
+        <h2 class="section-title text-center reveal-on-scroll">
           Engineered for Structural Longevity. <br><span class="gradient-text-navy">Mastercrafted for Facial Beauty.</span>
         </h2>
         <p class="section-sub text-center reveal-on-scroll">
@@ -411,13 +412,13 @@
       </div>
     </section>
 
-    <!-- 5. THE SIGNATURE SMILE PORTFOLIO (Curated High-End Editorial Case Studies) -->
+    <!-- 6. THE SIGNATURE SMILE PORTFOLIO (Curated High-End Editorial Case Studies) -->
     <section class="section portfolio-section" id="portfolio">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">AUTHENTIC SMILE TRANSFORMATIONS</span>
         </div>
-        <h2 class="section-title text-center title-3d-section reveal-on-scroll">
+        <h2 class="section-title text-center reveal-on-scroll">
           Real Patient Smiles. <br><span class="gradient-text-navy">Undeniable Facial Harmony.</span>
         </h2>
         <p class="section-sub text-center reveal-on-scroll">
@@ -485,13 +486,13 @@
       </div>
     </section>
 
-    <!-- 6. Interactive Smile Investment & Financing Calculator -->
+    <!-- 7. Interactive Smile Investment & Financing Calculator -->
     <section class="section calculator-section" id="investment">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">TRANSPARENT VALUE</span>
         </div>
-        <h2 class="section-title text-center title-3d-section reveal-on-scroll">
+        <h2 class="section-title text-center reveal-on-scroll">
           Calculate Your Smile Investment. <br><span class="gradient-text-navy">Flexible 0% APR Financing.</span>
         </h2>
         <p class="section-sub text-center reveal-on-scroll">
@@ -544,14 +545,14 @@
                 <strong class="green-text">0% Available</strong>
               </div>
             </div>
-            <button class="btn btn-capsule-glow btn-full open-booking-drawer">Lock In This Pre-Qualified Rate →</button>
+            <button class="btn btn-luxury-primary btn-full open-booking-drawer">Lock In This Pre-Qualified Rate →</button>
             <p class="calc-note">Subject to credit approval through CareCredit® or ProceedFinance.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. Meet Dr. Sterling & Specialists -->
+    <!-- 8. Meet Dr. Sterling & Specialists -->
     <section class="section specialists-section" id="specialist">
       <div class="container specialist-container">
         <div class="specialist-image-column reveal-on-scroll">
@@ -568,7 +569,7 @@
           <div class="section-badge-left">
             <span class="badge-tag">THE ARTIST BEHIND THE SMILES</span>
           </div>
-          <h2 class="section-title title-3d-section">
+          <h2 class="section-title">
             Dr. Julian Sterling, <span class="doc-titles">DDS, FICOI</span>
           </h2>
           <div class="fellowship-banner">
@@ -616,19 +617,19 @@
 
           <div class="signature-block">
             <div class="signature-text">Julian Sterling, DDS</div>
-            <button class="btn btn-capsule-glow open-booking-drawer">Schedule Private Consultation</button>
+            <button class="btn btn-luxury-primary open-booking-drawer">Schedule Private Consultation</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. Patient Reviews & Verified Testimonials -->
+    <!-- 9. Patient Reviews & Verified Testimonials -->
     <section class="section reviews-section" id="reviews">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">VERIFIED TESTIMONIALS</span>
         </div>
-        <h2 class="section-title text-center title-3d-section reveal-on-scroll">
+        <h2 class="section-title text-center reveal-on-scroll">
           Treasured by Over 12,000 <br><span class="gradient-text-navy">Delighted Patients.</span>
         </h2>
         
@@ -696,13 +697,13 @@
     </section>
   </main>
 
-  <!-- 9. Luxury Footer -->
+  <!-- 10. Luxury Footer -->
   <footer class="footer-section">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
-        <div class="brand-capsule-logo footer-logo">
-          <span class="brand-spark-gem">✦</span>
-          <span class="brand-title-3d brand-title-light">L U M I N A</span>
+        <div class="brand-wordmark footer-wordmark">
+          <span class="brand-crest-dot">✦</span>
+          <span class="brand-main brand-title-light">L U M I N A</span>
         </div>
         <p class="footer-tagline">
           The benchmark in pain-free implantology, full-arch reconstruction, and bespoke cosmetic dentistry in the heart of Beverly Hills. Restoring health, pride, and youthful confidence.
@@ -762,7 +763,7 @@
     </div>
   </footer>
 
-  <!-- 10. SLIDE-OVER VIP BOOKING MODAL DRAWER -->
+  <!-- 11. SLIDE-OVER VIP BOOKING MODAL DRAWER -->
   <div class="vip-drawer-overlay" id="vipDrawerOverlay"></div>
   <div class="vip-booking-drawer" id="vipBookingDrawer" aria-hidden="true">
     <div class="drawer-header">
@@ -828,7 +829,7 @@
             </label>
           </div>
 
-          <button type="button" class="btn btn-capsule-glow btn-full" id="dBtnToStep2">Continue to Schedule →</button>
+          <button type="button" class="btn btn-luxury-primary btn-full" id="dBtnToStep2">Continue to Schedule →</button>
         </div>
 
         <div class="wizard-step" id="dStep2">
@@ -861,7 +862,7 @@
 
           <div class="wizard-nav-btns">
             <button type="button" class="btn btn-glass" id="dBtnBackToStep1">← Back</button>
-            <button type="button" class="btn btn-capsule-glow" id="dBtnToStep3">Continue to Details →</button>
+            <button type="button" class="btn btn-luxury-primary" id="dBtnToStep3">Continue to Details →</button>
           </div>
         </div>
 
@@ -896,7 +897,7 @@
 
           <div class="wizard-nav-btns">
             <button type="button" class="btn btn-glass" id="dBtnBackToStep2">← Back</button>
-            <button type="submit" class="btn btn-capsule-glow" id="dBtnConfirm">Confirm VIP Reservation ➔</button>
+            <button type="submit" class="btn btn-luxury-primary" id="dBtnConfirm">Confirm VIP Reservation ➔</button>
           </div>
         </div>
 

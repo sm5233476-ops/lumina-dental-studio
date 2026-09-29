@@ -1,10 +1,11 @@
 /**
- * LUMINA DENTAL STUDIO — $3,000 MASTER JAVASCRIPT
+ * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (FINAL JAVASCRIPT)
  * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Floating Cylindrical Island Glow on Scroll
- * 3. Slide-Over VIP Booking Drawer Engine
- * 4. Interactive Smile Investment & Financing Calculator
- * 5. Mobile Drawer Toggle & Centered Toast Notifications
+ * 2. Sticky Glass Navbar Blur on Scroll
+ * 3. Mobile Navigation Drawer Toggle
+ * 4. Slide-Over VIP Booking Drawer Engine
+ * 5. Interactive Smile Investment & Financing Calculator
+ * 6. Centered Toast Notification Helper
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,12 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. FLOATING CYLINDRICAL NAVBAR DYNAMIC GLOW ON SCROLL
+     2. NAVBAR GLASS BLUR ON SCROLL
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
   
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+    if (window.scrollY > 20) {
       if (mainHeader) mainHeader.classList.add('navbar-scrolled');
     } else {
       if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
@@ -300,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4000);
   }
 
+  // Smooth scroll for nav anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');

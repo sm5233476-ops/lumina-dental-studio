@@ -1,10 +1,7 @@
 /* ==========================================================================
-   LUMINA DENTAL STUDIO — $3,000 FINAL MASTER STYLESHEET
-   Features:
-   1. Floating Cylindrical Island Navbar (Glowing Cyan Capsule)
-   2. 3D Animated Typography & Liquid Shimmer Text
-   3. Apa Aesthetic Signature Smile Portfolio & Zero-Anxiety Spa
-   4. 100% Strict Mobile Viewport Safety (Zero Overflow)
+   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (CLEAN SPEC)
+   Design Language: Flat Modern Luxury (Apple, Stripe & Apa Aesthetic Benchmark)
+   Zero 3D Emboss • Ultra-Crisp Typography • Clean Mobile Glass Navbar
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -25,22 +22,21 @@
   --text-white:     #FFFFFF;
   
   --border-light:   rgba(226, 232, 240, 0.85);
-  --border-capsule: rgba(0, 242, 254, 0.35); /* Glowing cyan border */
+  --border-glass:   rgba(255, 255, 255, 0.08);
   
-  --font-heading:   'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body:      'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading:   'Plus Jakarta Sans', 'Outfit', -apple-system, sans-serif;
+  --font-body:      'Plus Jakarta Sans', -apple-system, sans-serif;
   
   --shadow-sm:      0 2px 4px rgba(10, 17, 40, 0.04);
   --shadow-md:      0 8px 24px rgba(10, 17, 40, 0.08);
   --shadow-lg:      0 20px 40px rgba(10, 17, 40, 0.12);
-  --shadow-glow:    0 0 25px rgba(0, 242, 254, 0.22);
   
   --radius-sm:      8px;
   --radius-md:      16px;
   --radius-lg:      24px;
   --radius-full:    9999px;
   
-  --transition:     all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition:     all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- HARD RESET: Zero Mobile Viewport Stretch --- */
@@ -94,10 +90,10 @@ button {
   transition: var(--transition);
 }
 
-/* --- Typography & Global Layout --- */
+/* --- ULTRA-CRISP FLAT LUXURY TYPOGRAPHY (Zero 3D WordArt) --- */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em; /* Apple/Stripe tight tracking */
   color: var(--text-dark);
   line-height: 1.15;
 }
@@ -106,7 +102,7 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 .section {
@@ -123,11 +119,6 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
-.section-badge-left {
-  display: flex;
-  margin-bottom: 14px;
-}
-
 .badge-tag {
   background: rgba(79, 172, 254, 0.1);
   color: #0284C7;
@@ -138,15 +129,14 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--radius-full);
   border: 1px solid rgba(79, 172, 254, 0.25);
   text-transform: uppercase;
-  max-width: 100%;
-  word-break: break-word;
 }
 
-.section-title {
+.section-title, .title-3d-section {
   font-size: clamp(2rem, 4.2vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 800;
+  letter-spacing: -0.035em;
   margin-bottom: 18px;
-  word-break: break-word;
+  text-shadow: none; /* NO 3D SHADOW */
 }
 
 .section-sub {
@@ -161,34 +151,14 @@ h1, h2, h3, h4, h5 {
   text-align: center;
 }
 
-/* ==========================================================================
-   3D TYPOGRAPHY & ANIMATED LIQUID-LIGHT HEADLINES
-   ========================================================================== */
-.title-3d-effect {
-  text-shadow: 
-    0 1px 0 rgba(255, 255, 255, 0.25),
-    0 2px 0 rgba(0, 242, 254, 0.2),
-    0 4px 6px rgba(10, 17, 40, 0.8),
-    0 10px 25px rgba(0, 242, 254, 0.3);
-}
-
-.shimmer-3d-text {
-  background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 45%, #FFFFFF 70%, #00F2FE 100%);
-  background-size: 200% auto;
+/* Crisp Silver-Cyan Gradient Highlight */
+.shimmer-3d-text, .gradient-text {
+  background: linear-gradient(135deg, #FFFFFF 15%, #38BDF8 65%, #00F2FE 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer3D 4.5s linear infinite;
-  filter: drop-shadow(0 4px 14px rgba(0, 242, 254, 0.45));
-}
-
-@keyframes shimmer3D {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-.title-3d-section {
-  text-shadow: 0 2px 4px rgba(10, 17, 40, 0.08);
+  filter: drop-shadow(0 2px 8px rgba(0, 242, 254, 0.25));
+  text-shadow: none;
 }
 
 .gradient-text-navy {
@@ -198,11 +168,11 @@ h1, h2, h3, h4, h5 {
   -webkit-text-fill-color: transparent;
 }
 
-/* --- Smooth Scroll Reveal Classes --- */
+/* --- Smooth Scroll Reveal --- */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -222,27 +192,24 @@ h1, h2, h3, h4, h5 {
   padding: 13px 24px;
   border-radius: var(--radius-full);
   transition: var(--transition);
-  max-width: 100%;
-  word-break: break-word;
-  white-space: normal;
-  text-align: center;
+  white-space: nowrap;
 }
 
 .btn-large {
-  padding: 15px 30px;
+  padding: 15px 32px;
   font-size: 0.98rem;
 }
 
-.btn-capsule-glow {
+.btn-capsule-glow, .btn-luxury-primary {
   background: linear-gradient(135deg, var(--cyan-mint) 0%, var(--deep-blue) 100%);
   color: var(--bg-deep);
-  box-shadow: 0 8px 20px rgba(0, 242, 254, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 242, 254, 0.3);
   font-weight: 800;
 }
 
-.btn-capsule-glow:hover {
+.btn-capsule-glow:hover, .btn-luxury-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 242, 254, 0.5);
+  box-shadow: 0 10px 24px rgba(0, 242, 254, 0.45);
 }
 
 .btn-glass {
@@ -299,200 +266,194 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. FLOATING CYLINDRICAL CAPSULE HEADER (Awwwards Dynamic Island)
+   1. STATIC TOP ANNOUNCEMENT STRIP (Scrolls Away Naturally)
    ========================================================================== */
-.floating-header-container {
-  position: fixed;
-  top: 14px;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  pointer-events: none; /* Children handle pointer events */
-}
-
-/* Floating Cylindrical Micro-Announcement Pill */
-.capsule-announcement {
-  pointer-events: auto;
-  background: rgba(10, 17, 40, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 242, 254, 0.25);
-  border-radius: var(--radius-full);
-  padding: 4px 14px;
-  font-size: 0.7rem;
-  color: #CBD5E1;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
-}
-
-.pulse-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--cyan-mint);
-  border-radius: 50%;
-  animation: pulse-ring 1.8s infinite ease-out;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.9); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.4; }
-  100% { transform: scale(0.9); opacity: 1; }
-}
-
-.capsule-sep {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.capsule-link {
-  color: var(--cyan-mint);
-  font-weight: 700;
-}
-
-.capsule-highlight {
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-/* Main Cylindrical Floating Island Navbar */
-.cylindrical-navbar-wrapper {
-  pointer-events: auto;
+.top-announcement-strip, .capsule-announcement {
+  position: relative; /* Normal flow: scrolls away on scroll, never sticks */
+  background-color: #060C1D;
+  color: #94A3B8;
+  font-size: 0.78rem;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-glass);
   width: 100%;
   display: flex;
   justify-content: center;
-  position: relative;
-}
-
-.cylindrical-navbar {
-  width: 92%;
-  max-width: 1140px;
-  height: 64px;
-  background: rgba(10, 17, 40, 0.82); /* Seamless midnight navy */
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-radius: var(--radius-full); /* Pure cylindrical capsule */
-  border: 1.5px solid var(--border-capsule); /* Iridescent cyan glowing border */
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.45), var(--shadow-glow);
-  padding: 0 24px;
-  display: flex;
   align-items: center;
+}
+
+.strip-inner {
+  display: flex;
   justify-content: space-between;
-  transition: var(--transition);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.navbar-scrolled .cylindrical-navbar {
-  background: rgba(10, 17, 40, 0.96);
-  border-color: rgba(0, 242, 254, 0.6);
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 242, 254, 0.3);
-}
-
-/* Brand Wordmark Inside Capsule */
-.brand-capsule-logo {
+.strip-left, .strip-right {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.brand-spark-gem {
-  color: var(--cyan-mint);
-  font-size: 1.25rem;
-  line-height: 1;
-  filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.8));
+.pulse-dot, .location-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--cyan-mint);
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-dot 2s infinite ease-out;
 }
 
-.brand-text-group {
+@keyframes pulse-dot {
+  0% { transform: scale(0.9); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+  100% { transform: scale(0.9); opacity: 1; }
+}
+
+.capsule-link, .strip-tel {
+  color: var(--cyan-mint);
+  font-weight: 700;
+}
+
+.capsule-sep, .strip-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.capsule-highlight, .strip-financing {
+  color: #CBD5E1;
+}
+
+.floating-header-container {
+  width: 100%;
+}
+
+/* ==========================================================================
+   2. SLEEK STICKY LUXURY GLASS NAVBAR (Clean Full-Width Bar)
+   ========================================================================== */
+.navbar-wrapper, .cylindrical-navbar-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(10, 17, 40, 0.85); /* Seamless deep navy glass */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  transition: var(--transition);
+}
+
+.navbar-scrolled {
+  background: rgba(10, 17, 40, 0.98);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.navbar, .cylindrical-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 0; /* Clean sleek bar */
+  box-shadow: none;
+}
+
+/* Brand Wordmark (Zero Gaming/Tech Pins, Never Wraps) */
+.brand-capsule-logo, .brand-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap; /* CRITICAL: Stays on one single line */
+  flex-shrink: 0;
+}
+
+.brand-spark-gem, .brand-crest-dot {
+  color: var(--cyan-mint);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.brand-text-group, .brand-text-lockup {
   display: flex;
   flex-direction: column;
 }
 
-.brand-title-3d {
+.brand-title-3d, .brand-main {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 800;
   font-size: 1.25rem;
-  letter-spacing: 0.22em; /* Expansive luxury kerning */
+  letter-spacing: 0.12em; /* Clean, tight luxury tracking */
   color: #FFFFFF;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .brand-title-light {
   color: #FFFFFF;
 }
 
-.brand-sub-luxury {
-  font-size: 0.54rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+.brand-sub-luxury, .brand-sub {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   color: #94A3B8;
-  margin-top: 2px;
+  margin-top: 3px;
+  white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 22px;
+  gap: 24px;
 }
 
 .nav-links a {
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: #CBD5E1;
   position: relative;
-  padding: 4px 0;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--cyan-mint), var(--deep-blue));
-  transition: width 0.3s ease;
+  padding: 6px 0;
 }
 
 .nav-links a:hover {
   color: var(--cyan-mint);
 }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
-
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.capsule-phone-btn {
+.capsule-phone-btn, .nav-phone-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
+  padding: 9px 16px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-full);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: #FFFFFF;
 }
 
-.capsule-phone-btn:hover {
+.capsule-phone-btn:hover, .nav-phone-pill:hover {
   border-color: var(--cyan-mint);
   color: var(--cyan-mint);
+}
+
+.nav-book-btn {
+  padding: 10px 20px;
+  font-size: 0.88rem;
 }
 
 .mobile-toggle-btn {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   width: 28px;
   padding: 2px;
 }
@@ -505,32 +466,24 @@ h1, h2, h3, h4, h5 {
   border-radius: 2px;
 }
 
-/* Mobile Dropdown Drawer Below Capsule */
+/* Mobile Dropdown Drawer */
 .mobile-drawer {
   display: none;
-  position: absolute;
-  top: 72px;
-  width: 92%;
-  max-width: 500px;
-  background: rgba(10, 17, 40, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-capsule);
-  border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  background: #0A1128;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile-nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-bottom: 18px;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .mobile-nav-links a {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #FFFFFF;
 }
@@ -542,12 +495,12 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   2. HERO SECTION
+   3. HERO SECTION (Crisp Flat Luxury Typography)
    ========================================================================== */
 .hero-section {
   background-color: var(--bg-deep);
   color: var(--text-white);
-  padding: 130px 0 100px 0; /* Clears floating capsule header */
+  padding: 80px 0 100px 0;
   position: relative;
   overflow: hidden;
 }
@@ -555,23 +508,23 @@ h1, h2, h3, h4, h5 {
 .hero-ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.28;
   z-index: 1;
 }
 
 .orb-1 {
-  width: 400px;
-  height: 400px;
+  width: 450px;
+  height: 450px;
   background: var(--cyan-mint);
   top: -150px;
   left: -100px;
 }
 
 .orb-2 {
-  width: 450px;
-  height: 450px;
+  width: 500px;
+  height: 500px;
   background: #1E3A8A;
   bottom: -200px;
   right: -100px;
@@ -594,12 +547,10 @@ h1, h2, h3, h4, h5 {
   border: 1px solid rgba(255, 255, 255, 0.16);
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   margin-bottom: 20px;
-  max-width: 100%;
-  flex-wrap: wrap;
 }
 
 .gold-sparkle {
@@ -607,35 +558,38 @@ h1, h2, h3, h4, h5 {
   letter-spacing: 2px;
 }
 
-.hero-title {
+/* Ultra-crisp headline with zero 3D emboss */
+.hero-title, .title-3d-effect {
+  font-family: var(--font-heading);
   font-size: clamp(2.3rem, 4.4vw, 4.1rem);
   font-weight: 900;
+  letter-spacing: -0.035em;
   color: #FFFFFF;
   line-height: 1.1;
   margin-bottom: 20px;
-  word-break: break-word;
+  text-shadow: none; /* NO EMBOSS SHADOW */
 }
 
 .hero-description {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: #94A3B8;
-  margin-bottom: 30px;
-  max-width: 540px;
+  margin-bottom: 32px;
+  max-width: 560px;
   line-height: 1.7;
 }
 
 .hero-cta-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 42px;
 }
 
 .hero-trust-strip {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
   padding-top: 24px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   flex-wrap: wrap;
@@ -658,11 +612,11 @@ h1, h2, h3, h4, h5 {
 
 .trust-star {
   color: var(--gold-accent);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }
 
 .trust-label {
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   color: #94A3B8;
   font-weight: 600;
 }
@@ -673,7 +627,7 @@ h1, h2, h3, h4, h5 {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Hero Glass Card Graphic */
+/* Hero Glass Card */
 .hero-visual {
   position: relative;
   width: 100%;
@@ -688,7 +642,7 @@ h1, h2, h3, h4, h5 {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 22px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
 }
 
@@ -829,7 +783,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   3. THE ZERO-ANXIETY SPA EXPERIENCE
+   4. THE ZERO-ANXIETY SPA EXPERIENCE
    ========================================================================== */
 .spa-section {
   background-color: var(--bg-frost);
@@ -899,7 +853,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   4. HIGH-TICKET TREATMENTS GRID (120FPS FLUID ELEVATION)
+   5. HIGH-TICKET PROCEDURES MENU (120FPS Elevation)
    ========================================================================== */
 .treatments-section {
   background-color: var(--bg-pure);
@@ -921,7 +875,6 @@ h1, h2, h3, h4, h5 {
   flex-direction: column;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   position: relative;
-  will-change: transform, box-shadow;
 }
 
 .treatment-card:hover {
@@ -1059,7 +1012,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   5. THE SIGNATURE SMILE PORTFOLIO (Apa Aesthetic Benchmark)
+   6. THE SIGNATURE SMILE PORTFOLIO (Apa Aesthetic Benchmark)
    ========================================================================== */
 .portfolio-section {
   background-color: var(--bg-frost);
@@ -1170,7 +1123,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   6. SMILE INVESTMENT & FINANCING CALCULATOR
+   7. SMILE INVESTMENT & FINANCING CALCULATOR
    ========================================================================== */
 .calculator-section {
   background-color: var(--bg-pure);
@@ -1641,7 +1594,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   10. SLIDE-OVER VIP BOOKING MODAL DRAWER (ZERO OVERFLOW)
+   10. SLIDE-OVER VIP BOOKING MODAL DRAWER
    ========================================================================== */
 .vip-drawer-overlay {
   position: fixed;
@@ -2005,7 +1958,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   STRICT MOBILE RESPONSIVE MEDIA QUERIES (360px to 1024px)
+   STRICT MOBILE BREAKPOINTS (Screens <= 820px) — ZERO CROWDED SQUISHING
    ========================================================================== */
 @media (max-width: 1024px) {
   .hero-grid {
@@ -2031,58 +1984,63 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .container {
     padding: 0 16px;
   }
 
-  /* Mobile Floating Header */
-  .floating-header-container {
-    top: 8px;
-    gap: 6px;
+  /* Announcement strip on mobile: simple single line */
+  .top-announcement-strip, .capsule-announcement {
+    padding: 6px 12px;
+    font-size: 0.68rem;
   }
 
-  .capsule-announcement {
-    padding: 3px 10px;
-    font-size: 0.65rem;
+  .strip-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
   }
 
-  .capsule-highlight, .capsule-sep:last-of-type {
-    display: none; /* Keep announcement compact on phone */
+  .strip-financing, .strip-divider, .capsule-highlight, .capsule-sep:last-of-type {
+    display: none; /* Keeps top strip pure & non-cluttered */
   }
 
-  .cylindrical-navbar {
-    width: 94%;
-    height: 56px;
-    padding: 0 16px;
+  /* MOBILE NAVBAR FIX: Logo on Left + Hamburger on Right ONLY */
+  .navbar, .cylindrical-navbar {
+    padding: 14px 16px;
+    height: auto;
   }
 
-  .brand-title-3d {
-    font-size: 1.1rem;
-    letter-spacing: 0.16em;
-  }
-
-  .brand-sub-luxury {
-    font-size: 0.48rem;
-  }
-
-  .nav-links, .capsule-phone-btn, .nav-book-btn {
-    display: none;
+  /* Completely HIDE Book button & phone pill from mobile header */
+  .nav-actions .btn,
+  .nav-actions .btn-capsule-glow,
+  .nav-actions .nav-book-btn,
+  .capsule-phone-btn,
+  .nav-phone-pill,
+  .nav-links {
+    display: none !important;
   }
 
   .mobile-toggle-btn {
-    display: flex;
+    display: flex !important;
+    margin-left: auto;
   }
 
-  .mobile-drawer {
-    top: 62px;
+  .brand-title-3d, .brand-main {
+    font-size: 1.15rem;
+    letter-spacing: 0.14em;
   }
 
+  .brand-sub-luxury, .brand-sub {
+    font-size: 0.5rem;
+  }
+
+  /* Hero Section Mobile */
   .hero-section {
-    padding: 120px 0 60px 0;
+    padding: 40px 0 70px 0;
   }
 
-  .hero-title {
+  .hero-title, .title-3d-effect {
     font-size: 2.1rem;
     line-height: 1.15;
   }
@@ -2144,7 +2102,7 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width: 480px) {
-  .hero-title {
+  .hero-title, .title-3d-effect {
     font-size: 1.85rem;
   }
 
