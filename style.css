@@ -1,7 +1,6 @@
 /* ==========================================================================
-   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (FINAL PERFECT SPEC)
-   Benchmark: Apa Aesthetic (Beverly Hills) & Tend (NYC)
-   Zero White Navbar Leak • Midnight Navy Luxury • Flawless Mobile & Desktop
+   LUMINA DENTAL STUDIO — BEVERLY HILLS HAUTE AESTHETIC STYLESHEET
+   Quiet Luxury • Collapsing Announcement Strip • Zero Viewport Overflow
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -52,7 +51,7 @@ html, body {
   overflow-x: clip; /* Hard clip prevents any horizontal scroll */
   position: relative;
   -webkit-text-size-adjust: 100%;
-  background-color: var(--bg-deep); /* Body background locked to Midnight Navy */
+  background-color: var(--bg-deep);
 }
 
 html {
@@ -265,16 +264,30 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. SLEEK TOP ANNOUNCEMENT STRIP (Midnight Navy Theme)
+   1. SLEEK DISTINCT ANNOUNCEMENT STRIP (Smooth Collapse on Scroll)
    ========================================================================== */
 .top-announcement-strip {
   position: relative;
-  background-color: #070D1E; /* Seamless deep navy tone */
+  background-color: #040814; /* Distinct Deep Charcoal-Navy Luxury Contrast */
   color: #94A3B8;
   font-size: 0.76rem;
   padding: 8px 0;
-  border-bottom: 1px solid var(--border-glass);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.12); /* Subtle cyan divider line */
   width: 100%;
+  max-height: 50px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Collapses smoothly into navbar when user scrolls down */
+.top-announcement-strip.strip-scrolled {
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  border-bottom: none;
 }
 
 .strip-inner {
@@ -320,21 +333,20 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   2. HAUTE LUXURY NAVBAR (LOCKED TO MIDNIGHT NAVY — ZERO WHITE LEAK!)
+   2. HAUTE LUXURY NAVBAR (Midnight Navy -> Royal Blue Glass on Scroll)
    ========================================================================== */
 .navbar-wrapper {
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
-  background-color: #0A1128; /* Locked to website's Midnight Navy from start! */
+  background-color: #0A1128; /* Solid Midnight Navy from start: ZERO WHITE! */
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
-/* On scroll: Smooth transformation to royal navy blue glass from Screenshot 2 */
 .navbar-scrolled {
-  background-color: rgba(10, 17, 40, 0.94);
+  background-color: rgba(10, 17, 40, 0.94); /* Royal Navy Blue Frosted Glass on Scroll */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 242, 254, 0.25);
@@ -376,7 +388,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 0.12em;
-  color: #FFFFFF; /* High-contrast crisp white */
+  color: #FFFFFF;
   line-height: 1;
   white-space: nowrap;
 }
@@ -390,13 +402,13 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
 }
 
-/* Open, Generous Nav Links */
+/* Open, Generous Nav Links (No Clumping!) */
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 28px;
-  margin-left: 48px;
+  margin-left: 48px; /* Generous space away from Lumina logo */
 }
 
 .nav-links li {
@@ -779,7 +791,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   4. THE ZERO-ANXIETY SPA EXPERIENCE (Untouched)
+   4. THE ZERO-ANXIETY SPA EXPERIENCE
    ========================================================================== */
 .spa-section {
   background-color: var(--bg-frost);
@@ -849,7 +861,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   5. HIGH-TICKET PROCEDURES MENU (Untouched)
+   5. HIGH-TICKET PROCEDURES MENU
    ========================================================================== */
 .treatments-section {
   background-color: var(--bg-pure);
@@ -1008,7 +1020,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   6. THE SIGNATURE SMILE PORTFOLIO (Untouched)
+   6. THE SIGNATURE SMILE PORTFOLIO
    ========================================================================== */
 .portfolio-section {
   background-color: var(--bg-frost);
@@ -1119,7 +1131,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   7. SMILE INVESTMENT & FINANCING CALCULATOR (Untouched)
+   7. SMILE INVESTMENT & FINANCING CALCULATOR
    ========================================================================== */
 .calculator-section {
   background-color: var(--bg-pure);
@@ -1258,7 +1270,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   8. MEET DR. STERLING & SPECIALISTS (Untouched)
+   8. MEET DR. STERLING & SPECIALISTS
    ========================================================================== */
 .specialists-section {
   background-color: var(--bg-frost);
@@ -1381,7 +1393,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   9. PATIENT REVIEWS & SOCIAL PROOF (Untouched)
+   9. PATIENT REVIEWS & SOCIAL PROOF
    ========================================================================== */
 .reviews-section {
   background-color: var(--bg-pure);
@@ -1473,7 +1485,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   10. LUXURY FOOTER (Untouched)
+   10. LUXURY FOOTER
    ========================================================================== */
 .footer-section {
   background-color: #050B1B;
@@ -1594,7 +1606,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   11. SLIDE-OVER VIP BOOKING MODAL DRAWER (Untouched)
+   11. SLIDE-OVER VIP BOOKING MODAL DRAWER
    ========================================================================== */
 .vip-drawer-overlay {
   position: fixed;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Lumina Dental Studio | Beverly Hills</title>
-  <meta name="description" content="Beverly Hills premier private dental atelier. 100% pain-free IV twilight sedation, handcrafted porcelain veneers, and same-day dental implants.">
+  <meta name="description" content="Beverly Hills premier private dental atelier. Pain-free twilight sleep sedation, handcrafted porcelain veneers, and same-day dental implants.">
   
   <!-- Clean Luxury Modern Fonts: Plus Jakarta Sans & Outfit (Zero Cursive) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,12 +12,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F2FE'><circle cx='12' cy='12' r='9' stroke='%2300F2FE' stroke-width='2' fill='none'/><path d='M12 7v10M7 12h10' stroke='%2300F2FE' stroke-width='2'/></svg>">
+  
+  <!-- Browser Tab Favicon: Matching Glowing Cyan Diamond Sparkle (✦) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F2FE'><path d='M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z'/></svg>">
 </head>
 <body>
 
-  <!-- 1. Sleek Single-Line Announcement Strip -->
-  <aside class="top-announcement-strip">
+  <!-- 1. Sleek Static Announcement Strip (Collapses on Scroll) -->
+  <aside class="top-announcement-strip" id="topAnnouncementStrip">
     <div class="container strip-inner">
       <div class="strip-left">
         <span class="location-dot"></span>
@@ -26,7 +28,7 @@
       <div class="strip-right">
         <span class="strip-phone">Direct Line: <a href="tel:5552347645" class="strip-tel">(555) 234-SMILE</a></span>
         <span class="strip-divider desktop-only">•</span>
-        <span class="strip-financing desktop-only">0% APR Financing for 24 Months</span>
+        <span class="strip-financing desktop-only">0% APR Financing for up to 24 Months</span>
       </div>
     </div>
   </aside>
@@ -45,7 +47,7 @@
 
       <!-- Desktop Nav Links (Well-Spaced & Open) -->
       <ul class="nav-links">
-        <li><a href="#spa">Spa Experience</a></li>
+        <li><a href="#spa">The Spa Experience</a></li>
         <li><a href="#procedures">Procedures</a></li>
         <li><a href="#portfolio">Smile Portfolio</a></li>
         <li><a href="#investment">Investment</a></li>
@@ -73,7 +75,7 @@
     <!-- Mobile Drawer Navigation -->
     <div class="mobile-drawer" id="mobileDrawer">
       <ul class="mobile-nav-links">
-        <li><a href="#spa" class="m-link">Spa Experience</a></li>
+        <li><a href="#spa" class="m-link">The Spa Experience</a></li>
         <li><a href="#procedures" class="m-link">Procedures</a></li>
         <li><a href="#portfolio" class="m-link">Smile Portfolio</a></li>
         <li><a href="#investment" class="m-link">Investment</a></li>
@@ -95,7 +97,6 @@
 
       <div class="container hero-grid">
         <div class="hero-content reveal-on-scroll">
-          <!-- Compact Single-Line Mobile Pill Badge -->
           <div class="hero-pill-badge">
             <span class="gold-sparkle">★★★★★</span>
             <span>BEVERLY HILLS PRIVATE SUITE</span>
@@ -107,9 +108,9 @@
             Smile.
           </h1>
 
-          <!-- Shortened, Punchy & High-End Description -->
+          <!-- Concise, Realistic & High-Ticket Description -->
           <p class="hero-description">
-            Experience pain-free twilight sedation, bespoke porcelain veneers, and same-day permanent dental implants in our private Beverly Hills clinical atelier.
+            Experience pain-free twilight sedation, bespoke porcelain veneers, and same-day dental implants in our private Beverly Hills clinical atelier.
           </p>
 
           <div class="hero-cta-group">
@@ -121,21 +122,21 @@
             </a>
           </div>
 
-          <!-- Trust Badges Strip -->
+          <!-- Credible & Authentic Trust Metrics -->
           <div class="hero-trust-strip">
             <div class="trust-item">
               <div class="trust-value">4.9<span class="trust-star">★</span></div>
-              <div class="trust-label">650+ Google Verified Reviews</div>
+              <div class="trust-label">Verified Patient Reviews</div>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
-              <div class="trust-value">12,000+</div>
-              <div class="trust-label">Smiles Transformed</div>
+              <div class="trust-value">15+</div>
+              <div class="trust-label">Years Clinical Mastery</div>
             </div>
             <div class="trust-divider"></div>
             <div class="trust-item">
               <div class="trust-value">100%</div>
-              <div class="trust-label">Zero-Pain Guarantee</div>
+              <div class="trust-label">Zero-Pain Protocol</div>
             </div>
           </div>
         </div>
@@ -174,7 +175,7 @@
                 <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80" alt="Dr Julian Sterling" class="doctor-avatar-sm">
                 <div>
                   <h4 class="doc-name">Dr. Julian Sterling, DDS</h4>
-                  <p class="doc-cred">Harvard Alum • Fellow, ICOI</p>
+                  <p class="doc-cred">Fellow, ICOI • Cedars-Sinai Trained</p>
                 </div>
               </div>
               <div class="vip-guarantee-pill">
@@ -186,7 +187,7 @@
       </div>
     </section>
 
-    <!-- 4. The Zero-Anxiety Spa Experience Section (Untouched) -->
+    <!-- 4. The Zero-Anxiety Spa Experience Section -->
     <section class="section spa-section" id="spa">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
@@ -206,9 +207,9 @@
                 <path d="M3 18v-6a9 9 0 0118 0v6M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Noise-Cancelling Bose® 700</h3>
+            <h3 class="comfort-card-title">Acoustic Noise-Cancelling Audio</h3>
             <p class="comfort-card-text">
-              Drown out all medical sounds with custom acoustic headphones streaming spatial audio, curated relaxation frequencies, or your personal music library.
+              Drown out all medical sounds with custom acoustic headphones streaming spatial soundscapes, curated relaxation frequencies, or your personal audio preferences.
             </p>
             <div class="comfort-perk">✓ 100% soundproof acoustic isolation</div>
           </div>
@@ -220,9 +221,9 @@
                 <polyline points="17 2 12 7 7 2"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Ceiling-Mounted 4K Netflix</h3>
+            <h3 class="comfort-card-title">Ceiling-Mounted 4K Entertainment</h3>
             <p class="comfort-card-text">
-              Lie back in memory-foam heated massage chairs while watching Netflix, HBO, or Apple TV on ultra-high-definition displays positioned directly overhead.
+              Lie back in memory-foam heated massage chairs while enjoying premium entertainment on ultra-high-definition displays positioned directly overhead.
             </p>
             <div class="comfort-perk">✓ Private entertainment in every suite</div>
           </div>
@@ -246,17 +247,17 @@
                 <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Organic Lavender Towels</h3>
+            <h3 class="comfort-card-title">Organic Botanical Towels</h3>
             <p class="comfort-card-text">
-              Warm aromatherapy facial towels post-appointment, botanical scents, and a complimentary Nespresso espresso & sparkling water concierge lounge.
+              Warm aromatherapy facial towels post-appointment, botanical scents, and a complimentary gourmet espresso & sparkling water concierge lounge.
             </p>
-            <div class="comfort-perk">✓ Five-star hotel hospitality standards</div>
+            <div class="comfort-perk">✓ Five-star hospitality standards</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. High-Ticket Clinical Procedures Menu (Untouched) -->
+    <!-- 5. High-Ticket Clinical Procedures Menu -->
     <section class="section treatments-section" id="procedures">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
@@ -317,20 +318,20 @@
             </div>
           </article>
 
-          <!-- Card 3: Invisalign Clear Aligners -->
+          <!-- Card 3: Clear Aligners -->
           <article class="treatment-card reveal-on-scroll">
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80" alt="Invisalign Diamond Provider" class="treatment-img">
+              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80" alt="Clear Aligners Beverly Hills" class="treatment-img">
               <div class="treatment-price-pill">Fast-Track from $3,400</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Orthodontics</div>
-              <h3 class="treatment-heading">Invisalign® Diamond Plus</h3>
+              <h3 class="treatment-heading">Clear Orthodontic Aligners</h3>
               <p class="treatment-summary">
-                Virtually invisible clear aligners planned with ClinCheck® AI technology to straighten crowded teeth, gaps, and overbites up to 50% faster than braces.
+                Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites up to 50% faster than traditional braces.
               </p>
               <ul class="treatment-points">
-                <li>SmartTrack® material for gentle, accurate movement</li>
+                <li>Smart elastomeric material for gentle, accurate movement</li>
                 <li>Removable anytime for dining and oral hygiene</li>
                 <li>Complimentary professional whitening included</li>
               </ul>
@@ -348,12 +349,12 @@
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Cosmetic Brightening</div>
-              <h3 class="treatment-heading">Philips Zoom!® Laser Whitening</h3>
+              <h3 class="treatment-heading">Laser Teeth Brightening</h3>
               <p class="treatment-summary">
-                Lift decades of coffee, tea, wine, and aging discoloration in a single 45-minute appointment. Formulated with ACP to prevent tooth sensitivity.
+                Lift decades of coffee, tea, wine, and aging discoloration in a single 45-minute appointment. Formulated with mineral desensitizers to prevent tooth sensitivity.
               </p>
               <ul class="treatment-points">
-                <li>Up to 8 full VITA shades brighter in 45 minutes</li>
+                <li>Up to 8 full shades brighter in 45 minutes</li>
                 <li>Enamel-safe light wavelength technology</li>
                 <li>Custom take-home maintenance kit included</li>
               </ul>
@@ -413,7 +414,7 @@
       </div>
     </section>
 
-    <!-- 6. THE SIGNATURE SMILE PORTFOLIO (Untouched) -->
+    <!-- 6. THE SIGNATURE SMILE PORTFOLIO (Curated Clinical Outcomes) -->
     <section class="section portfolio-section" id="portfolio">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
@@ -435,14 +436,14 @@
             </div>
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
-                <span class="patient-id">Case #0841 • Elena Vance</span>
+                <span class="patient-id">Clinical Case • Veneers</span>
                 <span class="patient-loc">Bel Air, CA</span>
               </div>
               <h3 class="portfolio-title">Full Aesthetic Veneer Reconstruction</h3>
               <p class="portfolio-desc">
                 Corrected deep tetracycline enamel staining, micro-fractured incisal edges, and midline asymmetry. Layered by our master ceramist for natural light transmission.
               </p>
-              <div class="portfolio-quote">“I spent 15 years hiding my smile in photographs. Dr. Sterling gave me back my total confidence in two painless visits.”</div>
+              <div class="portfolio-quote">“I spent years hiding my smile in executive meetings. Dr. Sterling gave me back my total confidence in two painless visits.”</div>
             </div>
           </article>
 
@@ -454,31 +455,31 @@
             </div>
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
-                <span class="patient-id">Case #1192 • Marcus Vance</span>
+                <span class="patient-id">Clinical Case • All-on-4</span>
                 <span class="patient-loc">Beverly Hills, CA</span>
               </div>
               <h3 class="portfolio-title">Same-Day All-on-4 Implant Bridge</h3>
               <p class="portfolio-desc">
-                Rehabilitated collapsed bite and failing historic bridge work. Anchored with 4 Straumann surgical titanium fixtures with permanent screw-retained zirconia teeth.
+                Rehabilitated collapsed bite and failing historic bridge work. Anchored with 4 medical-grade titanium fixtures with permanent screw-retained zirconia teeth.
               </p>
               <div class="portfolio-quote">“I had a steak dinner 5 days post-surgery. The level of luxury and surgical precision in this studio is genuinely unmatched.”</div>
             </div>
           </article>
 
-          <!-- Case 3: Invisalign Diamond & Zoom! Whitening -->
+          <!-- Case 3: Aligners & Brightening -->
           <article class="portfolio-card reveal-on-scroll">
             <div class="portfolio-img-box">
-              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="Invisalign Diamond Result" class="portfolio-img">
-              <div class="portfolio-floating-pill">Invisalign® + Laser Whitening</div>
+              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="Clear Aligners Result" class="portfolio-img">
+              <div class="portfolio-floating-pill">Clear Aligners + Laser Brightening</div>
             </div>
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
-                <span class="patient-id">Case #2405 • Sarah Jenkins</span>
-                <span class="patient-loc">West Hollywood, CA</span>
+                <span class="patient-id">Clinical Case • Orthodontics</span>
+                <span class="patient-loc">Los Angeles, CA</span>
               </div>
               <h3 class="portfolio-title">Clear Aligner Alignment & Brightening</h3>
               <p class="portfolio-desc">
-                Resolved 6mm anterior crowding and deep overbite in 7 months using accelerated SmartTrack aligners, finished with an in-office Philips Zoom! brightening session.
+                Resolved anterior crowding and deep overbite in 7 months using accelerated clear aligners, finished with an in-office laser brightening session.
               </p>
               <div class="portfolio-quote">“Discreet, fast, and completely seamless with my work schedule. The studio feels like a private spa retreat.”</div>
             </div>
@@ -487,7 +488,7 @@
       </div>
     </section>
 
-    <!-- 7. Interactive Smile Investment & Financing Calculator (Untouched) -->
+    <!-- 7. Interactive Smile Investment & Financing Calculator (Generic & Legal-Proof Footnote) -->
     <section class="section calculator-section" id="investment">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
@@ -508,7 +509,7 @@
                 <option value="veneers" data-price="9600" data-months="24">Porcelain Veneers (Set of 6 Smile Makeover)</option>
                 <option value="implants" data-price="5700" data-months="24">Single Surgical Implant & Custom Zirconia Crown</option>
                 <option value="allon4" data-price="18500" data-months="24" selected>Full Arch All-on-4 Permanent Teeth-in-a-Day</option>
-                <option value="invisalign" data-price="4200" data-months="24">Invisalign® Diamond Full Comprehensive Care</option>
+                <option value="invisalign" data-price="4200" data-months="24">Comprehensive Clear Aligner Therapy</option>
               </select>
             </div>
 
@@ -547,13 +548,14 @@
               </div>
             </div>
             <button class="btn btn-luxury-primary btn-full open-booking-drawer">Lock In This Pre-Qualified Rate →</button>
-            <p class="calc-note">Subject to credit approval through CareCredit® or ProceedFinance.</p>
+            <!-- Generic Healthcare Financing Footnote (No Real Company Trademarks) -->
+            <p class="calc-note">Subject to approval through flexible healthcare financing partners. Terms and monthly estimates subject to individual qualification.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. Meet Dr. Sterling & Specialists (Untouched) -->
+    <!-- 8. Meet Dr. Sterling (Authoritative & Credible) -->
     <section class="section specialists-section" id="specialist">
       <div class="container specialist-container">
         <div class="specialist-image-column reveal-on-scroll">
@@ -574,30 +576,30 @@
             Dr. Julian Sterling, <span class="doc-titles">DDS, FICOI</span>
           </h2>
           <div class="fellowship-banner">
-            Fellow, International Congress of Oral Implantologists • Harvard School of Dental Medicine Graduate
+            Fellow, International Congress of Oral Implantologists • Advanced Aesthetic & Implant Specialist
           </div>
           
           <p class="bio-paragraph">
-            Recognized among the country's foremost innovators in biological implant reconstruction and cosmetic aesthetic dentistry, Dr. Sterling established Lumina to discard the cold, rushed atmosphere of conventional dental offices.
+            Recognized among California's foremost innovators in biological implant reconstruction and cosmetic aesthetic dentistry, Dr. Sterling established Lumina to discard the cold, rushed atmosphere of conventional dental clinics.
           </p>
 
           <p class="bio-paragraph">
-            Having completed over 12,000 surgical implant placements and veneer restorations, Dr. Sterling pairs microscopic millimeter precision with a compassionate bedside manner that instantly puts anxious patients at ease.
+            With advanced surgical training at Cedars-Sinai Medical Center, Dr. Sterling pairs microscopic millimeter precision with a compassionate bedside manner that instantly puts anxious patients at complete ease.
           </p>
 
           <div class="credentials-grid">
             <div class="cred-item">
-              <div class="cred-icon">🎓</div>
-              <div>
-                <h5>Harvard Dental Medicine</h5>
-                <p>Doctor of Dental Surgery (Honors)</p>
-              </div>
-            </div>
-            <div class="cred-item">
               <div class="cred-icon">🏛️</div>
               <div>
                 <h5>Cedars-Sinai Medical Center</h5>
-                <p>Advanced Surgical Residency</p>
+                <p>Advanced Surgical & Implant Residency</p>
+              </div>
+            </div>
+            <div class="cred-item">
+              <div class="cred-icon">🔬</div>
+              <div>
+                <h5>Fellow, ICOI</h5>
+                <p>International Congress of Oral Implantologists</p>
               </div>
             </div>
             <div class="cred-item">
@@ -608,10 +610,10 @@
               </div>
             </div>
             <div class="cred-item">
-              <div class="cred-icon">🔬</div>
+              <div class="cred-icon">💎</div>
               <div>
-                <h5>Key Opinion Leader</h5>
-                <p>Straumann® & Nobel Biocare Implants</p>
+                <h5>Biocompatible Focus</h5>
+                <p>Medical-Grade Titanium & Zirconia Systems</p>
               </div>
             </div>
           </div>
@@ -624,14 +626,14 @@
       </div>
     </section>
 
-    <!-- 9. Patient Reviews & Verified Testimonials (Untouched) -->
+    <!-- 9. Patient Reviews & Verified Testimonials (Safe & Realistic) -->
     <section class="section reviews-section" id="reviews">
       <div class="container">
         <div class="section-badge-center reveal-on-scroll">
           <span class="badge-tag">VERIFIED TESTIMONIALS</span>
         </div>
         <h2 class="section-title text-center reveal-on-scroll">
-          Treasured by Over 12,000 <br><span class="gradient-text-navy">Delighted Patients.</span>
+          Treasured by Patients Across <br><span class="gradient-text-navy">California and Beyond.</span>
         </h2>
         
         <div class="google-rating-summary reveal-on-scroll">
@@ -644,52 +646,52 @@
             </svg>
           </div>
           <div class="g-rating-text">
-            <strong>4.9 / 5.0 Rating</strong> on Google Verified Reviews (650+ verified patient records)
+            <strong>4.9 / 5.0 Rating</strong> • Verified Patient Experiences
           </div>
         </div>
 
         <div class="reviews-grid">
           <div class="review-card reveal-on-scroll">
             <div class="review-stars">★★★★★</div>
-            <div class="review-badge-verified">✓ Verified Patient • Full Implants</div>
+            <div class="review-badge-verified">✓ Verified Patient • Full Arch Restoration</div>
             <p class="review-quote">
-              “I flew from London specifically to have Dr. Sterling handle my full mouth implant surgery. His gentle approach and the sedation team made 4 hours feel like 10 minutes. The results are miraculous.”
+              “I traveled from out of state specifically to have Dr. Sterling manage my full mouth implant reconstruction. His gentle touch and the twilight sedation team made 4 hours feel like 10 minutes. The results are life-changing.”
             </p>
             <div class="reviewer-footer">
               <div class="reviewer-avatar">CW</div>
               <div>
-                <h5 class="reviewer-name">Sir Charles W.</h5>
-                <span class="reviewer-loc">London / Beverly Hills</span>
+                <h5 class="reviewer-name">C. Whittaker</h5>
+                <span class="reviewer-loc">Private Client • Beverly Hills</span>
               </div>
             </div>
           </div>
 
           <div class="review-card reveal-on-scroll">
             <div class="review-stars">★★★★★</div>
-            <div class="review-badge-verified">✓ Verified Patient • Handcrafted Veneers</div>
+            <div class="review-badge-verified">✓ Verified Patient • Porcelain Veneers</div>
             <p class="review-quote">
-              “Most cosmetic dentists give you blinding white Chiclet teeth that look totally fake. Dr. Sterling analyzed my facial dimensions, skin tone, and gave me veneers that look 100% natural.”
+              “Most cosmetic clinics give you blinding white Chiclet teeth that look artificial. Dr. Sterling analyzed my facial dimensions, skin tone, and gave me handcrafted veneers that look 100% natural and elegant.”
             </p>
             <div class="reviewer-footer">
               <div class="reviewer-avatar">SH</div>
               <div>
-                <h5 class="reviewer-name">Samantha Hayes</h5>
-                <span class="reviewer-loc">Bel Air, CA</span>
+                <h5 class="reviewer-name">S. Hayes</h5>
+                <span class="reviewer-loc">Verified Patient • Bel Air, CA</span>
               </div>
             </div>
           </div>
 
           <div class="review-card reveal-on-scroll">
             <div class="review-stars">★★★★★</div>
-            <div class="review-badge-verified">✓ Verified Patient • Emergency Trauma</div>
+            <div class="review-badge-verified">✓ Verified Patient • Urgent Care</div>
             <p class="review-quote">
-              “Shattered my front tooth on a Saturday evening before a crucial television appearance. Lumina answered their emergency line in 30 seconds. By 11 PM that night, my tooth was repaired with zero visible trace.”
+              “Fractured a front tooth on a weekend evening before a major professional presentation. Lumina answered their emergency concierge line in 30 seconds. By late that night, my tooth was repaired with zero trace of trauma.”
             </p>
             <div class="reviewer-footer">
               <div class="reviewer-avatar">DT</div>
               <div>
-                <h5 class="reviewer-name">David Thorne</h5>
-                <span class="reviewer-loc">Austin, TX</span>
+                <h5 class="reviewer-name">D. Thorne</h5>
+                <span class="reviewer-loc">Verified Patient • Los Angeles, CA</span>
               </div>
             </div>
           </div>
@@ -698,7 +700,7 @@
     </section>
   </main>
 
-  <!-- 10. Luxury Footer (Untouched) -->
+  <!-- 10. Luxury Footer (Safe Credentials & Privacy) -->
   <footer class="footer-section">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
@@ -713,7 +715,7 @@
           <span class="badge-accred">ADA Member</span>
           <span class="badge-accred">ICOI Fellow</span>
           <span class="badge-accred">AACD Cosmetic</span>
-          <span class="badge-accred">HIPAA Verified</span>
+          <span class="badge-accred">Sterilization Certified</span>
         </div>
       </div>
 
@@ -746,7 +748,7 @@
       <div class="footer-col">
         <h4 class="footer-heading">Executive Concierge</h4>
         <p class="footer-concierge-desc">
-          Do you require private underground limousine transfer, non-disclosure confidentiality agreements (NDA), or custom whole-smile weekend scheduling?
+          Do you require private underground parking access, confidential non-disclosure documentation (NDA), or custom whole-smile weekend scheduling?
         </p>
         <button class="btn btn-outline-cyan btn-full open-booking-drawer">Contact Private Concierge</button>
       </div>
@@ -754,17 +756,17 @@
 
     <div class="container footer-bottom">
       <div class="footer-copyright">
-        © 2026 Lumina Dental & Implant Studio. Designed with clinical luxury excellence.
+        © 2026 Lumina Dental & Implant Studio. Portfolio Prototype Designed by Shivam Web Agency.
       </div>
       <div class="footer-legal-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">HIPAA Compliance Statement</a>
+        <a href="#">Privacy Notice</a>
+        <a href="#">Patient Confidentiality</a>
         <a href="#">Terms of Care</a>
       </div>
     </div>
   </footer>
 
-  <!-- 11. SLIDE-OVER VIP BOOKING MODAL DRAWER (Untouched) -->
+  <!-- 11. SLIDE-OVER VIP BOOKING MODAL DRAWER (Safe Patient Privacy Claims) -->
   <div class="vip-drawer-overlay" id="vipDrawerOverlay"></div>
   <div class="vip-booking-drawer" id="vipBookingDrawer" aria-hidden="true">
     <div class="drawer-header">
@@ -814,9 +816,9 @@
             </label>
 
             <label class="custom-radio-card">
-              <input type="radio" name="d_treatment_goal" value="Invisalign Clear Aligners">
+              <input type="radio" name="d_treatment_goal" value="Clear Orthodontic Aligners">
               <div class="radio-content">
-                <span class="radio-title">Invisalign® Aligners</span>
+                <span class="radio-title">Clear Aligners</span>
                 <span class="radio-sub">Discreet orthodontics & whitening</span>
               </div>
             </label>
@@ -892,8 +894,9 @@
             </div>
           </div>
 
+          <!-- Safe, Credible Privacy Note (Zero Legal Risk) -->
           <div class="hipaa-notice">
-            🔒 HIPAA Compliant & 256-bit SSL Protected. Complete patient confidentiality guaranteed.
+            🔒 Confidential Patient Privacy • 256-Bit SSL Protected. All inquiries are strictly private.
           </div>
 
           <div class="wizard-nav-btns">

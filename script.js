@@ -1,7 +1,7 @@
 /**
  * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (FINAL POLISHED SCRIPT)
  * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Transparent-to-Royal-Blue Glass Navbar Transition on Scroll
+ * 2. Top Strip Collapse & Royal Blue Glass Navbar Transition on Scroll
  * 3. Mobile Navigation Drawer Toggle
  * 4. Slide-Over VIP Booking Drawer Engine
  * 5. Interactive Smile Investment & Financing Calculator
@@ -39,20 +39,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     2. NAVBAR: TRANSPARENT AT TOP -> ROYAL BLUE GLASS ON SCROLL
+     2. TOP STRIP COLLAPSE & NAVBAR ROYAL BLUE TRANSITION ON SCROLL
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
+  const topStrip = document.getElementById('topAnnouncementStrip');
   
   const handleScroll = () => {
     if (window.scrollY > 20) {
       if (mainHeader) mainHeader.classList.add('navbar-scrolled');
+      if (topStrip) topStrip.classList.add('strip-scrolled'); // Smoothly collapses top strip
     } else {
       if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
+      if (topStrip) topStrip.classList.remove('strip-scrolled'); // Smoothly expands top strip back
     }
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // Initial check on load
+  handleScroll(); // Initial check on page load
 
   /* ==========================================================================
      3. MOBILE NAVIGATION DRAWER
@@ -243,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
      5. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
-     ========================================================================= */
+     ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
   const downDisplay = document.getElementById('downPaymentDisplay');
