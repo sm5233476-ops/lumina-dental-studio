@@ -1,7 +1,7 @@
 /* ==========================================================================
-   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (CLEAN SPEC)
-   Design Language: Flat Modern Luxury (Apple, Stripe & Apa Aesthetic Benchmark)
-   Zero 3D Emboss • Ultra-Crisp Typography • Clean Mobile Glass Navbar
+   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (FINAL POLISHED SPEC)
+   Benchmark: Apa Aesthetic (Beverly Hills) & Tend (NYC)
+   Transparent-to-Blue Glass Navbar • Open Nav Spacing • Zero Mobile Overflow
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -36,7 +36,7 @@
   --radius-lg:      24px;
   --radius-full:    9999px;
   
-  --transition:     all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition:     all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- HARD RESET: Zero Mobile Viewport Stretch --- */
@@ -90,17 +90,17 @@ button {
   transition: var(--transition);
 }
 
-/* --- ULTRA-CRISP FLAT LUXURY TYPOGRAPHY (Zero 3D WordArt) --- */
+/* --- ULTRA-CRISP FLAT LUXURY TYPOGRAPHY --- */
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
-  letter-spacing: -0.035em; /* Apple/Stripe tight tracking */
+  letter-spacing: -0.035em;
   color: var(--text-dark);
   line-height: 1.15;
 }
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -131,12 +131,11 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
 }
 
-.section-title, .title-3d-section {
+.section-title {
   font-size: clamp(2rem, 4.2vw, 3.2rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   margin-bottom: 18px;
-  text-shadow: none; /* NO 3D SHADOW */
 }
 
 .section-sub {
@@ -152,13 +151,12 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Crisp Silver-Cyan Gradient Highlight */
-.shimmer-3d-text, .gradient-text {
+.gradient-text {
   background: linear-gradient(135deg, #FFFFFF 15%, #38BDF8 65%, #00F2FE 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 2px 8px rgba(0, 242, 254, 0.25));
-  text-shadow: none;
 }
 
 .gradient-text-navy {
@@ -200,14 +198,14 @@ h1, h2, h3, h4, h5 {
   font-size: 0.98rem;
 }
 
-.btn-capsule-glow, .btn-luxury-primary {
+.btn-luxury-primary {
   background: linear-gradient(135deg, var(--cyan-mint) 0%, var(--deep-blue) 100%);
   color: var(--bg-deep);
   box-shadow: 0 6px 18px rgba(0, 242, 254, 0.3);
   font-weight: 800;
 }
 
-.btn-capsule-glow:hover, .btn-luxury-primary:hover {
+.btn-luxury-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(0, 242, 254, 0.45);
 }
@@ -266,19 +264,16 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. STATIC TOP ANNOUNCEMENT STRIP (Scrolls Away Naturally)
+   1. SLEEK TOP ANNOUNCEMENT STRIP (Scrolls Away Naturally)
    ========================================================================== */
-.top-announcement-strip, .capsule-announcement {
-  position: relative; /* Normal flow: scrolls away on scroll, never sticks */
+.top-announcement-strip {
+  position: relative;
   background-color: #060C1D;
   color: #94A3B8;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   padding: 8px 0;
   border-bottom: 1px solid var(--border-glass);
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .strip-inner {
@@ -295,7 +290,7 @@ h1, h2, h3, h4, h5 {
   gap: 10px;
 }
 
-.pulse-dot, .location-dot {
+.location-dot {
   width: 6px;
   height: 6px;
   background-color: var(--cyan-mint);
@@ -310,90 +305,82 @@ h1, h2, h3, h4, h5 {
   100% { transform: scale(0.9); opacity: 1; }
 }
 
-.capsule-link, .strip-tel {
+.strip-tel {
   color: var(--cyan-mint);
   font-weight: 700;
 }
 
-.capsule-sep, .strip-divider {
+.strip-divider {
   color: rgba(255, 255, 255, 0.2);
 }
 
-.capsule-highlight, .strip-financing {
+.strip-financing {
   color: #CBD5E1;
 }
 
-.floating-header-container {
-  width: 100%;
-}
-
 /* ==========================================================================
-   2. SLEEK STICKY LUXURY GLASS NAVBAR (Clean Full-Width Bar)
+   2. HAUTE LUXURY NAVBAR (100% Transparent Top -> Royal Blue Glass on Scroll)
    ========================================================================== */
-.navbar-wrapper, .cylindrical-navbar-wrapper {
+.navbar-wrapper {
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(10, 17, 40, 0.85); /* Seamless deep navy glass */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-glass);
-  transition: var(--transition);
+  background: transparent; /* 100% transparent at top, NO grey tint! */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
+/* Smooth Transition to Royal Deep Blue Frosted Glass on Scroll */
 .navbar-scrolled {
-  background: rgba(10, 17, 40, 0.98);
+  background: rgba(10, 17, 40, 0.92); /* Deep blue-navy luxury tone */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 242, 254, 0.2);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.navbar, .cylindrical-navbar {
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 18px 24px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
-  border-radius: 0; /* Clean sleek bar */
-  box-shadow: none;
 }
 
-/* Brand Wordmark (Zero Gaming/Tech Pins, Never Wraps) */
-.brand-capsule-logo, .brand-wordmark {
+/* Brand Wordmark */
+.brand-wordmark {
   display: flex;
   align-items: center;
   gap: 10px;
-  white-space: nowrap; /* CRITICAL: Stays on one single line */
+  white-space: nowrap;
   flex-shrink: 0;
 }
 
-.brand-spark-gem, .brand-crest-dot {
+.brand-crest-dot {
   color: var(--cyan-mint);
   font-size: 1.15rem;
   line-height: 1;
 }
 
-.brand-text-group, .brand-text-lockup {
+.brand-text-lockup {
   display: flex;
   flex-direction: column;
 }
 
-.brand-title-3d, .brand-main {
+.brand-main {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.25rem;
-  letter-spacing: 0.12em; /* Clean, tight luxury tracking */
+  letter-spacing: 0.12em;
   color: #FFFFFF;
   line-height: 1;
   white-space: nowrap;
 }
 
-.brand-title-light {
-  color: #FFFFFF;
-}
-
-.brand-sub-luxury, .brand-sub {
+.brand-sub {
   font-size: 0.52rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -402,11 +389,17 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
 }
 
+/* Open, Generous Nav Links (No Clumping!) */
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 24px;
+  gap: 28px; /* Generous spacing between items */
+  margin-left: 48px; /* Breathing room away from Lumina logo */
+}
+
+.nav-links li {
+  white-space: nowrap;
 }
 
 .nav-links a {
@@ -415,6 +408,7 @@ h1, h2, h3, h4, h5 {
   color: #CBD5E1;
   position: relative;
   padding: 6px 0;
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
@@ -424,10 +418,10 @@ h1, h2, h3, h4, h5 {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
-.capsule-phone-btn, .nav-phone-pill {
+.nav-phone-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -438,15 +432,16 @@ h1, h2, h3, h4, h5 {
   font-size: 0.84rem;
   font-weight: 700;
   color: #FFFFFF;
+  white-space: nowrap;
 }
 
-.capsule-phone-btn:hover, .nav-phone-pill:hover {
+.nav-phone-pill:hover {
   border-color: var(--cyan-mint);
   color: var(--cyan-mint);
 }
 
 .nav-book-btn {
-  padding: 10px 20px;
+  padding: 10px 22px;
   font-size: 0.88rem;
 }
 
@@ -500,7 +495,7 @@ h1, h2, h3, h4, h5 {
 .hero-section {
   background-color: var(--bg-deep);
   color: var(--text-white);
-  padding: 80px 0 100px 0;
+  padding: 85px 0 105px 0;
   position: relative;
   overflow: hidden;
 }
@@ -539,18 +534,20 @@ h1, h2, h3, h4, h5 {
   z-index: 2;
 }
 
+/* Compact Single-Line Pill Badge */
 .hero-pill-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 .gold-sparkle {
@@ -558,24 +555,22 @@ h1, h2, h3, h4, h5 {
   letter-spacing: 2px;
 }
 
-/* Ultra-crisp headline with zero 3D emboss */
-.hero-title, .title-3d-effect {
+.hero-title {
   font-family: var(--font-heading);
   font-size: clamp(2.3rem, 4.4vw, 4.1rem);
   font-weight: 900;
   letter-spacing: -0.035em;
   color: #FFFFFF;
   line-height: 1.1;
-  margin-bottom: 20px;
-  text-shadow: none; /* NO EMBOSS SHADOW */
+  margin-bottom: 18px;
 }
 
 .hero-description {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: #94A3B8;
-  margin-bottom: 32px;
-  max-width: 560px;
-  line-height: 1.7;
+  margin-bottom: 30px;
+  max-width: 540px;
+  line-height: 1.65;
 }
 
 .hero-cta-group {
@@ -583,7 +578,7 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 42px;
+  margin-bottom: 40px;
 }
 
 .hero-trust-strip {
@@ -627,7 +622,7 @@ h1, h2, h3, h4, h5 {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Hero Glass Card */
+/* Hero Visual Glass Card */
 .hero-visual {
   position: relative;
   width: 100%;
@@ -783,7 +778,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   4. THE ZERO-ANXIETY SPA EXPERIENCE
+   4. THE ZERO-ANXIETY SPA EXPERIENCE (Untouched)
    ========================================================================== */
 .spa-section {
   background-color: var(--bg-frost);
@@ -853,7 +848,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   5. HIGH-TICKET PROCEDURES MENU (120FPS Elevation)
+   5. HIGH-TICKET PROCEDURES MENU (Untouched)
    ========================================================================== */
 .treatments-section {
   background-color: var(--bg-pure);
@@ -1012,7 +1007,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   6. THE SIGNATURE SMILE PORTFOLIO (Apa Aesthetic Benchmark)
+   6. THE SIGNATURE SMILE PORTFOLIO (Untouched)
    ========================================================================== */
 .portfolio-section {
   background-color: var(--bg-frost);
@@ -1123,7 +1118,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   7. SMILE INVESTMENT & FINANCING CALCULATOR
+   7. SMILE INVESTMENT & FINANCING CALCULATOR (Untouched)
    ========================================================================== */
 .calculator-section {
   background-color: var(--bg-pure);
@@ -1262,7 +1257,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   7. MEET DR. STERLING & SPECIALISTS
+   8. MEET DR. STERLING & SPECIALISTS (Untouched)
    ========================================================================== */
 .specialists-section {
   background-color: var(--bg-frost);
@@ -1385,7 +1380,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   8. PATIENT REVIEWS & SOCIAL PROOF
+   9. PATIENT REVIEWS & SOCIAL PROOF (Untouched)
    ========================================================================== */
 .reviews-section {
   background-color: var(--bg-pure);
@@ -1477,7 +1472,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   9. LUXURY FOOTER
+   10. LUXURY FOOTER (Untouched)
    ========================================================================== */
 .footer-section {
   background-color: #050B1B;
@@ -1495,6 +1490,10 @@ h1, h2, h3, h4, h5 {
 
 .footer-logo {
   margin-bottom: 14px;
+}
+
+.footer-wordmark {
+  gap: 8px;
 }
 
 .footer-tagline {
@@ -1594,7 +1593,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   10. SLIDE-OVER VIP BOOKING MODAL DRAWER
+   11. SLIDE-OVER VIP BOOKING MODAL DRAWER (Untouched)
    ========================================================================== */
 .vip-drawer-overlay {
   position: fixed;
@@ -1989,33 +1988,37 @@ h1, h2, h3, h4, h5 {
     padding: 0 16px;
   }
 
-  /* Announcement strip on mobile: simple single line */
-  .top-announcement-strip, .capsule-announcement {
+  /* Announcement strip on mobile: 1 Pure Single Line */
+  .top-announcement-strip {
     padding: 6px 12px;
     font-size: 0.68rem;
   }
 
   .strip-inner {
-    flex-direction: column;
+    justify-content: center;
     text-align: center;
-    gap: 4px;
+    gap: 6px;
   }
 
-  .strip-financing, .strip-divider, .capsule-highlight, .capsule-sep:last-of-type {
-    display: none; /* Keeps top strip pure & non-cluttered */
+  .desktop-only {
+    display: none !important; /* Hides long desktop text, keeping mobile to 1 clean line */
   }
 
-  /* MOBILE NAVBAR FIX: Logo on Left + Hamburger on Right ONLY */
-  .navbar, .cylindrical-navbar {
+  /* MOBILE NAVBAR: Clean, Spacious, Zero Cramming */
+  .navbar-wrapper {
+    background: rgba(10, 17, 40, 0.85); /* Dark glass on mobile by default */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .navbar {
     padding: 14px 16px;
-    height: auto;
   }
 
-  /* Completely HIDE Book button & phone pill from mobile header */
+  /* HIDE Book button & phone pill from mobile header */
   .nav-actions .btn,
-  .nav-actions .btn-capsule-glow,
+  .nav-actions .btn-luxury-primary,
   .nav-actions .nav-book-btn,
-  .capsule-phone-btn,
   .nav-phone-pill,
   .nav-links {
     display: none !important;
@@ -2026,12 +2029,12 @@ h1, h2, h3, h4, h5 {
     margin-left: auto;
   }
 
-  .brand-title-3d, .brand-main {
+  .brand-main {
     font-size: 1.15rem;
     letter-spacing: 0.14em;
   }
 
-  .brand-sub-luxury, .brand-sub {
+  .brand-sub {
     font-size: 0.5rem;
   }
 
@@ -2040,7 +2043,12 @@ h1, h2, h3, h4, h5 {
     padding: 40px 0 70px 0;
   }
 
-  .hero-title, .title-3d-effect {
+  .hero-pill-badge {
+    font-size: 0.68rem;
+    padding: 4px 12px;
+  }
+
+  .hero-title {
     font-size: 2.1rem;
     line-height: 1.15;
   }
@@ -2102,7 +2110,7 @@ h1, h2, h3, h4, h5 {
 }
 
 @media (max-width: 480px) {
-  .hero-title, .title-3d-effect {
+  .hero-title {
     font-size: 1.85rem;
   }
 
