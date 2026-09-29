@@ -1,6 +1,7 @@
 /* ==========================================================================
-   LUMINA DENTAL STUDIO — BEVERLY HILLS HAUTE AESTHETIC STYLESHEET
-   Quiet Luxury • Collapsing Announcement Strip • Zero Viewport Overflow
+   LUMINA DENTAL STUDIO — BEVERLY HILLS LUXURY ATELIER (FINAL PERFECT SPEC)
+   Benchmark: Apa Aesthetic (Beverly Hills) & Tend (NYC)
+   Zero White Navbar Leak • Midnight Navy Luxury • Flawless Mobile & Desktop
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -51,7 +52,7 @@ html, body {
   overflow-x: clip; /* Hard clip prevents any horizontal scroll */
   position: relative;
   -webkit-text-size-adjust: 100%;
-  background-color: var(--bg-deep);
+  background-color: var(--bg-deep); /* Body background locked to Midnight Navy */
 }
 
 html {
@@ -264,30 +265,16 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   1. SLEEK DISTINCT ANNOUNCEMENT STRIP (Smooth Collapse on Scroll)
+   1. SLEEK TOP ANNOUNCEMENT STRIP (Seamless Midnight Navy Background)
    ========================================================================== */
 .top-announcement-strip {
   position: relative;
-  background-color: #040814; /* Distinct Deep Charcoal-Navy Luxury Contrast */
+  background-color: #0A1128; /* Merged seamlessly with website background! */
   color: #94A3B8;
   font-size: 0.76rem;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(0, 242, 254, 0.12); /* Subtle cyan divider line */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   width: 100%;
-  max-height: 50px;
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow: hidden;
-}
-
-/* Collapses smoothly into navbar when user scrolls down */
-.top-announcement-strip.strip-scrolled {
-  max-height: 0;
-  padding: 0;
-  opacity: 0;
-  transform: translateY(-100%);
-  border-bottom: none;
 }
 
 .strip-inner {
@@ -345,8 +332,9 @@ h1, h2, h3, h4, h5 {
   transition: background 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+/* On scroll: Smooth transformation to royal navy blue glass */
 .navbar-scrolled {
-  background-color: rgba(10, 17, 40, 0.94); /* Royal Navy Blue Frosted Glass on Scroll */
+  background-color: rgba(10, 17, 40, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 242, 254, 0.25);
@@ -388,7 +376,7 @@ h1, h2, h3, h4, h5 {
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 0.12em;
-  color: #FFFFFF;
+  color: #FFFFFF; /* High-contrast crisp white */
   line-height: 1;
   white-space: nowrap;
 }
@@ -402,13 +390,13 @@ h1, h2, h3, h4, h5 {
   white-space: nowrap;
 }
 
-/* Open, Generous Nav Links (No Clumping!) */
+/* Open, Generous Nav Links */
 .nav-links {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 28px;
-  margin-left: 48px; /* Generous space away from Lumina logo */
+  margin-left: 48px;
 }
 
 .nav-links li {
@@ -1102,11 +1090,6 @@ h1, h2, h3, h4, h5 {
   color: #0284C7;
 }
 
-.patient-loc {
-  font-size: 0.72rem;
-  color: var(--text-slate);
-}
-
 .portfolio-title {
   font-size: 1.25rem;
   font-weight: 800;
@@ -1477,11 +1460,6 @@ h1, h2, h3, h4, h5 {
 .reviewer-name {
   font-size: 0.9rem;
   font-weight: 800;
-}
-
-.reviewer-loc {
-  font-size: 0.74rem;
-  color: var(--text-slate);
 }
 
 /* ==========================================================================

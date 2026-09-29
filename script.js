@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const handleScroll = () => {
     if (window.scrollY > 20) {
       if (mainHeader) mainHeader.classList.add('navbar-scrolled');
-      if (topStrip) topStrip.classList.add('strip-scrolled'); // Smoothly collapses top strip
+      if (topStrip) topStrip.classList.add('strip-scrolled');
     } else {
       if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
-      if (topStrip) topStrip.classList.remove('strip-scrolled'); // Smoothly expands top strip back
+      if (topStrip) topStrip.classList.remove('strip-scrolled');
     }
   };
 
