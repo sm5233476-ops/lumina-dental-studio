@@ -1,53 +1,21 @@
 /**
- * LUMINA DENTAL & IMPLANT STUDIO — BEVERLY HILLS ATELIER EDITION
- * Flagship Agency Interaction Engine:
- * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Navbar Dynamic Glass Blur
- * 3. Before & After Macro Dental Slider (Mouse + Touch)
- * 4. Slide-Over VIP Booking Drawer
- * 5. Interactive Smile Investment & Financing Calculator
- * 6. Mobile Drawer & Toast Dispatcher
+ * LUMINA DENTAL & IMPLANT STUDIO — MASTER JAVASCRIPT (MOBILE-PERFECT EDITION)
+ * 1. Navbar Glass Blur on Scroll
+ * 2. Mobile Drawer Navigation Toggle
+ * 3. Slide-Over VIP Booking Drawer Engine
+ * 4. Interactive Smile Investment & Financing Calculator
+ * 5. Toast Notification Dispatcher & Smooth Routing
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ==========================================================================
-     1. BEVERLY HILLS SCROLL-REVEAL ANIMATION ENGINE
-     ========================================================================== */
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
-
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target); // Animate once cleanly
-        }
-      });
-    }, {
-      root: null,
-      threshold: 0.12, // Triggers slightly before element enters view
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    revealElements.forEach((el, index) => {
-      // Add slight staggered delay to adjacent elements for liquid flow
-      const delay = (index % 3) * 0.1;
-      el.style.transitionDelay = `${delay}s`;
-      revealObserver.observe(el);
-    });
-  } else {
-    // Fallback for older browsers
-    revealElements.forEach(el => el.classList.add('is-revealed'));
-  }
-
-  /* ==========================================================================
-     2. NAVBAR GLASS BLUR ON SCROLL
+     1. NAVBAR GLASS BLUR ON SCROLL
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
   
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
       mainHeader.classList.add('navbar-scrolled');
     } else {
       mainHeader.classList.remove('navbar-scrolled');
@@ -55,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   /* ==========================================================================
-     3. MOBILE NAVIGATION DRAWER
+     2. MOBILE NAVIGATION DRAWER
      ========================================================================== */
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
@@ -75,70 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. BEFORE & AFTER GENUINE DENTAL MACRO SLIDER (MOUSE + TOUCH)
-     ========================================================================== */
-  const sliderContainer = document.getElementById('baSliderContainer');
-  const beforeWrapper = document.getElementById('baBeforeWrapper');
-  const handle = document.getElementById('baHandle');
-
-  if (sliderContainer && beforeWrapper && handle) {
-    let isSliding = false;
-
-    const setSliderPosition = (xPos) => {
-      const rect = sliderContainer.getBoundingClientRect();
-      let offsetX = xPos - rect.left;
-      
-      // Clamp values between 0 and container width
-      if (offsetX < 0) offsetX = 0;
-      if (offsetX > rect.width) offsetX = rect.width;
-
-      const percentage = (offsetX / rect.width) * 100;
-      
-      beforeWrapper.style.width = `${percentage}%`;
-      handle.style.left = `${percentage}%`;
-    };
-
-    // Desktop Mouse Drag Events
-    sliderContainer.addEventListener('mousedown', (e) => {
-      isSliding = true;
-      setSliderPosition(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => {
-      isSliding = false;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isSliding) return;
-      setSliderPosition(e.clientX);
-    });
-
-    // Mobile / Tablet Touch Drag Events
-    sliderContainer.addEventListener('touchstart', (e) => {
-      isSliding = true;
-      if (e.touches.length > 0) {
-        setSliderPosition(e.touches[0].clientX);
-      }
-    }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      isSliding = false;
-    });
-
-    window.addEventListener('touchmove', (e) => {
-      if (!isSliding || e.touches.length === 0) return;
-      setSliderPosition(e.touches[0].clientX);
-    }, { passive: true });
-  }
-
-  /* ==========================================================================
-     5. SLIDE-OVER VIP BOOKING MODAL DRAWER
+     3. SLIDE-OVER VIP BOOKING MODAL DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
   const closeDrawerBtn = document.getElementById('closeDrawerBtn');
   const openDrawerButtons = document.querySelectorAll('.open-booking-drawer');
 
+  // Open Drawer Function
   const openDrawer = () => {
     if (vipDrawer && vipOverlay) {
       vipOverlay.classList.add('active');
@@ -147,11 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Close Drawer Function
   const closeDrawer = () => {
     if (vipDrawer && vipOverlay) {
       vipOverlay.classList.remove('active');
       vipDrawer.classList.remove('open');
-      document.body.style.overflow = ''; // Re-enable background scrolling
+      document.body.style.overflow = ''; // Re-enable scrolling
     }
   };
 
@@ -165,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
   if (vipOverlay) vipOverlay.addEventListener('click', closeDrawer);
 
+  // Close on Escape Key
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeDrawer();
   });
@@ -307,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     6. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
+     4. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -359,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     7. TOAST NOTIFICATION HELPER
+     5. TOAST NOTIFICATION HELPER & SMOOTH ROUTING
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
