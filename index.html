@@ -6,7 +6,7 @@
   <title>Lumina Dental Studio | Beverly Hills Cosmetic & Restorative Dentistry</title>
   <meta name="description" content="Beverly Hills premier private dental atelier. Comfort-focused sedation options, handcrafted porcelain veneers, and same-day dental implants.">
 
-  <!-- Clean Luxury Modern Fonts: Plus Jakarta Sans & Outfit (Zero Cursive) -->
+  <!-- Google Fonts: Luxury Modern Geometric Typefaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,6 +16,11 @@
 
   <!-- Favicon: Glowing Cyan Diamond Star (✦) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F2FE'><path d='M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z'/></svg>">
+
+  <!-- Motion & Smooth Scroll CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -83,7 +88,7 @@
   </header>
 
   <main id="main-content">
-    <!-- 3. Hero Section (Natural Smooth Float-Up Architecture) -->
+    <!-- 3. Hero Section -->
     <section class="hero-section" id="hero">
       <div class="hero-ambient-orb orb-1" aria-hidden="true"></div>
       <div class="hero-ambient-orb orb-2" aria-hidden="true"></div>
@@ -95,7 +100,6 @@
             <span>BEVERLY HILLS PRIVATE SUITE</span>
           </div>
 
-          <!-- Clean Crisp Headline with Buttery Smooth Reveal -->
           <h1 class="hero-title reveal-on-scroll">
             The Modern Standard for a <br>
             <span class="gradient-text">Flawless, Confident</span> <br>
@@ -116,7 +120,7 @@
             </a>
           </div>
 
-          <!-- Trust Badges with Animated Counters -->
+          <!-- Trust Badges with Animated Numbers -->
           <div class="hero-trust-strip reveal-on-scroll">
             <div class="trust-item">
               <div class="trust-value"><span class="counter-number" data-target="4.9" data-decimals="1">4.9</span><span class="trust-star">★</span></div>
@@ -266,9 +270,129 @@
           We combine biocompatible surgical titanium, medical-grade lithium disilicate ceramics, and minimally invasive protocols to restore natural teeth with lifetime strength.
         </p>
 
-        <!-- Hydrated dynamically from TREATMENTS object in script.js -->
+        <!-- Dynamic Treatment Cards Container -->
         <div class="treatments-grid" id="proceduresGrid">
-          <!-- Clean procedure cards -->
+          <article class="treatment-card featured-treatment reveal-on-scroll">
+            <div class="featured-badge">MOST REQUESTED</div>
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="All-on-4 surgical dental implant model and restorations" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill" data-treatment-price="allon4">From $18,500 / arch</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Restorative Surgery</div>
+              <h3 class="treatment-heading">All-on-4 & Permanent Implants</h3>
+              <p class="treatment-summary">Replace broken, missing, or decayed teeth with biocompatible titanium posts and immediate functional teeth. Warranty-backed restorations (terms apply).</p>
+              <ul class="treatment-points">
+                <li>3D CBCT guided computer micro-placement</li>
+                <li>Same-day provisional teeth fitted immediately</li>
+                <li>Helps preserve jawbone density and facial contours</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="allon4">Explore Implant Options →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="treatment-card reveal-on-scroll">
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Patient showing natural handcrafted porcelain veneers smile" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill" data-treatment-price="veneers">From $1,600 / tooth</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Cosmetic Artistry</div>
+              <h3 class="treatment-heading">Handcrafted Porcelain Veneers</h3>
+              <p class="treatment-summary">Ultra-thin, micro-layered feldspathic and e.max veneers custom-shaded by master ceramists to correct gaps, chips, discoloration, and uneven tooth shapes.</p>
+              <ul class="treatment-points">
+                <li>Minimal to zero-prep tooth preservation</li>
+                <li>Stain-resistant ceramic surface with natural light translucency</li>
+                <li>Digital Smile Simulation preview before prep</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="veneers">Design Your Veneers →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="treatment-card reveal-on-scroll">
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" alt="Precision titanium surgical implant and zirconia abutment instrument" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill" data-treatment-price="implants">From $4,200</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Restorative Surgery</div>
+              <h3 class="treatment-heading">Single Surgical Implant & Crown</h3>
+              <p class="treatment-summary">Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly.</p>
+              <ul class="treatment-points">
+                <li>Computer-guided micro-surgical placement</li>
+                <li>Custom anatomical shading by Master Ceramist</li>
+                <li>Preserves adjacent natural healthy teeth</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="implants">Explore Single Implants →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="treatment-card reveal-on-scroll">
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80" alt="Patient holding clear removable orthodontic aligners" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill" data-treatment-price="invisalign">From $3,400</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Orthodontics</div>
+              <h3 class="treatment-heading">Clear Orthodontic Aligners</h3>
+              <p class="treatment-summary">Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites with gentle, predictable biomechanical force.</p>
+              <ul class="treatment-points">
+                <li>SmartTrack elastomeric material for accurate tooth movement</li>
+                <li>Removable anytime for dining and daily oral hygiene</li>
+                <li>Complimentary professional brightening included</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="invisalign">See Aligner Simulation →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="treatment-card reveal-on-scroll">
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="In-office clinical laser teeth brightening treatment" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill" data-treatment-price="whitening">Clinical Session $550</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Cosmetic Brightening</div>
+              <h3 class="treatment-heading">Laser Teeth Brightening</h3>
+              <p class="treatment-summary">Noticeably brighter in one visit (results vary). Safely lifts coffee, tea, wine, and aging discoloration. Formulated with mineral desensitizers.</p>
+              <ul class="treatment-points">
+                <li>Noticeably brighter in a single 45-minute visit (results vary)</li>
+                <li>Enamel-safe light wavelength technology</li>
+                <li>Custom take-home maintenance kit included</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="whitening">Book Brightening Session →</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="treatment-card urgent-card reveal-on-scroll">
+            <div class="urgent-top-badge">SAME-DAY EMERGENCY APPOINTMENTS</div>
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="Sterile emergency dental triage bay and examination suite" class="treatment-img" width="700" height="420" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
+              <div class="treatment-price-pill emergency-pill" data-treatment-price="emergency">Triage & Exam $99</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category urgent-tag">Trauma & Pain Unit</div>
+              <h3 class="treatment-heading">Same-Day Emergency Appointments</h3>
+              <p class="treatment-summary">Severe tooth pain, chipped front teeth, lost crowns, or acute trauma receive rapid clinical triage. Our emergency bays provide prompt pain-relieving care.</p>
+              <ul class="treatment-points">
+                <li>Direct on-call doctor triage response</li>
+                <li>Same-day emergency pain relief and repair</li>
+                <li>Emergency surgery bays reserved daily</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <a href="tel:+13105550142" class="btn btn-emergency-pulse">Call Emergency Dispatch →</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -375,7 +499,7 @@
 
           <!-- Case 3: Clear Aligners & Whitening (Sarah J.) -->
           <article class="portfolio-card reveal-on-scroll">
-            <div class="ba-slider" role="slider" tabindex="0" aria-label="Before and After Comparison: Case 2405 Clear Aligners and Brightening" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+            <div class="ba-slider" role="slider" tabindex="0" aria-label="Before and After Comparison: Case 2405 Clear Aligners and Whitening" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
               <div class="ba-image-layer ba-after-layer">
                 <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=1000&q=80" alt="Case 2405 After Aligners and Brightening" width="800" height="520" loading="lazy" decoding="async" onerror="this.onerror=null;this.classList.add('img-fallback');">
                 <span class="ba-badge after-badge">After</span>
