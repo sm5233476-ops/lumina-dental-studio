@@ -1,8 +1,9 @@
 /**
  * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER SCRIPT)
+ * Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
  * Single Source of Truth: TREATMENTS Data Object
  * Exact Amortization Math (Formula in code comments)
- * Working 3-Step Booking Modal Engine + Keyboard/Touch Before-After Sliders
+ * Working 3-Step Booking Modal Engine + Accessible Macro Teeth Sliders
  */
 
 // Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
@@ -151,11 +152,42 @@ const TREATMENTS = {
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ==========================================================================
-     TOP SCROLL PROGRESS INDICATOR (ScaleX Only)
+     C1: LENIS SMOOTH SCROLL ENGINE (Paused while modal is open)
+     ========================================================================== */
+  let lenis = null;
+  if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger
+    if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
+  }
+
+  /* ==========================================================================
+     C2: SCROLL PROGRESS BAR (ScaleX Only)
      ========================================================================== */
   const scrollProgressBar = document.getElementById('scrollProgressBar');
-  if (scrollProgressBar) {
+  if (scrollProgressBar && !prefersReducedMotion) {
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -165,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     NAVBAR BACKGROUND TRANSITION ON SCROLL (No Jitter, Zero Stutter)
+     C3: ZERO-STUTTER STICKY GLASS NAVBAR
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
   const handleScroll = () => {
@@ -180,27 +212,171 @@ document.addEventListener('DOMContentLoaded', () => {
   handleScroll();
 
   /* ==========================================================================
-     MOBILE NAVIGATION DRAWER
+     C4, C5, C6, C7: GSAP HERO REVEALS, PARALLAX & SECTION LINES
      ========================================================================== */
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const mobileLinks = document.querySelectorAll('.m-link');
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
 
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isVisible = mobileDrawer.style.display === 'block';
-      mobileDrawer.style.display = isVisible ? 'none' : 'block';
+    // C4: Hero Masked Line-by-Line Reveal
+    const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+    heroTl.from(".hero-title .line-inner", {
+      y: "115%",
+      duration: 1.1,
+      stagger: 0.12,
+      delay: 0.1
+    })
+    .from(".hero-pill-badge", {
+      opacity: 0,
+      y: 16,
+      duration: 0.7
+    }, "-=0.8")
+    .from(".hero-description", {
+      opacity: 0,
+      y: 18,
+      duration: 0.8
+    }, "-=0.6")
+    .from(".hero-cta-group .btn", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.7
+    }, "-=0.6")
+    .from(".hero-trust-strip", {
+      opacity: 0,
+      y: 16,
+      duration: 0.7
+    }, "-=0.5");
+
+    // C5: Parallax on Hero Image and Doctor Portrait (Max 8% transform only)
+    gsap.to(".hero-main-img", {
+      yPercent: 8,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
     });
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileDrawer.style.display = 'none';
+    gsap.to(".doctor-photo", {
+      yPercent: 6,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".specialists-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // C6: Masked Section Headings Reveal & Gold Line ScaleX
+    document.querySelectorAll('.masked-heading').forEach((heading) => {
+      const lines = heading.querySelectorAll('.line-inner');
+      const section = heading.closest('section');
+      const goldLine = section ? section.querySelector('.section-gold-line') : null;
+
+      gsap.from(lines, {
+        y: "115%",
+        duration: 1.0,
+        stagger: 0.1,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: heading,
+          start: "top 88%",
+          once: true
+        }
+      });
+
+      if (goldLine) {
+        gsap.to(goldLine, {
+          scaleX: 1,
+          duration: 0.8,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 88%",
+            once: true
+          }
+        });
+      }
+    });
+
+    // C7: Staggered Reveals for Cards
+    ScrollTrigger.batch(".comfort-card, .treatment-card, .portfolio-card, .review-card", {
+      start: "top 85%",
+      once: true,
+      onEnter: (batch) => {
+        gsap.from(batch, {
+          opacity: 0,
+          y: 32,
+          scale: 0.97,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: "expo.out"
+        });
+      }
+    });
+  }
+
+  // C4: Stat Numbers Count-Up Animation (rAF with expo-out)
+  const counterElements = document.querySelectorAll('.counter-number');
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const targetVal = parseFloat(el.getAttribute('data-target'));
+          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          const duration = 1800;
+          const startTime = performance.now();
+
+          function updateCounter(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentVal = easeProgress * targetVal;
+            el.textContent = currentVal.toFixed(decimals);
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = targetVal.toFixed(decimals);
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counterElements.forEach(el => counterObserver.observe(el));
+  }
+
+  /* ==========================================================================
+     C8: MAGNETIC BUTTONS (Desktop fine pointers only)
+     ========================================================================== */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
+    document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const moveX = Math.max(-8, Math.min(8, x * 0.2));
+        const moveY = Math.max(-8, Math.min(8, y * 0.2));
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
       });
     });
   }
 
   /* ==========================================================================
-     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Pointer Events & Keyboard)
+     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Touch + Mouse + Key)
      ========================================================================== */
   const sliders = document.querySelectorAll('.ba-slider');
 
@@ -248,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slider.addEventListener('pointerup', stopDragging);
     slider.addEventListener('pointercancel', stopDragging);
 
-    // Keyboard accessibility: Left/Down decreases by 5%, Right/Up increases by 5%, Home=0%, End=100%
+    // Keyboard accessibility: Left/Down -5%, Right/Up +5%, Home 0%, End 100%
     slider.addEventListener('keydown', (e) => {
       let currentVal = parseFloat(slider.getAttribute('aria-valuenow') || '50');
 
@@ -269,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     PART A1 & A3: FINANCING CALCULATOR (Exact Banking Amortization Math)
+     PART A1, A3 & C9: FINANCING CALCULATOR (Amortization Math & Smooth Tween)
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -292,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentTermMonths = 24;
   let currentApr = 0.0;
+  let lastMonthlyPayment = 708;
 
   /**
    * Banking Amortization Formula:
@@ -332,7 +509,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const principal = Math.max(0, totalCost - downPayment);
     const targetMonthly = calculateMonthly(principal, currentTermMonths, currentApr);
-    monthlyNumberEl.textContent = targetMonthly.toLocaleString();
+
+    // C9: Smooth Tween of Monthly Payment value (~500ms)
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      const obj = { val: lastMonthlyPayment };
+      gsap.to(obj, {
+        val: targetMonthly,
+        duration: 0.5,
+        ease: "power2.out",
+        onUpdate: () => {
+          monthlyNumberEl.textContent = Math.round(obj.val).toLocaleString();
+        }
+      });
+    } else {
+      monthlyNumberEl.textContent = targetMonthly.toLocaleString();
+    }
+
+    lastMonthlyPayment = targetMonthly;
   }
 
   if (calcSelect) calcSelect.addEventListener('change', updateCalculator);
@@ -356,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     PART B3: FAQ ACCORDION (Accessible, One Item Open at a Time)
+     PART B3 & C11: FAQ ACCORDION (One Item Open at a Time)
      ========================================================================== */
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -449,7 +642,11 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.add('active');
     vipDrawer.classList.add('open');
     vipDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
+
+    // Pause Lenis smooth scroll while modal is open (C1)
+    if (lenis) lenis.stop();
 
     setTimeout(() => {
       closeDrawerBtn.focus();
@@ -462,7 +659,11 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.remove('active');
     vipDrawer.classList.remove('open');
     vipDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
+
+    // Resume Lenis smooth scroll (C1)
+    if (lenis) lenis.start();
 
     if (previouslyFocusedElement) previouslyFocusedElement.focus();
   };
@@ -502,7 +703,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Wizard Navigation
+  // Wizard Step Navigation
   const dStep1 = document.getElementById('dStep1');
   const dStep2 = document.getElementById('dStep2');
   const dStep3 = document.getElementById('dStep3');
@@ -549,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Step 1 -> 2: Mark Step 1 complete with checkmark
+  // Step 1 -> 2
   if (dBtnToStep2) {
     dBtnToStep2.addEventListener('click', () => {
       dStep1.classList.remove('active');
@@ -570,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 2 -> 3: Validation & Mark Step 2 complete with checkmark
+  // Step 2 -> 3
   if (dBtnToStep3) {
     dBtnToStep3.addEventListener('click', () => {
       const dateErr = document.getElementById('dateError');
@@ -692,7 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dConfirmedName').textContent = `${fName} ${lName}`;
         document.getElementById('dReceiptTreatment').textContent = treatmentName;
 
-        // Clean Date Formatting without double brackets (e.g. "Oct 15, 2026 · Morning, 8:30 AM")
+        // Clean Date Formatting without double brackets
         try {
           const dObj = new Date(appointmentDate + 'T00:00:00');
           const formattedDate = dObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -747,6 +948,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
+     MOBILE DRAWER TOGGLE
+     ========================================================================== */
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileLinks = document.querySelectorAll('.m-link');
+
+  if (mobileMenuBtn && mobileDrawer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isVisible = mobileDrawer.style.display === 'block';
+      mobileDrawer.style.display = isVisible ? 'none' : 'block';
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.style.display = 'none';
+      });
+    });
+  }
+
+  /* ==========================================================================
      TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
@@ -760,7 +981,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     SMOOTH ANCHOR LINK ROUTING WITH STICKY NAVBAR OFFSET
+     SMOOTH ANCHOR LINK ROUTING WITH STICKY NAVBAR OFFSET (Lenis Compatible)
      ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -771,7 +992,12 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const navOffset = 80;
         const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
-        window.scrollTo({ top: targetPos, behavior: 'smooth' });
+
+        if (lenis) {
+          lenis.scrollTo(targetEl, { offset: -navOffset });
+        } else {
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
       }
     });
   });
