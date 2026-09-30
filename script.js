@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C2: SCROLL PROGRESS BAR (ScaleX Only)
+     C2: TOP SCROLL PROGRESS BAR (ScaleX Only)
      ========================================================================== */
   const scrollProgressBar = document.getElementById('scrollProgressBar');
   if (scrollProgressBar && !prefersReducedMotion) {
@@ -200,19 +200,21 @@ document.addEventListener('DOMContentLoaded', () => {
      C3: ZERO-STUTTER STICKY GLASS NAVBAR
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
+  const handleNavbarScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 20) {
       if (mainHeader) mainHeader.classList.add('navbar-scrolled');
     } else {
       if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+  handleNavbarScroll();
 
   /* ==========================================================================
-     C4, C5, C6, C7: GSAP HERO REVEALS, PARALLAX & SECTION LINES
+     C4, C5, C6, C7: GSAP ANIMATIONS & STAT COUNTERS
      ========================================================================== */
   if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
@@ -376,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Touch + Mouse + Key)
+     PART B1: ACCESSIBLE DIRECT MACRO TEETH COMPARISON SLIDERS (120fps)
      ========================================================================== */
   const sliders = document.querySelectorAll('.ba-slider');
 
@@ -456,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downValueEl = document.getElementById('calcDownValue');
   const aprValueEl = document.getElementById('calcAprValue');
 
-  // Populate Calculator Select options from TREATMENTS object
+  // Populate Calculator Select options from TREATMENTS single source of truth
   if (calcSelect) {
     calcSelect.innerHTML = `
       <option value="allon4" selected>${TREATMENTS.allon4.calcOptionName}</option>
@@ -771,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 2 -> 3
+  // Step 2 -> 3: Validation & Mark Step 2 complete with checkmark
   if (dBtnToStep3) {
     dBtnToStep3.addEventListener('click', () => {
       const dateErr = document.getElementById('dateError');
