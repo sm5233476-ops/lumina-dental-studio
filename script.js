@@ -1,12 +1,22 @@
 /**
  * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER SCRIPT)
- * Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
  * Single Source of Truth: TREATMENTS Data Object
- * Zero-Stutter Sticky Glass Navbar • Accessible Macro Teeth Sliders
+ * Exact Amortization Math (Formula in code comments)
+ * Working 3-Step Booking Modal Engine + Keyboard/Touch Before-After Sliders
  */
 
 // Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
 const BOOKING_ENDPOINT = "";
+
+// Canonical Clinic Address Constant (A12)
+const CLINIC_ADDRESS = {
+  name: "Lumina Dental Studio",
+  suite: "Penthouse Suite 701",
+  beverlyHills: "8920 Wilshire Blvd, Penthouse Suite 701, Beverly Hills, CA 90211",
+  austin: "500 W 2nd St, Suite 1900, Austin, TX 78701",
+  phoneDisplay: "(310) 555-0142",
+  phoneTel: "+13105550142"
+};
 
 /* ==========================================================================
    PART A1: TREATMENTS DATA OBJECT (SINGLE SOURCE OF TRUTH)
@@ -15,103 +25,137 @@ const TREATMENTS = {
   allon4: {
     id: "allon4",
     name: "All-on-4 & Permanent Implants",
-    cardPriceText: "From $18,500 / arch",
-    calcOptionName: "Full Arch All-on-4 Teeth-in-a-Day ($18,500)",
+    badge: "MOST REQUESTED",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "All-on-4 surgical dental implant model and restorations",
+    cardPrice: "From $18,500 / arch",
+    calcOptionName: "Full Arch All-on-4 Permanent Teeth-in-a-Day ($18,500)",
     unitPrice: 18500,
     calcTotal: 18500,
     category: "Restorative Surgery",
-    summary: "Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Warranty-backed restorations (terms apply)."
+    summary: "Replace broken, missing, or decayed teeth with biocompatible titanium posts and immediate functional teeth. Warranty-backed restorations (terms apply).",
+    points: [
+      "3D CBCT guided computer micro-placement",
+      "Same-day provisional teeth fitted immediately",
+      "Helps preserve jawbone density and facial contours"
+    ],
+    ctaText: "Explore Implant Options →",
+    isUrgent: false,
+    featured: true
   },
   veneers: {
     id: "veneers",
     name: "Handcrafted Porcelain Veneers",
-    cardPriceText: "From $1,600 / tooth",
-    calcOptionName: "Porcelain Veneers (Set of 6 = $9,600)",
+    badge: null,
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Patient showing natural handcrafted porcelain veneers smile",
+    cardPrice: "From $1,600 / tooth",
+    calcOptionName: "Porcelain Veneers (Set of 6 Smile Makeover = $9,600)",
     unitPrice: 1600,
-    calcTotal: 9600,
+    calcTotal: 9600, // 6 * 1600
     category: "Cosmetic Artistry",
-    summary: "Ultra-thin, micro-layered feldspathic and e.max veneers custom-shaded by master ceramists to correct gaps, chips, discoloration, and uneven tooth shapes."
+    summary: "Ultra-thin, micro-layered feldspathic and e.max veneers custom-shaded by master ceramists to correct gaps, chips, discoloration, and uneven tooth shapes.",
+    points: [
+      "Minimal to zero-prep tooth preservation",
+      "Stain-resistant ceramic surface with natural light translucency",
+      "Digital Smile Simulation preview before prep"
+    ],
+    ctaText: "Design Your Veneers →",
+    isUrgent: false,
+    featured: false
   },
   implants: {
     id: "implants",
-    name: "Single Surgical Implant & Zirconia Crown",
-    cardPriceText: "From $4,200",
-    calcOptionName: "Single Surgical Implant & Crown ($4,200)",
+    name: "Single Surgical Implant & Crown",
+    badge: null,
+    image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Precision titanium surgical implant and zirconia abutment instrument",
+    cardPrice: "From $4,200",
+    calcOptionName: "Single Surgical Implant & Zirconia Crown ($4,200)",
     unitPrice: 4200,
     calcTotal: 4200,
     category: "Restorative Surgery",
-    summary: "Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly."
+    summary: "Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly.",
+    points: [
+      "Computer-guided micro-surgical placement",
+      "Custom anatomical shading by Master Ceramist",
+      "Preserves adjacent natural healthy teeth"
+    ],
+    ctaText: "Explore Single Implants →",
+    isUrgent: false,
+    featured: false
   },
   invisalign: {
     id: "invisalign",
     name: "Clear Orthodontic Aligners",
-    cardPriceText: "From $3,400",
-    calcOptionName: "Comprehensive Clear Aligners ($5,900)",
+    badge: null,
+    image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Patient holding clear removable orthodontic aligners",
+    cardPrice: "From $3,400",
+    calcOptionName: "Comprehensive Clear Aligner Therapy ($5,900)",
     unitPrice: 3400,
     calcTotal: 5900,
     category: "Orthodontics",
-    summary: "Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites with gentle, predictable biomechanical force."
+    summary: "Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites with gentle, predictable biomechanical force.",
+    points: [
+      "SmartTrack elastomeric material for accurate tooth movement",
+      "Removable anytime for dining and daily oral hygiene",
+      "Complimentary professional brightening included"
+    ],
+    ctaText: "See Aligner Simulation →",
+    isUrgent: false,
+    featured: false
   },
   whitening: {
     id: "whitening",
     name: "Laser Teeth Brightening",
-    cardPriceText: "Clinical Session $550",
+    badge: null,
+    image: "https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "In-office clinical laser teeth brightening treatment",
+    cardPrice: "Clinical Session $550",
     calcOptionName: "In-Office Laser Brightening ($550)",
     unitPrice: 550,
     calcTotal: 550,
     category: "Cosmetic Brightening",
-    summary: "Noticeably brighter in one visit (results vary). Safely lifts decades of coffee, tea, wine, and aging discoloration. Formulated with mineral desensitizers."
+    summary: "Noticeably brighter in one visit (results vary). Safely lifts coffee, tea, wine, and aging discoloration. Formulated with mineral desensitizers.",
+    points: [
+      "Noticeably brighter in a single 45-minute visit (results vary)",
+      "Enamel-safe light wavelength technology",
+      "Custom take-home maintenance kit included"
+    ],
+    ctaText: "Book Brightening Session →",
+    isUrgent: false,
+    featured: false
   },
   emergency: {
     id: "emergency",
     name: "Same-Day Emergency Appointments",
-    cardPriceText: "Triage & Exam $99",
+    badge: "SAME-DAY EMERGENCY APPOINTMENTS",
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Sterile emergency dental triage bay and examination suite",
+    cardPrice: "Triage & Exam $99",
     calcOptionName: "Emergency Triage & Stabilization ($99)",
-    unitPrice: 99,
     calcTotal: 99,
     category: "Trauma & Pain Unit",
-    summary: "Severe throbbing, chipped front teeth, lost crowns, or acute trauma receive rapid clinical triage. Our emergency bays provide urgent pain-blocking relief."
+    summary: "Severe tooth pain, chipped front teeth, lost crowns, or acute trauma receive rapid clinical triage. Our emergency bays provide prompt pain-relieving care.",
+    points: [
+      "Direct on-call doctor triage response",
+      "Same-day emergency pain relief and repair",
+      "Emergency surgery bays reserved daily"
+    ],
+    ctaText: "Call Emergency Dispatch →",
+    isUrgent: true,
+    featured: false
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   /* ==========================================================================
-     C1: LENIS SMOOTH SCROLL ENGINE (Disabled on reduced motion)
-     ========================================================================== */
-  let lenis = null;
-  if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.5,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Sync with GSAP ScrollTrigger
-    if (typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-      });
-      gsap.ticker.lagSmoothing(0);
-    }
-  }
-
-  /* ==========================================================================
-     C2: TOP SCROLL PROGRESS BAR (ScaleX only, no layout thrashing)
+     TOP SCROLL PROGRESS INDICATOR (ScaleX Only)
      ========================================================================== */
   const scrollProgressBar = document.getElementById('scrollProgressBar');
-  if (scrollProgressBar && !prefersReducedMotion) {
+  if (scrollProgressBar) {
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -121,197 +165,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C3: ZERO-STUTTER STABLE STICKY NAVBAR & TOP STRIP COLLAPSE (Laptop Lag Cured)
+     NAVBAR BACKGROUND TRANSITION ON SCROLL (No Jitter, Zero Stutter)
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
-  const topStrip = document.getElementById('topAnnouncementStrip');
-
-  const handleNavbarScroll = () => {
-    const currentScrollY = window.scrollY;
-
-    // Stable background transition without rapid transform jitter
-    if (currentScrollY > 20) {
+  const handleScroll = () => {
+    if (window.scrollY > 20) {
       if (mainHeader) mainHeader.classList.add('navbar-scrolled');
-      if (topStrip) topStrip.classList.add('strip-scrolled');
     } else {
       if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
-      if (topStrip) topStrip.classList.remove('strip-scrolled');
     }
   };
 
-  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-  handleNavbarScroll(); // Initial check on page load
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
 
   /* ==========================================================================
-     C4, C5, C6: GSAP ANIMATIONS & STAT COUNTERS
+     MOBILE NAVIGATION DRAWER
      ========================================================================== */
-  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
-    gsap.registerPlugin(ScrollTrigger);
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const mobileLinks = document.querySelectorAll('.m-link');
 
-    // Hero timeline reveal (Masked line reveal)
-    const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
-
-    heroTl.from(".hero-title .line-inner", {
-      y: "115%",
-      duration: 1.1,
-      stagger: 0.12,
-      delay: 0.1
-    })
-    .from(".hero-pill-badge", {
-      opacity: 0,
-      y: 16,
-      duration: 0.7
-    }, "-=0.8")
-    .from(".hero-description", {
-      opacity: 0,
-      y: 18,
-      duration: 0.8
-    }, "-=0.6")
-    .from(".hero-cta-group .btn", {
-      opacity: 0,
-      y: 20,
-      stagger: 0.1,
-      duration: 0.7
-    }, "-=0.6")
-    .from(".hero-trust-strip", {
-      opacity: 0,
-      y: 16,
-      duration: 0.7
-    }, "-=0.5")
-    .from(".hero-visual-media", {
-      clipPath: "inset(15% 15% 15% 15% round 16px)",
-      duration: 1.2
-    }, "-=1.0");
-
-    // Parallax on hero image and doctor photo (Max 8% transform only)
-    gsap.to(".hero-main-img", {
-      yPercent: 8,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: true
-      }
+  if (mobileMenuBtn && mobileDrawer) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isVisible = mobileDrawer.style.display === 'block';
+      mobileDrawer.style.display = isVisible ? 'none' : 'block';
     });
 
-    gsap.to(".doctor-photo", {
-      yPercent: 6,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".specialists-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-      }
-    });
-
-    // Section Titles masked reveal + Gold line scaleX
-    document.querySelectorAll('.masked-heading').forEach((heading) => {
-      const lines = heading.querySelectorAll('.line-inner');
-      const section = heading.closest('section');
-      const goldLine = section ? section.querySelector('.section-gold-line') : null;
-
-      gsap.from(lines, {
-        y: "115%",
-        duration: 1.0,
-        stagger: 0.1,
-        ease: "expo.out",
-        scrollTrigger: {
-          trigger: heading,
-          start: "top 88%",
-          once: true
-        }
-      });
-
-      if (goldLine) {
-        gsap.to(goldLine, {
-          scaleX: 1,
-          duration: 0.8,
-          ease: "expo.out",
-          scrollTrigger: {
-            trigger: heading,
-            start: "top 88%",
-            once: true
-          }
-        });
-      }
-    });
-
-    // Staggered reveals for cards
-    ScrollTrigger.batch(".comfort-card, .treatment-card, .portfolio-card, .review-card", {
-      start: "top 85%",
-      once: true,
-      onEnter: (batch) => {
-        gsap.from(batch, {
-          opacity: 0,
-          y: 32,
-          scale: 0.97,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: "expo.out"
-        });
-      }
-    });
-  }
-
-  // Animated Number Counters (rAF with expo-out)
-  const counterElements = document.querySelectorAll('.counter-number');
-  if ('IntersectionObserver' in window) {
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const targetVal = parseFloat(el.getAttribute('data-target'));
-          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-          const duration = 1800; // ms
-          const startTime = performance.now();
-
-          function updateCounter(now) {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-            const currentVal = easeProgress * targetVal;
-            el.textContent = currentVal.toFixed(decimals);
-
-            if (progress < 1) {
-              requestAnimationFrame(updateCounter);
-            } else {
-              el.textContent = targetVal.toFixed(decimals);
-            }
-          }
-
-          requestAnimationFrame(updateCounter);
-          observer.unobserve(el);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    counterElements.forEach(el => counterObserver.observe(el));
-  }
-
-  /* ==========================================================================
-     C8: MAGNETIC BUTTONS (Desktop fine pointers only)
-     ========================================================================== */
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
-    document.querySelectorAll('.magnetic-btn').forEach((btn) => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const moveX = Math.max(-8, Math.min(8, x * 0.2));
-        const moveY = Math.max(-8, Math.min(8, y * 0.2));
-        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileDrawer.style.display = 'none';
       });
     });
   }
 
   /* ==========================================================================
-     PART B1: ACCESSIBLE DIRECT MACRO TEETH COMPARISON SLIDERS (120fps)
+     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Pointer Events & Keyboard)
      ========================================================================== */
   const sliders = document.querySelectorAll('.ba-slider');
 
@@ -336,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setPosition(pct);
     };
 
-    // Pointer Events for Mouse and Touch
     slider.addEventListener('pointerdown', (e) => {
       isDragging = true;
       slider.setPointerCapture(e.pointerId);
@@ -360,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slider.addEventListener('pointerup', stopDragging);
     slider.addEventListener('pointercancel', stopDragging);
 
-    // Keyboard Accessibility (Left/Right Arrows, Home, End)
+    // Keyboard accessibility: Left/Down decreases by 5%, Right/Up increases by 5%, Home=0%, End=100%
     slider.addEventListener('keydown', (e) => {
       let currentVal = parseFloat(slider.getAttribute('aria-valuenow') || '50');
 
@@ -381,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     PART A1 & C9: FINANCING CALCULATOR (Exact Math & Smooth Tween)
+     PART A1 & A3: FINANCING CALCULATOR (Exact Banking Amortization Math)
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -392,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downValueEl = document.getElementById('calcDownValue');
   const aprValueEl = document.getElementById('calcAprValue');
 
-  // Populate Calculator Select from TREATMENTS Single Source of Truth
+  // Populate Calculator Select options from TREATMENTS object
   if (calcSelect) {
     calcSelect.innerHTML = `
       <option value="allon4" selected>${TREATMENTS.allon4.calcOptionName}</option>
@@ -404,16 +292,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentTermMonths = 24;
   let currentApr = 0.0;
-  let lastMonthlyPayment = 708;
 
-  function calculateMonthly(P, n, annualAprPct) {
-    if (P <= 0) return 0;
+  /**
+   * Banking Amortization Formula:
+   * For 0% APR:
+   *   Monthly = Principal / n
+   * For APR > 0%:
+   *   r = (Annual APR % / 100) / 12
+   *   Monthly = Principal * (r * (1 + r)^n) / ((1 + r)^n - 1)
+   */
+  function calculateMonthly(principal, months, annualAprPct) {
+    if (principal <= 0) return 0;
     if (annualAprPct === 0) {
-      return Math.round(P / n);
+      return Math.round(principal / months);
     }
-    // Standard Amortization Formula: M = P * (r / (1 - (1+r)^-n))
     const r = (annualAprPct / 100) / 12;
-    const monthly = (P * r) / (1 - Math.pow(1 + r, -n));
+    const monthly = principal * (r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
     return Math.round(monthly);
   }
 
@@ -425,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCost = treatment.calcTotal;
     let downPayment = parseFloat(downSlider.value) || 0;
 
-    // Clamp down payment so it never exceeds total cost
+    // Clamp down payment: down payment can NEVER exceed total cost
     if (downPayment >= totalCost) {
       downPayment = Math.max(0, totalCost - 500);
       downSlider.value = downPayment;
@@ -438,23 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const principal = Math.max(0, totalCost - downPayment);
     const targetMonthly = calculateMonthly(principal, currentTermMonths, currentApr);
-
-    // Smooth Tween of Monthly Payment value (~500ms)
-    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
-      const obj = { val: lastMonthlyPayment };
-      gsap.to(obj, {
-        val: targetMonthly,
-        duration: 0.5,
-        ease: "power2.out",
-        onUpdate: () => {
-          monthlyNumberEl.textContent = Math.round(obj.val).toLocaleString();
-        }
-      });
-    } else {
-      monthlyNumberEl.textContent = targetMonthly.toLocaleString();
-    }
-
-    lastMonthlyPayment = targetMonthly;
+    monthlyNumberEl.textContent = targetMonthly.toLocaleString();
   }
 
   if (calcSelect) calcSelect.addEventListener('change', updateCalculator);
@@ -478,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     PART B3: FAQ ACCORDION (One open at a time)
+     PART B3: FAQ ACCORDION (Accessible, One Item Open at a Time)
      ========================================================================== */
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -488,7 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
     trigger.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
 
-      // Close all other items
       faqItems.forEach((other) => {
         if (other !== item) {
           other.classList.remove('is-open');
@@ -497,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Toggle clicked item
       if (isOpen) {
         item.classList.remove('is-open');
         trigger.setAttribute('aria-expanded', 'false');
@@ -565,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     previouslyFocusedElement = document.activeElement;
 
-    // Preselect treatment if triggered from a specific card
     if (preselectedTreatmentKey) {
       const radio = vipDrawer.querySelector(`input[name="d_treatment_goal"][value="${preselectedTreatmentKey}"]`);
       if (radio) radio.checked = true;
@@ -574,13 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.add('active');
     vipDrawer.classList.add('open');
     vipDrawer.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
-    // Pause Lenis smooth scroll while modal is open
-    if (lenis) lenis.stop();
-
-    // Trap focus inside modal
     setTimeout(() => {
       closeDrawerBtn.focus();
     }, 100);
@@ -592,13 +462,8 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.remove('active');
     vipDrawer.classList.remove('open');
     vipDrawer.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
 
-    // Resume Lenis smooth scroll
-    if (lenis) lenis.start();
-
-    // Return focus
     if (previouslyFocusedElement) previouslyFocusedElement.focus();
   };
 
@@ -613,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
   if (vipOverlay) vipOverlay.addEventListener('click', closeDrawer);
 
-  // Focus trap & Escape key
+  // Focus trap & Escape Key
   window.addEventListener('keydown', (e) => {
     if (!vipDrawer.classList.contains('open')) return;
 
@@ -637,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Modal Step Stepper Navigation
+  // Wizard Navigation
   const dStep1 = document.getElementById('dStep1');
   const dStep2 = document.getElementById('dStep2');
   const dStep3 = document.getElementById('dStep3');
@@ -684,12 +549,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Step 1 -> 2
+  // Step 1 -> 2: Mark Step 1 complete with checkmark
   if (dBtnToStep2) {
     dBtnToStep2.addEventListener('click', () => {
       dStep1.classList.remove('active');
       dStep2.classList.add('active');
-      dInd1.classList.remove('active');
+      dInd1.classList.add('active');
+      dInd1.querySelector('.step-num').textContent = '✓';
       dInd2.classList.add('active');
     });
   }
@@ -699,12 +565,12 @@ document.addEventListener('DOMContentLoaded', () => {
     dBtnBackToStep1.addEventListener('click', () => {
       dStep2.classList.remove('active');
       dStep1.classList.add('active');
+      dInd1.querySelector('.step-num').textContent = '1';
       dInd2.classList.remove('active');
-      dInd1.classList.add('active');
     });
   }
 
-  // Step 2 -> 3
+  // Step 2 -> 3: Validation & Mark Step 2 complete with checkmark
   if (dBtnToStep3) {
     dBtnToStep3.addEventListener('click', () => {
       const dateErr = document.getElementById('dateError');
@@ -718,7 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       dStep2.classList.remove('active');
       dStep3.classList.add('active');
-      dInd2.classList.remove('active');
+      dInd2.querySelector('.step-num').textContent = '✓';
       dInd3.classList.add('active');
     });
   }
@@ -728,12 +594,12 @@ document.addEventListener('DOMContentLoaded', () => {
     dBtnBackToStep2.addEventListener('click', () => {
       dStep3.classList.remove('active');
       dStep2.classList.add('active');
+      dInd2.querySelector('.step-num').textContent = '2';
       dInd3.classList.remove('active');
-      dInd2.classList.add('active');
     });
   }
 
-  // Step 3: Form Validation & Submission (Endpoint or Demo Fallback)
+  // Step 3: Form Validation & Submission
   if (dBookingForm) {
     dBookingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -751,12 +617,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let hasError = false;
 
-      // Reset errors
       [fNameInput, lNameInput, phoneInput, emailInput].forEach(inp => inp.classList.remove('is-invalid'));
       document.querySelectorAll('.field-error').forEach(sp => sp.textContent = '');
       if (formAlertError) formAlertError.style.display = 'none';
 
-      // Validation Rules
       if (fName.length < 2) {
         fNameInput.classList.add('is-invalid');
         document.getElementById('firstNameError').textContent = "Please enter your first name.";
@@ -789,7 +653,6 @@ document.addEventListener('DOMContentLoaded', () => {
       submitBtn.classList.add('is-loading');
       submitBtn.disabled = true;
 
-      // Extract Form Data
       const selectedRadio = vipDrawer.querySelector('input[name="d_treatment_goal"]:checked');
       const treatmentKey = selectedRadio ? selectedRadio.value : 'allon4';
       const treatmentObj = TREATMENTS[treatmentKey] || TREATMENTS.allon4;
@@ -807,6 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
         date: appointmentDate,
         timeSlot: timeSlot,
         sedation: sedationName,
+        suiteLocation: CLINIC_ADDRESS.suite,
         timestamp: new Date().toISOString()
       };
 
@@ -818,9 +682,9 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify(payload)
           });
 
-          if (!response.ok) throw new Error("Server error");
+          if (!response.ok) throw new Error("Submission network failure");
         } else {
-          // Instant Demo Mode: Simulate 1.2s network turnaround
+          // Instant Demo Mode: Simulate 1.2s network roundtrip
           await new Promise(res => setTimeout(res, 1200));
         }
 
@@ -828,27 +692,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('dConfirmedName').textContent = `${fName} ${lName}`;
         document.getElementById('dReceiptTreatment').textContent = treatmentName;
 
-        // Clean Date Formatting
+        // Clean Date Formatting without double brackets (e.g. "Oct 15, 2026 · Morning, 8:30 AM")
         try {
           const dObj = new Date(appointmentDate + 'T00:00:00');
           const formattedDate = dObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-          document.getElementById('dReceiptDate').textContent = `${formattedDate} (${timeSlot})`;
+          const cleanSlot = timeSlot.replace(/[()]/g, '').replace('Morning', 'Morning,').replace('Afternoon', 'Afternoon,').replace('Late', 'Late,');
+          document.getElementById('dReceiptDate').textContent = `${formattedDate} · ${cleanSlot}`;
         } catch (_) {
-          document.getElementById('dReceiptDate').textContent = `${appointmentDate} (${timeSlot})`;
+          document.getElementById('dReceiptDate').textContent = `${appointmentDate} · ${timeSlot}`;
         }
 
         document.getElementById('dReceiptSedation').textContent = sedationName;
+        document.getElementById('dReceiptLocation').textContent = CLINIC_ADDRESS.suite;
 
         // Switch to Confirmation Step
         dStep3.classList.remove('active');
         dStepSuccess.classList.add('active');
-        dInd3.classList.add('active');
+        dInd3.querySelector('.step-num').textContent = '✓';
         dStepSuccess.focus();
 
-        showToast(`VIP Suite Reserved for ${fName}!`);
+        showToast(`VIP Suite Request Received for ${fName}!`);
 
       } catch (err) {
-        if (formAlertError) formAlertError.style.display = 'block';
+        if (formAlertError) {
+          formAlertError.style.display = 'block';
+          formAlertError.innerHTML = 'Unable to submit request. <button type="button" id="btnRetrySubmit" style="text-decoration:underline;font-weight:700;margin-left:6px;cursor:pointer;">Retry</button>';
+          const retryBtn = document.getElementById('btnRetrySubmit');
+          if (retryBtn) {
+            retryBtn.addEventListener('click', () => {
+              submitBtn.click();
+            });
+          }
+        }
       } finally {
         submitBtn.classList.remove('is-loading');
         submitBtn.disabled = false;
@@ -862,29 +737,12 @@ document.addEventListener('DOMContentLoaded', () => {
       dBookingForm.reset();
       dStepSuccess.classList.remove('active');
       dStep1.classList.add('active');
-      dInd1.classList.add('active');
+      dInd1.querySelector('.step-num').textContent = '1';
+      dInd2.querySelector('.step-num').textContent = '2';
+      dInd3.querySelector('.step-num').textContent = '3';
       dInd2.classList.remove('active');
       dInd3.classList.remove('active');
-    });
-  }
-
-  /* ==========================================================================
-     MOBILE DRAWER TOGGLE
-     ========================================================================== */
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const mobileLinks = document.querySelectorAll('.m-link');
-
-  if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener('click', () => {
-      const isVisible = mobileDrawer.style.display === 'block';
-      mobileDrawer.style.display = isVisible ? 'none' : 'block';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileDrawer.style.display = 'none';
-      });
+      dInd1.classList.add('active');
     });
   }
 
@@ -902,7 +760,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     SMOOTH ANCHOR LINK OFFSET ROUTING (Lenis Compatible)
+     SMOOTH ANCHOR LINK ROUTING WITH STICKY NAVBAR OFFSET
      ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -913,12 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const navOffset = 80;
         const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
-
-        if (lenis) {
-          lenis.scrollTo(targetEl, { offset: -navOffset });
-        } else {
-          window.scrollTo({ top: targetPos, behavior: 'smooth' });
-        }
+        window.scrollTo({ top: targetPos, behavior: 'smooth' });
       }
     });
   });
