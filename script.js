@@ -1,64 +1,881 @@
 /**
- * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (FINAL POLISHED SCRIPT)
- * 1. Beverly Hills Scroll-Reveal Animation Engine (Intersection Observer)
- * 2. Top Strip Collapse & Royal Blue Glass Navbar Transition on Scroll
- * 3. Mobile Navigation Drawer Toggle
- * 4. Slide-Over VIP Booking Drawer Engine
- * 5. Interactive Smile Investment & Financing Calculator
- * 6. Centered Toast Notification Helper
+ * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER SCRIPT)
+ * Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
+ * Single Source of Truth: TREATMENTS Data Object
+ * Working 3-Step Booking Modal Engine + Keyboard/Touch Before-After Sliders
  */
+
+// Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
+const BOOKING_ENDPOINT = "";
+
+/* ==========================================================================
+   PART A1: TREATMENTS DATA OBJECT (SINGLE SOURCE OF TRUTH)
+   ========================================================================== */
+const TREATMENTS = {
+  veneers: {
+    id: "veneers",
+    name: "Handcrafted Porcelain Veneers",
+    cardPriceText: "From $1,600 / tooth",
+    calcOptionName: "Porcelain Veneers (Set of 6 = $9,600)",
+    unitPrice: 1600,
+    calcTotal: 9600,
+    category: "Cosmetic Artistry",
+    summary: "Ultra-thin, micro-layered feldspathic and e.max veneers custom-shaded by master ceramists to correct gaps, chips, discoloration, and uneven tooth shapes."
+  },
+  implants: {
+    id: "implants",
+    name: "Single Surgical Implant & Zirconia Crown",
+    cardPriceText: "From $4,200",
+    calcOptionName: "Single Surgical Implant & Crown ($4,200)",
+    unitPrice: 4200,
+    calcTotal: 4200,
+    category: "Restorative Surgery",
+    summary: "Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly."
+  },
+  allon4: {
+    id: "allon4",
+    name: "All-on-4 & Permanent Implants",
+    cardPriceText: "From $18,500 / arch",
+    calcOptionName: "Full Arch All-on-4 Teeth-in-a-Day ($18,500)",
+    unitPrice: 18500,
+    calcTotal: 18500,
+    category: "Restorative Surgery",
+    summary: "Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Warranty-backed restorations (terms apply)."
+  },
+  invisalign: {
+    id: "invisalign",
+    name: "Clear Orthodontic Aligners",
+    cardPriceText: "From $3,400",
+    calcOptionName: "Comprehensive Clear Aligners ($5,900)",
+    unitPrice: 3400,
+    calcTotal: 5900,
+    category: "Orthodontics",
+    summary: "Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites with gentle, predictable biomechanical force."
+  },
+  whitening: {
+    id: "whitening",
+    name: "Laser Teeth Brightening",
+    cardPriceText: "Clinical Session $550",
+    calcOptionName: "In-Office Laser Brightening ($550)",
+    unitPrice: 550,
+    calcTotal: 550,
+    category: "Cosmetic Brightening",
+    summary: "Noticeably brighter in one visit (results vary). Safely lifts decades of coffee, tea, wine, and aging discoloration. Formulated with mineral desensitizers."
+  },
+  emergency: {
+    id: "emergency",
+    name: "Same-Day Emergency Appointments",
+    cardPriceText: "Triage & Exam $99",
+    calcOptionName: "Emergency Triage & Stabilization ($99)",
+    unitPrice: 99,
+    calcTotal: 99,
+    category: "Trauma & Pain Unit",
+    summary: "Severe throbbing, chipped front teeth, lost crowns, or acute trauma receive rapid clinical triage. Our emergency bays provide urgent pain-blocking relief."
+  }
+};
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* ==========================================================================
-     1. BEVERLY HILLS SCROLL-REVEAL ANIMATION ENGINE
+     C1: LENIS SMOOTH SCROLL ENGINE (Disabled on reduced motion)
      ========================================================================== */
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  let lenis = null;
+  if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 1.5,
+      infinite: false,
+    });
 
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
-        }
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync with GSAP ScrollTrigger
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
       });
-    }, {
-      root: null,
-      threshold: 0.1,
-      rootMargin: '0px 0px -30px 0px'
-    });
-
-    revealElements.forEach((el, index) => {
-      const delay = (index % 3) * 0.08;
-      el.style.transitionDelay = `${delay}s`;
-      revealObserver.observe(el);
-    });
-  } else {
-    revealElements.forEach(el => el.classList.add('is-revealed'));
+      gsap.ticker.lagSmoothing(0);
+    }
   }
 
   /* ==========================================================================
-     2. TOP STRIP COLLAPSE & NAVBAR ROYAL BLUE TRANSITION ON SCROLL
+     C2: TOP SCROLL PROGRESS BAR (ScaleX only, no layout thrashing)
      ========================================================================== */
-  const mainHeader = document.getElementById('main-header');
-  const topStrip = document.getElementById('topAnnouncementStrip');
-  
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
-      if (mainHeader) mainHeader.classList.add('navbar-scrolled');
-      if (topStrip) topStrip.classList.add('strip-scrolled');
-    } else {
-      if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
-      if (topStrip) topStrip.classList.remove('strip-scrolled');
-    }
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // Initial check on page load
+  const scrollProgressBar = document.getElementById('scrollProgressBar');
+  if (scrollProgressBar && !prefersReducedMotion) {
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const progress = height > 0 ? winScroll / height : 0;
+      scrollProgressBar.style.transform = `scaleX(${progress})`;
+    }, { passive: true });
+  }
 
   /* ==========================================================================
-     3. MOBILE NAVIGATION DRAWER
+     C3: NAVBAR (Fade pseudo-element on scroll & hide/show on scroll direction)
+     ========================================================================== */
+  const mainHeader = document.getElementById('main-header');
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+
+    // Background fade on scroll
+    if (currentScrollY > 20) {
+      mainHeader.classList.add('navbar-scrolled');
+    } else {
+      mainHeader.classList.remove('navbar-scrolled');
+    }
+
+    // Hide on scroll down, show on scroll up
+    if (currentScrollY > 140 && currentScrollY > lastScrollY && !document.body.classList.contains('modal-open')) {
+      mainHeader.classList.add('nav-hidden');
+    } else {
+      mainHeader.classList.remove('nav-hidden');
+    }
+
+    lastScrollY = currentScrollY;
+  }, { passive: true });
+
+  /* ==========================================================================
+     C4, C5, C6: GSAP ANIMATIONS & STAT COUNTERS
+     ========================================================================== */
+  if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero timeline reveal (Masked line reveal)
+    const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
+
+    heroTl.from(".hero-title .line-inner", {
+      y: "115%",
+      duration: 1.1,
+      stagger: 0.12,
+      delay: 0.1
+    })
+    .from(".hero-pill-badge", {
+      opacity: 0,
+      y: 16,
+      duration: 0.7
+    }, "-=0.8")
+    .from(".hero-description", {
+      opacity: 0,
+      y: 18,
+      duration: 0.8
+    }, "-=0.6")
+    .from(".hero-cta-group .btn", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.1,
+      duration: 0.7
+    }, "-=0.6")
+    .from(".hero-trust-strip", {
+      opacity: 0,
+      y: 16,
+      duration: 0.7
+    }, "-=0.5")
+    .from(".hero-visual-media", {
+      clipPath: "inset(15% 15% 15% 15% round 16px)",
+      duration: 1.2
+    }, "-=1.0");
+
+    // Parallax on hero image and doctor photo (Max 8% transform only)
+    gsap.to(".hero-main-img", {
+      yPercent: 8,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    gsap.to(".doctor-photo", {
+      yPercent: 6,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".specialists-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // Section Titles masked reveal + Gold line scaleX
+    document.querySelectorAll('.masked-heading').forEach((heading) => {
+      const lines = heading.querySelectorAll('.line-inner');
+      const section = heading.closest('section');
+      const goldLine = section ? section.querySelector('.section-gold-line') : null;
+
+      gsap.from(lines, {
+        y: "115%",
+        duration: 1.0,
+        stagger: 0.1,
+        ease: "expo.out",
+        scrollTrigger: {
+          trigger: heading,
+          start: "top 88%",
+          once: true
+        }
+      });
+
+      if (goldLine) {
+        gsap.to(goldLine, {
+          scaleX: 1,
+          duration: 0.8,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 88%",
+            once: true
+          }
+        });
+      }
+    });
+
+    // Staggered reveals for cards
+    ScrollTrigger.batch(".comfort-card, .treatment-card, .portfolio-card, .review-card", {
+      start: "top 85%",
+      once: true,
+      onEnter: (batch) => {
+        gsap.from(batch, {
+          opacity: 0,
+          y: 32,
+          scale: 0.97,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: "expo.out"
+        });
+      }
+    });
+  }
+
+  // Animated Number Counters (rAF with expo-out)
+  const counterElements = document.querySelectorAll('.counter-number');
+  if ('IntersectionObserver' in window) {
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const targetVal = parseFloat(el.getAttribute('data-target'));
+          const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+          const duration = 1800; // ms
+          const startTime = performance.now();
+
+          function updateCounter(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            // Expo-out easing
+            const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            const currentVal = easeProgress * targetVal;
+            el.textContent = currentVal.toFixed(decimals);
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              el.textContent = targetVal.toFixed(decimals);
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counterElements.forEach(el => counterObserver.observe(el));
+  }
+
+  /* ==========================================================================
+     C8: MAGNETIC BUTTONS (Desktop fine pointers only)
+     ========================================================================== */
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
+    document.querySelectorAll('.magnetic-btn').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        // Max 8px spring
+        const moveX = Math.max(-8, Math.min(8, x * 0.2));
+        const moveY = Math.max(-8, Math.min(8, y * 0.2));
+        btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ==========================================================================
+     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Touch + Mouse + Key)
+     ========================================================================== */
+  const sliders = document.querySelectorAll('.ba-slider');
+
+  sliders.forEach((slider) => {
+    let isDragging = false;
+    const hint = slider.querySelector('.ba-drag-hint');
+
+    const setPosition = (percentage) => {
+      const clamped = Math.max(0, Math.min(100, percentage));
+      slider.style.setProperty('--ba-pos', `${clamped}%`);
+      slider.setAttribute('aria-valuenow', Math.round(clamped));
+
+      if (hint && !hint.classList.contains('is-hidden')) {
+        hint.classList.add('is-hidden');
+      }
+    };
+
+    const handlePointerMove = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      const offsetX = clientX - rect.left;
+      const pct = (offsetX / rect.width) * 100;
+      setPosition(pct);
+    };
+
+    // Mouse & Touch Pointer Events
+    slider.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      slider.setPointerCapture(e.pointerId);
+      handlePointerMove(e.clientX);
+    });
+
+    slider.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      handlePointerMove(e.clientX);
+    });
+
+    const stopDragging = (e) => {
+      if (isDragging) {
+        isDragging = false;
+        try {
+          slider.releasePointerCapture(e.pointerId);
+        } catch (_) {}
+      }
+    };
+
+    slider.addEventListener('pointerup', stopDragging);
+    slider.addEventListener('pointercancel', stopDragging);
+
+    // Keyboard Accessibility (Left/Right Arrows, Home, End)
+    slider.addEventListener('keydown', (e) => {
+      let currentVal = parseFloat(slider.getAttribute('aria-valuenow') || '50');
+
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        setPosition(currentVal - 5);
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        setPosition(currentVal + 5);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        setPosition(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        setPosition(100);
+      }
+    });
+  });
+
+  /* ==========================================================================
+     PART A1 & C9: FINANCING CALCULATOR (Exact Math & Smooth Tween)
+     ========================================================================== */
+  const calcSelect = document.getElementById('calcTreatmentSelect');
+  const downSlider = document.getElementById('downPaymentSlider');
+  const downDisplay = document.getElementById('downPaymentDisplay');
+  const termChips = document.querySelectorAll('.term-chip');
+  const monthlyNumberEl = document.getElementById('monthlyPaymentNumber');
+  const totalValueEl = document.getElementById('calcTotalValue');
+  const downValueEl = document.getElementById('calcDownValue');
+  const aprValueEl = document.getElementById('calcAprValue');
+
+  // Populate Calculator Select from TREATMENTS
+  if (calcSelect) {
+    calcSelect.innerHTML = `
+      <option value="allon4" selected>${TREATMENTS.allon4.calcOptionName}</option>
+      <option value="veneers">${TREATMENTS.veneers.calcOptionName}</option>
+      <option value="implants">${TREATMENTS.implants.calcOptionName}</option>
+      <option value="invisalign">${TREATMENTS.invisalign.calcOptionName}</option>
+    `;
+  }
+
+  let currentTermMonths = 24;
+  let currentApr = 0.0;
+  let lastMonthlyPayment = 708;
+
+  function calculateMonthly(P, n, annualAprPct) {
+    if (P <= 0) return 0;
+    if (annualAprPct === 0) {
+      return Math.round(P / n);
+    }
+    // Standard Amortization Formula: M = P * (r / (1 - (1+r)^-n))
+    const r = (annualAprPct / 100) / 12;
+    const monthly = (P * r) / (1 - Math.pow(1 + r, -n));
+    return Math.round(monthly);
+  }
+
+  function updateCalculator() {
+    if (!calcSelect || !downSlider) return;
+
+    const treatmentKey = calcSelect.value;
+    const treatment = TREATMENTS[treatmentKey] || TREATMENTS.allon4;
+    const totalCost = treatment.calcTotal;
+    let downPayment = parseFloat(downSlider.value) || 0;
+
+    // Clamp down payment so it can never exceed total cost
+    if (downPayment >= totalCost) {
+      downPayment = Math.max(0, totalCost - 500);
+      downSlider.value = downPayment;
+    }
+
+    downDisplay.textContent = `$${downPayment.toLocaleString()}`;
+    downValueEl.textContent = `$${downPayment.toLocaleString()}`;
+    totalValueEl.textContent = `$${totalCost.toLocaleString()}`;
+    aprValueEl.textContent = `${currentApr.toFixed(2)}% APR`;
+
+    const principal = Math.max(0, totalCost - downPayment);
+    const targetMonthly = calculateMonthly(principal, currentTermMonths, currentApr);
+
+    // Smooth Tween of Monthly Payment value (~500ms)
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      const obj = { val: lastMonthlyPayment };
+      gsap.to(obj, {
+        val: targetMonthly,
+        duration: 0.5,
+        ease: "power2.out",
+        onUpdate: () => {
+          monthlyNumberEl.textContent = Math.round(obj.val).toLocaleString();
+        }
+      });
+    } else {
+      monthlyNumberEl.textContent = targetMonthly.toLocaleString();
+    }
+
+    lastMonthlyPayment = targetMonthly;
+  }
+
+  if (calcSelect) calcSelect.addEventListener('change', updateCalculator);
+  if (downSlider) downSlider.addEventListener('input', updateCalculator);
+
+  termChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      termChips.forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-checked', 'false');
+      });
+      chip.classList.add('active');
+      chip.setAttribute('aria-checked', 'true');
+
+      currentTermMonths = parseInt(chip.getAttribute('data-term'), 10) || 24;
+      currentApr = parseFloat(chip.getAttribute('data-apr')) || 0.0;
+      updateCalculator();
+    });
+  });
+
+  updateCalculator();
+
+  /* ==========================================================================
+     PART B3: FAQ ACCORDION (Only one open at a time)
+     ========================================================================== */
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach((item) => {
+    const trigger = item.querySelector('.faq-trigger');
+
+    trigger.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      // Close all other items
+      faqItems.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove('is-open');
+          const otherTrigger = other.querySelector('.faq-trigger');
+          if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle clicked item
+      if (isOpen) {
+        item.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ==========================================================================
+     PART B2: WORKING 3-STEP VIP BOOKING DRAWER (Validation & Error Handling)
+     ========================================================================== */
+  const vipDrawer = document.getElementById('vipBookingDrawer');
+  const vipOverlay = document.getElementById('vipDrawerOverlay');
+  const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+  const openDrawerButtons = document.querySelectorAll('.open-booking-drawer');
+  const modalTreatmentGrid = document.getElementById('modalTreatmentGrid');
+
+  // Populate Modal Treatments from TREATMENTS Object
+  if (modalTreatmentGrid) {
+    modalTreatmentGrid.innerHTML = `
+      <label class="custom-radio-card">
+        <input type="radio" name="d_treatment_goal" value="allon4" checked>
+        <div class="radio-content">
+          <span class="radio-title">${TREATMENTS.allon4.name}</span>
+          <span class="radio-sub">Full Arch immediate permanent teeth</span>
+        </div>
+      </label>
+      <label class="custom-radio-card">
+        <input type="radio" name="d_treatment_goal" value="veneers">
+        <div class="radio-content">
+          <span class="radio-title">${TREATMENTS.veneers.name}</span>
+          <span class="radio-sub">Bespoke cosmetic smile redesign</span>
+        </div>
+      </label>
+      <label class="custom-radio-card">
+        <input type="radio" name="d_treatment_goal" value="implants">
+        <div class="radio-content">
+          <span class="radio-title">${TREATMENTS.implants.name}</span>
+          <span class="radio-sub">Permanent single titanium fixture & crown</span>
+        </div>
+      </label>
+      <label class="custom-radio-card">
+        <input type="radio" name="d_treatment_goal" value="invisalign">
+        <div class="radio-content">
+          <span class="radio-title">${TREATMENTS.invisalign.name}</span>
+          <span class="radio-sub">Discreet orthodontic alignment</span>
+        </div>
+      </label>
+      <label class="custom-radio-card">
+        <input type="radio" name="d_treatment_goal" value="emergency">
+        <div class="radio-content">
+          <span class="radio-title">${TREATMENTS.emergency.name}</span>
+          <span class="radio-sub">Immediate pain relief & trauma triage</span>
+        </div>
+      </label>
+    `;
+  }
+
+  let previouslyFocusedElement = null;
+
+  const openDrawer = (preselectedTreatmentKey) => {
+    if (!vipDrawer || !vipOverlay) return;
+
+    previouslyFocusedElement = document.activeElement;
+
+    // Preselect treatment if triggered from a specific card
+    if (preselectedTreatmentKey) {
+      const radio = vipDrawer.querySelector(`input[name="d_treatment_goal"][value="${preselectedTreatmentKey}"]`);
+      if (radio) radio.checked = true;
+    }
+
+    vipOverlay.classList.add('active');
+    vipDrawer.classList.add('open');
+    vipDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+
+    // Pause Lenis smooth scroll while modal is open
+    if (lenis) lenis.stop();
+
+    // Trap focus inside modal
+    setTimeout(() => {
+      closeDrawerBtn.focus();
+    }, 100);
+  };
+
+  const closeDrawer = () => {
+    if (!vipDrawer || !vipOverlay) return;
+
+    vipOverlay.classList.remove('active');
+    vipDrawer.classList.remove('open');
+    vipDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    document.body.style.overflow = '';
+
+    // Resume Lenis smooth scroll
+    if (lenis) lenis.start();
+
+    // Return focus
+    if (previouslyFocusedElement) previouslyFocusedElement.focus();
+  };
+
+  openDrawerButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const preselect = btn.getAttribute('data-preselect');
+      openDrawer(preselect);
+    });
+  });
+
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+  if (vipOverlay) vipOverlay.addEventListener('click', closeDrawer);
+
+  // Focus trap & Escape key
+  window.addEventListener('keydown', (e) => {
+    if (!vipDrawer.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      closeDrawer();
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const focusable = vipDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  // Modal Step Stepper Navigation
+  const dStep1 = document.getElementById('dStep1');
+  const dStep2 = document.getElementById('dStep2');
+  const dStep3 = document.getElementById('dStep3');
+  const dStepSuccess = document.getElementById('dStepSuccess');
+
+  const dInd1 = document.getElementById('dStepIndicator1');
+  const dInd2 = document.getElementById('dStepIndicator2');
+  const dInd3 = document.getElementById('dStepIndicator3');
+
+  const dBtnToStep2 = document.getElementById('dBtnToStep2');
+  const dBtnBackToStep1 = document.getElementById('dBtnBackToStep1');
+  const dBtnToStep3 = document.getElementById('dBtnToStep3');
+  const dBtnBackToStep2 = document.getElementById('dBtnBackToStep2');
+  const dBookingForm = document.getElementById('drawerBookingForm');
+  const dBtnReset = document.getElementById('dBtnReset');
+
+  // Pre-fill tomorrow as min booking date
+  const dBookingDate = document.getElementById('dBookingDate');
+  if (dBookingDate) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const yyyy = tomorrow.getFullYear();
+    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const dd = String(tomorrow.getDate()).padStart(2, '0');
+    dBookingDate.min = `${yyyy}-${mm}-${dd}`;
+    dBookingDate.value = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Time Slot Chips
+  const modalTimeChips = vipDrawer.querySelectorAll('.time-chip');
+  const dSelectedTimeSlot = document.getElementById('dSelectedTimeSlot');
+
+  modalTimeChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      modalTimeChips.forEach(c => {
+        c.classList.remove('active');
+        c.setAttribute('aria-checked', 'false');
+      });
+      chip.classList.add('active');
+      chip.setAttribute('aria-checked', 'true');
+      if (dSelectedTimeSlot) {
+        dSelectedTimeSlot.value = chip.getAttribute('data-time');
+      }
+    });
+  });
+
+  // Step 1 -> 2
+  if (dBtnToStep2) {
+    dBtnToStep2.addEventListener('click', () => {
+      dStep1.classList.remove('active');
+      dStep2.classList.add('active');
+      dInd1.classList.remove('active');
+      dInd2.classList.add('active');
+    });
+  }
+
+  // Step 2 -> 1
+  if (dBtnBackToStep1) {
+    dBtnBackToStep1.addEventListener('click', () => {
+      dStep2.classList.remove('active');
+      dStep1.classList.add('active');
+      dInd2.classList.remove('active');
+      dInd1.classList.add('active');
+    });
+  }
+
+  // Step 2 -> 3
+  if (dBtnToStep3) {
+    dBtnToStep3.addEventListener('click', () => {
+      const dateErr = document.getElementById('dateError');
+      if (!dBookingDate.value) {
+        dBookingDate.classList.add('is-invalid');
+        if (dateErr) dateErr.textContent = "Please select a preferred date.";
+        return;
+      }
+      dBookingDate.classList.remove('is-invalid');
+      if (dateErr) dateErr.textContent = "";
+
+      dStep2.classList.remove('active');
+      dStep3.classList.add('active');
+      dInd2.classList.remove('active');
+      dInd3.classList.add('active');
+    });
+  }
+
+  // Step 3 -> 2
+  if (dBtnBackToStep2) {
+    dBtnBackToStep2.addEventListener('click', () => {
+      dStep3.classList.remove('active');
+      dStep2.classList.add('active');
+      dInd3.classList.remove('active');
+      dInd2.classList.add('active');
+    });
+  }
+
+  // Step 3: Form Validation & Submission (Endpoint or Demo Fallback)
+  if (dBookingForm) {
+    dBookingForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const fNameInput = document.getElementById('dPatientFirstName');
+      const lNameInput = document.getElementById('dPatientLastName');
+      const phoneInput = document.getElementById('dPatientPhone');
+      const emailInput = document.getElementById('dPatientEmail');
+      const formAlertError = document.getElementById('formSubmissionError');
+
+      const fName = fNameInput.value.trim();
+      const lName = lNameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+
+      let hasError = false;
+
+      // Reset errors
+      [fNameInput, lNameInput, phoneInput, emailInput].forEach(inp => inp.classList.remove('is-invalid'));
+      document.querySelectorAll('.field-error').forEach(sp => sp.textContent = '');
+      if (formAlertError) formAlertError.style.display = 'none';
+
+      // Validation Rules
+      if (fName.length < 2) {
+        fNameInput.classList.add('is-invalid');
+        document.getElementById('firstNameError').textContent = "Please enter your first name.";
+        hasError = true;
+      }
+
+      if (lName.length < 2) {
+        lNameInput.classList.add('is-invalid');
+        document.getElementById('lastNameError').textContent = "Please enter your last name.";
+        hasError = true;
+      }
+
+      const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/;
+      if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+        phoneInput.classList.add('is-invalid');
+        document.getElementById('phoneError').textContent = "Please enter a valid telephone number.";
+        hasError = true;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        emailInput.classList.add('is-invalid');
+        document.getElementById('emailError').textContent = "Please enter a valid email address.";
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      const submitBtn = document.getElementById('dBtnConfirm');
+      submitBtn.classList.add('is-loading');
+      submitBtn.disabled = true;
+
+      // Extract Form Data
+      const selectedRadio = vipDrawer.querySelector('input[name="d_treatment_goal"]:checked');
+      const treatmentKey = selectedRadio ? selectedRadio.value : 'allon4';
+      const treatmentObj = TREATMENTS[treatmentKey] || TREATMENTS.allon4;
+      const treatmentName = treatmentObj.name;
+      const appointmentDate = dBookingDate.value;
+      const timeSlot = dSelectedTimeSlot ? dSelectedTimeSlot.value : 'Morning (8:30 AM)';
+      const sedationSelect = document.getElementById('dSedationPreference');
+      const sedationName = sedationSelect ? sedationSelect.value : 'Gentle Painless Local Numbing';
+
+      const payload = {
+        patientName: `${fName} ${lName}`,
+        phone: phone,
+        email: email,
+        treatment: treatmentName,
+        date: appointmentDate,
+        timeSlot: timeSlot,
+        sedation: sedationName,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        if (BOOKING_ENDPOINT && BOOKING_ENDPOINT.trim() !== "") {
+          const response = await fetch(BOOKING_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) throw new Error("Server error");
+        } else {
+          // Instant Demo Mode: Simulate 1.2s network turnaround
+          await new Promise(res => setTimeout(res, 1200));
+        }
+
+        // Render ACTUAL User-Entered Data into Confirmation Screen
+        document.getElementById('dConfirmedName').textContent = `${fName} ${lName}`;
+        document.getElementById('dReceiptTreatment').textContent = treatmentName;
+
+        // Clean Date Formatting
+        try {
+          const dObj = new Date(appointmentDate + 'T00:00:00');
+          const formattedDate = dObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          document.getElementById('dReceiptDate').textContent = `${formattedDate} (${timeSlot})`;
+        } catch (_) {
+          document.getElementById('dReceiptDate').textContent = `${appointmentDate} (${timeSlot})`;
+        }
+
+        document.getElementById('dReceiptSedation').textContent = sedationName;
+
+        // Switch to Confirmation Step
+        dStep3.classList.remove('active');
+        dStepSuccess.classList.add('active');
+        dInd3.classList.add('active');
+        dStepSuccess.focus();
+
+        showToast(`VIP Suite Reserved for ${fName}!`);
+
+      } catch (err) {
+        if (formAlertError) formAlertError.style.display = 'block';
+      } finally {
+        submitBtn.classList.remove('is-loading');
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // Reset Booking Form
+  if (dBtnReset) {
+    dBtnReset.addEventListener('click', () => {
+      dBookingForm.reset();
+      dStepSuccess.classList.remove('active');
+      dStep1.classList.add('active');
+      dInd1.classList.add('active');
+      dInd2.classList.remove('active');
+      dInd3.classList.remove('active');
+    });
+  }
+
+  /* ==========================================================================
+     MOBILE DRAWER TOGGLE
      ========================================================================== */
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
@@ -78,224 +895,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     4. SLIDE-OVER VIP BOOKING MODAL DRAWER
-     ========================================================================== */
-  const vipDrawer = document.getElementById('vipBookingDrawer');
-  const vipOverlay = document.getElementById('vipDrawerOverlay');
-  const closeDrawerBtn = document.getElementById('closeDrawerBtn');
-  const openDrawerButtons = document.querySelectorAll('.open-booking-drawer');
-
-  const openDrawer = () => {
-    if (vipDrawer && vipOverlay) {
-      vipOverlay.classList.add('active');
-      vipDrawer.classList.add('open');
-      vipDrawer.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-  };
-
-  const closeDrawer = () => {
-    if (vipDrawer && vipOverlay) {
-      vipOverlay.classList.remove('active');
-      vipDrawer.classList.remove('open');
-      vipDrawer.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-  };
-
-  openDrawerButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openDrawer();
-    });
-  });
-
-  if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
-  if (vipOverlay) vipOverlay.addEventListener('click', closeDrawer);
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeDrawer();
-  });
-
-  /* --- 3-Step Wizard Logic Inside VIP Drawer --- */
-  const dStep1 = document.getElementById('dStep1');
-  const dStep2 = document.getElementById('dStep2');
-  const dStep3 = document.getElementById('dStep3');
-  const dStepSuccess = document.getElementById('dStepSuccess');
-
-  const dInd1 = document.getElementById('dStepIndicator1');
-  const dInd2 = document.getElementById('dStepIndicator2');
-  const dInd3 = document.getElementById('dStepIndicator3');
-
-  const dBtnToStep2 = document.getElementById('dBtnToStep2');
-  const dBtnBackToStep1 = document.getElementById('dBtnBackToStep1');
-  const dBtnToStep3 = document.getElementById('dBtnToStep3');
-  const dBtnBackToStep2 = document.getElementById('dBtnBackToStep2');
-  const dBookingForm = document.getElementById('drawerBookingForm');
-  const dBtnReset = document.getElementById('dBtnReset');
-
-  const dBookingDate = document.getElementById('dBookingDate');
-  if (dBookingDate) {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const yyyy = tomorrow.getFullYear();
-    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-    const dd = String(tomorrow.getDate()).padStart(2, '0');
-    dBookingDate.min = `${yyyy}-${mm}-${dd}`;
-    dBookingDate.value = `${yyyy}-${mm}-${dd}`;
-  }
-
-  const timeChips = document.querySelectorAll('.time-chip');
-  const dSelectedTimeSlot = document.getElementById('dSelectedTimeSlot');
-
-  timeChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      timeChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      if (dSelectedTimeSlot) {
-        dSelectedTimeSlot.value = chip.getAttribute('data-time');
-      }
-    });
-  });
-
-  if (dBtnToStep2) {
-    dBtnToStep2.addEventListener('click', () => {
-      dStep1.classList.remove('active');
-      dStep2.classList.add('active');
-      dInd1.classList.remove('active');
-      dInd2.classList.add('active');
-    });
-  }
-
-  if (dBtnBackToStep1) {
-    dBtnBackToStep1.addEventListener('click', () => {
-      dStep2.classList.remove('active');
-      dStep1.classList.add('active');
-      dInd2.classList.remove('active');
-      dInd1.classList.add('active');
-    });
-  }
-
-  if (dBtnToStep3) {
-    dBtnToStep3.addEventListener('click', () => {
-      if (!dBookingDate.value) {
-        showToast('Please select your preferred appointment date.');
-        return;
-      }
-      dStep2.classList.remove('active');
-      dStep3.classList.add('active');
-      dInd2.classList.remove('active');
-      dInd3.classList.add('active');
-    });
-  }
-
-  if (dBtnBackToStep2) {
-    dBtnBackToStep2.addEventListener('click', () => {
-      dStep3.classList.remove('active');
-      dStep2.classList.add('active');
-      dInd3.classList.remove('active');
-      dInd2.classList.add('active');
-    });
-  }
-
-  if (dBookingForm) {
-    dBookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const fName = document.getElementById('dPatientFirstName').value.trim();
-      const lName = document.getElementById('dPatientLastName').value.trim();
-      const phone = document.getElementById('dPatientPhone').value.trim();
-      const email = document.getElementById('dPatientEmail').value.trim();
-
-      if (!fName || !lName || !phone || !email) {
-        showToast('Please enter all required contact fields.');
-        return;
-      }
-
-      const treatmentRadio = document.querySelector('input[name="d_treatment_goal"]:checked');
-      const treatmentVal = treatmentRadio ? treatmentRadio.value : 'Consultation';
-      const dateVal = dBookingDate.value;
-      const timeVal = dSelectedTimeSlot ? dSelectedTimeSlot.value : 'Morning';
-
-      const nameEl = document.getElementById('dConfirmedName');
-      const treatEl = document.getElementById('dReceiptTreatment');
-      const dateEl = document.getElementById('dReceiptDate');
-
-      if (nameEl) nameEl.textContent = `${fName} ${lName}`;
-      if (treatEl) treatEl.textContent = treatmentVal;
-      if (dateEl) dateEl.textContent = `${dateVal} (${timeVal})`;
-
-      dStep3.classList.remove('active');
-      dStepSuccess.classList.add('active');
-      dInd3.classList.add('active');
-
-      showToast(`VIP Suite Reserved for ${fName}! SMS sent.`);
-    });
-  }
-
-  if (dBtnReset) {
-    dBtnReset.addEventListener('click', () => {
-      dBookingForm.reset();
-      dStepSuccess.classList.remove('active');
-      dStep1.classList.add('active');
-      dInd2.classList.remove('active');
-      dInd3.classList.remove('active');
-      dInd1.classList.add('active');
-    });
-  }
-
-  /* ==========================================================================
-     5. INTERACTIVE SMILE INVESTMENT & FINANCING CALCULATOR
-     ========================================================================== */
-  const calcSelect = document.getElementById('calcTreatmentSelect');
-  const downSlider = document.getElementById('downPaymentSlider');
-  const downDisplay = document.getElementById('downPaymentDisplay');
-  const termChips = document.querySelectorAll('.term-chip');
-  
-  const monthlyNumberEl = document.getElementById('monthlyPaymentNumber');
-  const totalValueEl = document.getElementById('calcTotalValue');
-  const downValueEl = document.getElementById('calcDownValue');
-
-  let currentTermMonths = 24;
-
-  const updateCalculator = () => {
-    if (!calcSelect || !downSlider) return;
-
-    const selectedOption = calcSelect.options[calcSelect.selectedIndex];
-    const totalCost = parseFloat(selectedOption.getAttribute('data-price')) || 18500;
-    let downPayment = parseFloat(downSlider.value) || 0;
-
-    if (downPayment >= totalCost) {
-      downPayment = totalCost - 500;
-      downSlider.value = downPayment;
-    }
-
-    downDisplay.textContent = `$${downPayment.toLocaleString()}`;
-    downValueEl.textContent = `$${downPayment.toLocaleString()}`;
-    totalValueEl.textContent = `$${totalCost.toLocaleString()}`;
-
-    const financedAmount = Math.max(0, totalCost - downPayment);
-    const monthlyPayment = Math.round(financedAmount / currentTermMonths);
-
-    monthlyNumberEl.textContent = monthlyPayment.toLocaleString();
-  };
-
-  if (calcSelect) calcSelect.addEventListener('change', updateCalculator);
-  if (downSlider) downSlider.addEventListener('input', updateCalculator);
-
-  termChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      termChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      currentTermMonths = parseInt(chip.getAttribute('data-term'), 10) || 24;
-      updateCalculator();
-    });
-  });
-
-  updateCalculator();
-
-  /* ==========================================================================
-     6. CENTERED TOAST NOTIFICATION HELPER
+     TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
@@ -304,10 +904,12 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.classList.add('show');
     setTimeout(() => {
       toast.classList.remove('show');
-    }, 4000);
+    }, 4200);
   }
 
-  // Smooth scroll for nav anchor links
+  /* ==========================================================================
+     SMOOTH ANCHOR LINK OFFSET ROUTING (Lenis Compatible)
+     ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
@@ -315,9 +917,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         e.preventDefault();
-        targetEl.scrollIntoView({
-          behavior: 'smooth'
-        });
+        const navOffset = 80;
+        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - navOffset;
+
+        if (lenis) {
+          lenis.scrollTo(targetEl, { offset: -navOffset });
+        } else {
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+        }
       }
     });
   });

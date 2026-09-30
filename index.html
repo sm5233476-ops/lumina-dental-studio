@@ -2,152 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Lumina Dental Studio | Beverly Hills</title>
-  <meta name="description" content="Beverly Hills premier private dental atelier. Pain-free twilight sleep sedation, handcrafted porcelain veneers, and dental implants.">
-  
-  <!-- Clean Luxury Modern Fonts: Plus Jakarta Sans & Outfit (Zero Cursive) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lumina Dental Studio | Beverly Hills Cosmetic & Restorative Dentistry</title>
+  <meta name="description" content="Beverly Hills premier private dental atelier. Comfort-focused sedation options, handcrafted porcelain veneers, and same-day dental implants.">
+
+  <!-- Google Fonts: Luxury Modern Geometric Typefaces -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
-  <!-- Browser Tab Favicon: Matching Glowing Cyan Diamond Sparkle (✦) -->
+
+  <!-- Favicon: Glowing Cyan Diamond Sparkle (✦) -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300F2FE'><path d='M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5Z'/></svg>">
+
+  <!-- Motion & Smooth Scroll CDN Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- 1. Sleek Announcement Strip (Merged with Website's Deep Navy Background) -->
-  <aside class="top-announcement-strip" id="topAnnouncementStrip" style="background-color: #0A1128;">
-    <div class="container strip-inner">
-      <div class="strip-left">
-        <span class="location-dot"></span>
-        <span class="desktop-only">Beverly Hills Studio Suite • </span><span>Beverly Hills, CA</span>
-      </div>
-      <div class="strip-right">
-        <span class="strip-phone">Direct Line: <a href="tel:5552347645" class="strip-tel">(555) 234-SMILE</a></span>
-        <span class="strip-divider desktop-only">•</span>
-        <span class="strip-financing desktop-only">0% APR Financing for up to 24 Months</span>
-      </div>
-    </div>
-  </aside>
+  <!-- Thin Gold/Cyan Scroll Progress Line -->
+  <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
 
-  <!-- 2. Haute Luxury Sticky Glass Navbar -->
+  <!-- Primary Luxury Sticky Glass Header (Clean Top Element, No Clunky Announcement Strip Above) -->
   <header class="navbar-wrapper" id="main-header">
     <nav class="container navbar">
-      <!-- Clean Beverly Hills Architectural Wordmark -->
-      <a href="#" class="brand-wordmark" aria-label="Lumina Dental Studio">
-        <span class="brand-crest-dot">✦</span>
+      <!-- Beverly Hills Minimalist Architectural Wordmark -->
+      <a href="#" class="brand-wordmark" aria-label="Lumina Dental Studio Home">
+        <span class="brand-crest-dot" aria-hidden="true">✦</span>
         <div class="brand-text-lockup">
           <span class="brand-main">L U M I N A</span>
           <span class="brand-sub">BEVERLY HILLS • DENTAL STUDIO</span>
         </div>
       </a>
 
-      <!-- Desktop Nav Links -->
+      <!-- Desktop Navigation Links -->
       <ul class="nav-links">
-        <li><a href="#spa">The Spa Experience</a></li>
+        <li><a href="#spa">Spa Experience</a></li>
         <li><a href="#procedures">Procedures</a></li>
         <li><a href="#portfolio">Smile Portfolio</a></li>
         <li><a href="#investment">Investment</a></li>
         <li><a href="#specialist">Dr. Sterling</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#reviews">Testimonials</a></li>
       </ul>
 
       <!-- Nav Actions -->
       <div class="nav-actions">
-        <a href="tel:5552347645" class="nav-phone-pill" title="Call Concierge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+        <a href="tel:+13105550142" class="nav-phone-pill" title="Call Concierge Desk">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true">
             <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
           </svg>
-          <span>(555) 234-7645</span>
+          <span>(310) 555-0142</span>
         </a>
-        
-        <button class="btn btn-luxury-primary nav-book-btn open-booking-drawer">Book Consultation</button>
-        
-        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+
+        <button class="btn btn-luxury-primary nav-book-btn open-booking-drawer">
+          <span class="btn-text">Book Consultation</span>
+        </button>
+
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
           <span></span><span></span>
         </button>
       </div>
     </nav>
 
-    <!-- Mobile Drawer Navigation -->
+    <!-- Mobile Dropdown Navigation -->
     <div class="mobile-drawer" id="mobileDrawer">
       <ul class="mobile-nav-links">
-        <li><a href="#spa" class="m-link">The Spa Experience</a></li>
+        <li><a href="#spa" class="m-link">Spa Experience</a></li>
         <li><a href="#procedures" class="m-link">Procedures</a></li>
         <li><a href="#portfolio" class="m-link">Smile Portfolio</a></li>
         <li><a href="#investment" class="m-link">Investment</a></li>
         <li><a href="#specialist" class="m-link">Meet Dr. Sterling</a></li>
+        <li><a href="#faq" class="m-link">FAQ</a></li>
         <li><a href="#reviews" class="m-link">Testimonials</a></li>
       </ul>
       <div class="mobile-drawer-cta">
         <button class="btn btn-luxury-primary btn-full open-booking-drawer">Reserve VIP Consultation</button>
-        <a href="tel:5552347645" class="btn btn-glass btn-full">Direct Line: (555) 234-SMILE</a>
+        <a href="tel:+13105550142" class="btn btn-glass btn-full">Direct Line: (310) 555-0142</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <!-- 3. Beverly Hills Hero Section -->
+  <main id="main-content">
+    <!-- 3. Hero Section (Masked Typography Reveal + Parallax) -->
     <section class="hero-section" id="hero">
-      <div class="hero-ambient-orb orb-1"></div>
-      <div class="hero-ambient-orb orb-2"></div>
+      <div class="hero-ambient-orb orb-1" aria-hidden="true"></div>
+      <div class="hero-ambient-orb orb-2" aria-hidden="true"></div>
 
       <div class="container hero-grid">
-        <div class="hero-content reveal-on-scroll">
-          <div class="hero-pill-badge">
+        <div class="hero-content">
+          <div class="hero-pill-badge hero-reveal-item">
             <span class="gold-sparkle">★★★★★</span>
             <span>BEVERLY HILLS PRIVATE SUITE</span>
           </div>
 
+          <!-- Masked Headline for GSAP Line Reveal -->
           <h1 class="hero-title">
-            The Modern Standard for a <br>
-            <span class="gradient-text">Flawless, Confident</span> <br>
-            Smile.
+            <span class="line-mask"><span class="line-inner">The Modern Standard</span></span>
+            <span class="line-mask"><span class="line-inner">for a <span class="gradient-text">Flawless, Confident</span></span></span>
+            <span class="line-mask"><span class="line-inner">Smile.</span></span>
           </h1>
 
-          <p class="hero-description">
-            Experience pain-free twilight sedation, bespoke porcelain veneers, and same-day dental implants in our private Beverly Hills clinical atelier.
+          <p class="hero-description hero-reveal-item">
+            Experience comfort-focused sedation options, bespoke porcelain veneers, and same-day dental implants in our private Beverly Hills clinical atelier.
           </p>
 
-          <div class="hero-cta-group">
-            <button class="btn btn-luxury-primary btn-large open-booking-drawer">
-              <span>Reserve Private Consultation →</span>
+          <div class="hero-cta-group hero-reveal-item">
+            <button class="btn btn-luxury-primary btn-large open-booking-drawer magnetic-btn">
+              <span class="btn-text">Reserve Private Consultation</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
             </button>
             <a href="#portfolio" class="btn btn-glass-hero btn-large">
               <span>Explore Smile Portfolio ↓</span>
             </a>
           </div>
 
-          <!-- Modest, Realistic Trust Metrics -->
-          <div class="hero-trust-strip">
+          <!-- Trust Badges with Animated Counters -->
+          <div class="hero-trust-strip hero-reveal-item">
             <div class="trust-item">
-              <div class="trust-value">4.9<span class="trust-star">★</span></div>
-              <div class="trust-label">Verified Patient Reviews</div>
+              <div class="trust-value"><span class="counter-number" data-target="4.9" data-decimals="1">0.0</span><span class="trust-star">★</span></div>
+              <div class="trust-label">650+ Verified Reviews</div>
             </div>
-            <div class="trust-divider"></div>
+            <div class="trust-divider" aria-hidden="true"></div>
             <div class="trust-item">
-              <div class="trust-value">15+</div>
-              <div class="trust-label">Years Clinical Experience</div>
+              <div class="trust-value"><span class="counter-number" data-target="15" data-decimals="0">0</span>+</div>
+              <div class="trust-label">Years Clinical Mastery</div>
             </div>
-            <div class="trust-divider"></div>
+            <div class="trust-divider" aria-hidden="true"></div>
             <div class="trust-item">
               <div class="trust-value">100%</div>
-              <div class="trust-label">Zero-Pain Protocol</div>
+              <div class="trust-label">Comfort-First Promise</div>
             </div>
           </div>
         </div>
 
-        <!-- Hero Visual Glass Card -->
-        <div class="hero-visual reveal-on-scroll">
+        <!-- Hero Visual (Parallax & Image Clip-Path Reveal) -->
+        <div class="hero-visual">
           <div class="hero-glass-card">
-            <div class="card-ambient-glow"></div>
-            
+            <div class="card-ambient-glow" aria-hidden="true"></div>
+
             <div class="visual-header">
               <div class="visual-badge">
-                <span class="green-indicator"></span> Surgical Bays Open Today
+                <span class="green-indicator" aria-hidden="true"></span> Surgical Bays Open Today
               </div>
               <div class="rating-box">
                 <span class="gold-text">Penthouse Practice Suite</span>
@@ -155,9 +155,9 @@
             </div>
 
             <div class="hero-visual-media">
-              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Lumina Modern Private Clinic" class="hero-main-img" loading="eager">
-              <div class="floating-tech-card">
-                <div class="tech-icon-wrap">
+              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=85" alt="Lumina Dental Studio Private Surgical Suite" class="hero-main-img" width="800" height="520" fetchpriority="high">
+              <div class="floating-tech-card float-badge-1">
+                <div class="tech-icon-wrap" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="18" height="18" fill="#00F2FE">
                     <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/>
                   </svg>
@@ -171,9 +171,9 @@
 
             <div class="hero-visual-footer">
               <div class="doctor-badge-snippet">
-                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80" alt="Dr Julian Sterling" class="doctor-avatar-sm">
+                <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=200&q=80" alt="Dr. Julian Sterling" class="doctor-avatar-sm" width="40" height="40" loading="lazy" decoding="async">
                 <div>
-                  <h4 class="doc-name">Dr. Julian Sterling, DDS</h4>
+                  <h2 class="doc-name">Dr. Julian Sterling, DDS</h2>
                   <p class="doc-cred">Fellow, ICOI • Cedars-Sinai Trained</p>
                 </div>
               </div>
@@ -189,99 +189,103 @@
     <!-- 4. The Zero-Anxiety Spa Experience Section -->
     <section class="section spa-section" id="spa">
       <div class="container">
-        <div class="section-badge-center reveal-on-scroll">
+        <div class="section-badge-center">
           <span class="badge-tag">THE ZERO-ANXIETY SPA EXPERIENCE</span>
         </div>
-        <h2 class="section-title text-center reveal-on-scroll">
-          Luxury Hospitality Designed to <br><span class="gradient-text-navy">Eliminate Dental Fear Forever.</span>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Luxury Hospitality Designed to</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">Eliminate Dental Fear Forever.</span></span></span>
         </h2>
-        <p class="section-sub text-center reveal-on-scroll">
+        <div class="section-gold-line" aria-hidden="true"></div>
+        <p class="section-sub text-center">
           Over 60% of adults postpone dental care due to anxiety. We replaced sterile clinical dread with a tranquil private retreat engineered for your deep physical and sensory peace.
         </p>
 
         <div class="comfort-grid">
-          <div class="comfort-card reveal-on-scroll">
-            <div class="comfort-icon-box">
+          <div class="comfort-card">
+            <div class="comfort-icon-box" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
                 <path d="M3 18v-6a9 9 0 0118 0v6M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Acoustic Noise-Cancelling Audio</h3>
+            <h3 class="comfort-card-title">Noise-Cancelling Bose® 700</h3>
             <p class="comfort-card-text">
-              Drown out all medical sounds with custom acoustic headphones streaming spatial soundscapes, curated relaxation frequencies, or your personal audio preferences.
+              Drown out all medical sounds with custom acoustic headphones streaming spatial soundscapes, curated relaxation frequencies, or your personal audio library.
             </p>
             <div class="comfort-perk">✓ 100% soundproof acoustic isolation</div>
           </div>
 
-          <div class="comfort-card reveal-on-scroll">
-            <div class="comfort-icon-box">
+          <div class="comfort-card">
+            <div class="comfort-icon-box" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
                 <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
                 <polyline points="17 2 12 7 7 2"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Ceiling-Mounted 4K Entertainment</h3>
+            <h3 class="comfort-card-title">Ceiling-Mounted 4K Netflix</h3>
             <p class="comfort-card-text">
-              Lie back in memory-foam heated massage chairs while enjoying premium entertainment on ultra-high-definition displays positioned directly overhead.
+              Lie back in memory-foam heated massage chairs while watching Netflix, HBO, or Apple TV on ultra-high-definition displays positioned directly overhead.
             </p>
             <div class="comfort-perk">✓ Private entertainment in every suite</div>
           </div>
 
-          <div class="comfort-card reveal-on-scroll">
-            <div class="comfort-icon-box">
+          <div class="comfort-card">
+            <div class="comfort-icon-box" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
                 <path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 5a3 3 0 016 0v3H9V7zm3 8a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/>
               </svg>
             </div>
             <h3 class="comfort-card-title">Twilight Sleep IV Sedation</h3>
             <p class="comfort-card-text">
-              Drift away peacefully while our board-certified anesthesiologists complete your smile transformation. Wake up with completed teeth and zero memory of the procedure.
+              Drift away peacefully while our board-certified anesthesiologists complete your smile transformation. Many patients recall very little of the procedure.
             </p>
-            <div class="comfort-perk">✓ 100% Zero-pain guarantee</div>
+            <div class="comfort-perk">✓ Comfort-First Promise</div>
           </div>
 
-          <div class="comfort-card reveal-on-scroll">
-            <div class="comfort-icon-box">
+          <div class="comfort-card">
+            <div class="comfort-icon-box" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-icon">
                 <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
               </svg>
             </div>
-            <h3 class="comfort-card-title">Organic Botanical Towels</h3>
+            <h3 class="comfort-card-title">Warm Botanical Towels & Espresso</h3>
             <p class="comfort-card-text">
-              Warm aromatherapy facial towels post-appointment, botanical scents, and a complimentary gourmet espresso & sparkling water concierge lounge.
+              Warm aromatherapy organic facial towels post-appointment, customized botanical scents, and a complimentary Nespresso espresso & sparkling water concierge lounge.
             </p>
-            <div class="comfort-perk">✓ Five-star hospitality standards</div>
+            <div class="comfort-perk">✓ Five-star luxury hospitality</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. High-Ticket Clinical Procedures Menu -->
+    <!-- 5. Clinical Procedures Menu (Single Source of Truth from TREATMENTS) -->
     <section class="section treatments-section" id="procedures">
       <div class="container">
-        <div class="section-badge-center reveal-on-scroll">
+        <div class="section-badge-center">
           <span class="badge-tag">CLINICAL PROCEDURES MENU</span>
         </div>
-        <h2 class="section-title text-center reveal-on-scroll">
-          Engineered for Structural Longevity. <br><span class="gradient-text-navy">Mastercrafted for Facial Beauty.</span>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Engineered for Structural Longevity.</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">Mastercrafted for Facial Beauty.</span></span></span>
         </h2>
-        <p class="section-sub text-center reveal-on-scroll">
+        <div class="section-gold-line" aria-hidden="true"></div>
+        <p class="section-sub text-center">
           We combine biocompatible surgical titanium, medical-grade lithium disilicate ceramics, and minimally invasive protocols to restore natural teeth with lifetime strength.
         </p>
 
         <div class="treatments-grid">
-          <!-- Card 1: Dental Implants -->
-          <article class="treatment-card featured-treatment reveal-on-scroll">
+          <!-- Card 1: All-on-4 Implants -->
+          <article class="treatment-card featured-treatment">
             <div class="featured-badge">MOST REQUESTED</div>
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=700&q=80" alt="All on 4 Dental Implants" class="treatment-img">
-              <div class="treatment-price-pill">From $2,850 / Arch from $189/mo</div>
+              <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="All on 4 Dental Implants Setup" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill" data-treatment-price="allon4">From $18,500 / arch</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Restorative Surgery</div>
               <h3 class="treatment-heading">All-on-4 & Permanent Implants</h3>
               <p class="treatment-summary">
-                Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Eat apples, steaks, and smile with zero movement. Lifetime structural warranty.
+                Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Eat apples, steaks, and smile with zero movement. Warranty-backed restorations (terms apply).
               </p>
               <ul class="treatment-points">
                 <li>3D CBCT guided computer micro-placement</li>
@@ -289,16 +293,16 @@
                 <li>Preserves jawbone density & youthful facial contours</li>
               </ul>
               <div class="treatment-card-footer">
-                <button class="btn btn-outline-cyan open-booking-drawer">Explore Implant Options →</button>
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="allon4">Explore Implant Options →</button>
               </div>
             </div>
           </article>
 
           <!-- Card 2: Handcrafted Porcelain Veneers -->
-          <article class="treatment-card reveal-on-scroll">
+          <article class="treatment-card">
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80" alt="Porcelain Veneers Beverly Hills" class="treatment-img">
-              <div class="treatment-price-pill">From $1,600 / tooth</div>
+              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Handcrafted Porcelain Veneers" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill" data-treatment-price="veneers">From $1,600 / tooth</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Cosmetic Artistry</div>
@@ -312,69 +316,92 @@
                 <li>Digital Smile Simulation preview before prep</li>
               </ul>
               <div class="treatment-card-footer">
-                <button class="btn btn-outline-cyan open-booking-drawer">Design Your Veneers →</button>
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="veneers">Design Your Veneers →</button>
               </div>
             </div>
           </article>
 
-          <!-- Card 3: Clear Aligners -->
-          <article class="treatment-card reveal-on-scroll">
+          <!-- Card 3: Single Implant & Crown -->
+          <article class="treatment-card">
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=700&q=80" alt="Clear Aligners Beverly Hills" class="treatment-img">
-              <div class="treatment-price-pill">Fast-Track from $3,400</div>
+              <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=800&q=80" alt="Single Surgical Implant with Zirconia Crown" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill" data-treatment-price="implants">From $4,200</div>
+            </div>
+            <div class="treatment-body">
+              <div class="treatment-category">Restorative Surgery</div>
+              <h3 class="treatment-heading">Single Implant & Zirconia Crown</h3>
+              <p class="treatment-summary">
+                Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly with your smile.
+              </p>
+              <ul class="treatment-points">
+                <li>Computer-guided micro-surgical placement</li>
+                <li>Custom anatomical shading by Master Ceramist</li>
+                <li>Preserves adjacent natural healthy teeth</li>
+              </ul>
+              <div class="treatment-card-footer">
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="implants">Explore Single Implants →</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Clear Orthodontic Aligners -->
+          <article class="treatment-card">
+            <div class="treatment-image-wrapper">
+              <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80" alt="Clear Aligners Orthodontics" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill" data-treatment-price="invisalign">From $3,400</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Orthodontics</div>
               <h3 class="treatment-heading">Clear Orthodontic Aligners</h3>
               <p class="treatment-summary">
-                Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites up to 50% faster than traditional braces.
+                Virtually invisible aligners digitally mapped to straighten crowded teeth, gaps, and overbites with gentle, predictable biomechanical force.
               </p>
               <ul class="treatment-points">
-                <li>Smart elastomeric material for gentle, accurate movement</li>
-                <li>Removable anytime for dining and oral hygiene</li>
+                <li>Smart elastomeric material for accurate tooth movement</li>
+                <li>Removable anytime for dining and daily oral hygiene</li>
                 <li>Complimentary professional whitening included</li>
               </ul>
               <div class="treatment-card-footer">
-                <button class="btn btn-outline-cyan open-booking-drawer">See Aligner Simulation →</button>
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="invisalign">See Aligner Simulation →</button>
               </div>
             </div>
           </article>
 
-          <!-- Card 4: Laser Teeth Whitening -->
-          <article class="treatment-card reveal-on-scroll">
+          <!-- Card 5: Laser Teeth Brightening -->
+          <article class="treatment-card">
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=700&q=80" alt="Laser Teeth Whitening" class="treatment-img">
-              <div class="treatment-price-pill">Clinical Session $550</div>
+              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="Clinical Laser Teeth Whitening Session" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill" data-treatment-price="whitening">Clinical Session $550</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category">Cosmetic Brightening</div>
               <h3 class="treatment-heading">Laser Teeth Brightening</h3>
               <p class="treatment-summary">
-                Lift decades of coffee, tea, wine, and aging discoloration in a single 45-minute appointment. Formulated with mineral desensitizers to prevent tooth sensitivity.
+                Noticeably brighter in one visit (results vary). Safely lifts decades of coffee, tea, wine, and aging discoloration. Formulated with mineral desensitizers.
               </p>
               <ul class="treatment-points">
-                <li>Up to 8 full shades brighter in 45 minutes</li>
+                <li>Noticeably brighter in a single 45-minute visit</li>
                 <li>Enamel-safe light wavelength technology</li>
                 <li>Custom take-home maintenance kit included</li>
               </ul>
               <div class="treatment-card-footer">
-                <button class="btn btn-outline-cyan open-booking-drawer">Book Whitening Session →</button>
+                <button class="btn btn-outline-cyan open-booking-drawer" data-preselect="whitening">Book Whitening Session →</button>
               </div>
             </div>
           </article>
 
-          <!-- Card 5: Emergency Toothache & Trauma -->
-          <article class="treatment-card urgent-card reveal-on-scroll">
-            <div class="urgent-top-badge">SAME-DAY RELIEF GUARANTEED</div>
+          <!-- Card 6: Same-Day Emergency Appointments -->
+          <article class="treatment-card urgent-card">
+            <div class="urgent-top-badge">SAME-DAY EMERGENCY APPOINTMENTS</div>
             <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=700&q=80" alt="Emergency Dental Pain" class="treatment-img">
-              <div class="treatment-price-pill emergency-pill">24/7 Priority Emergency Intake</div>
+              <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="Emergency Dental Triage Room" class="treatment-img" width="700" height="420" loading="lazy" decoding="async">
+              <div class="treatment-price-pill emergency-pill" data-treatment-price="emergency">Triage & Exam $99</div>
             </div>
             <div class="treatment-body">
               <div class="treatment-category urgent-tag">Trauma & Pain Unit</div>
-              <h3 class="treatment-heading">24/7 Emergency Dentistry</h3>
+              <h3 class="treatment-heading">Same-Day Emergency Appointments</h3>
               <p class="treatment-summary">
-                Severe throbbing, chipped front teeth, lost crowns, or dental abscesses require instant intervention. Our emergency triage unit provides urgent pain-blocking relief within 1 hour.
+                Severe throbbing, chipped front teeth, lost crowns, or acute trauma receive rapid clinical triage. Our emergency bays provide urgent pain-blocking relief.
               </p>
               <ul class="treatment-points">
                 <li>Direct on-call doctor triage response</li>
@@ -382,30 +409,7 @@
                 <li>Emergency surgery bays reserved daily</li>
               </ul>
               <div class="treatment-card-footer">
-                <a href="tel:5552347645" class="btn btn-emergency-pulse">Call Emergency Dispatch →</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 6: Periodontal Laser Therapy -->
-          <article class="treatment-card reveal-on-scroll">
-            <div class="treatment-image-wrapper">
-              <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80" alt="Laser Gum Contouring" class="treatment-img">
-              <div class="treatment-price-pill">Micro-Precision Sculpting</div>
-            </div>
-            <div class="treatment-body">
-              <div class="treatment-category">Biological Wellness</div>
-              <h3 class="treatment-heading">Laser Gum Rejuvenation</h3>
-              <p class="treatment-summary">
-                Eliminate "gummy" smiles and arrest bacterial gum issues with our micro-pulse diode laser. No scalpels, no sutures, and instantaneous coagulated healing without downtime.
-              </p>
-              <ul class="treatment-points">
-                <li>Symmetrical aesthetic gumline sculpting</li>
-                <li>Eradicates 99.9% of harmful oral bacteria</li>
-                <li>Return to regular activities the following morning</li>
-              </ul>
-              <div class="treatment-card-footer">
-                <button class="btn btn-outline-cyan open-booking-drawer">Learn About Laser Therapy →</button>
+                <a href="tel:+13105550142" class="btn btn-emergency-pulse">Call Emergency Dispatch →</a>
               </div>
             </div>
           </article>
@@ -413,119 +417,187 @@
       </div>
     </section>
 
-    <!-- 6. THE SIGNATURE SMILE PORTFOLIO (Generic Factual Labels - No Fake Personal Names) -->
+    <!-- 6. Smile Portfolio: 3 Interactive Before/After Sliders with CSS Filter Simulation -->
     <section class="section portfolio-section" id="portfolio">
       <div class="container">
-        <div class="section-badge-center reveal-on-scroll">
+        <div class="section-badge-center">
           <span class="badge-tag">AUTHENTIC SMILE TRANSFORMATIONS</span>
         </div>
-        <h2 class="section-title text-center reveal-on-scroll">
-          Real Patient Smiles. <br><span class="gradient-text-navy">Undeniable Facial Harmony.</span>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Real Patient Smiles.</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">Undeniable Facial Harmony.</span></span></span>
         </h2>
-        <p class="section-sub text-center reveal-on-scroll">
-          Explore genuine aesthetic and restorative outcomes designed by Dr. Julian Sterling. Every case represents customized proportions tailored to each patient’s unique facial architecture.
+        <div class="section-gold-line" aria-hidden="true"></div>
+        <p class="section-sub text-center">
+          Explore genuine aesthetic and restorative outcomes designed by Dr. Julian Sterling. Every case is customized to individual facial architecture.
+          <br><em class="portfolio-disclaimer">Individual results vary.</em>
         </p>
 
+        <!-- 3 Interactive Comparison Cards (Keyboard + Touch + Mouse Accessible) -->
         <div class="smile-portfolio-grid">
-          <!-- Case 1: Custom Feldspathic Veneers -->
-          <article class="portfolio-card reveal-on-scroll">
-            <div class="portfolio-img-box">
-              <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Porcelain Veneers Result Lumina Dental" class="portfolio-img">
-              <div class="portfolio-floating-pill">10 Custom Porcelain Veneers</div>
+          <!-- Case 1: Porcelain Veneers -->
+          <article class="portfolio-card">
+            <div class="ba-slider" role="slider" tabindex="0" aria-label="Before and After Comparison: Case 0841 Porcelain Veneers" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <div class="ba-image-layer ba-after-layer">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85" alt="Case 0841 After Smile Transformation" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge after-badge">After</span>
+              </div>
+              <div class="ba-image-layer ba-before-layer">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1000&q=85" alt="Case 0841 Before Simulation" class="before-filtered-img" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge before-badge">Before</span>
+              </div>
+              <div class="ba-divider-handle" aria-hidden="true">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-thumb">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>
+                  </svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <div class="ba-drag-hint" aria-hidden="true">
+                <span>⟵ Drag to compare ⟶</span>
+              </div>
             </div>
+
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
                 <span class="patient-id">Case #0841 • Porcelain Veneers (Beverly Hills, CA)</span>
               </div>
               <h3 class="portfolio-title">Full Aesthetic Veneer Reconstruction</h3>
               <p class="portfolio-desc">
-                Corrected deep tetracycline enamel staining, micro-fractured incisal edges, and midline asymmetry using custom multi-layered feldspathic ceramics.
+                Treatment for tetracycline staining, incisal wear, and smile asymmetry using 10 custom multi-layered feldspathic ceramic veneers.
               </p>
-              <div class="portfolio-quote">Case Outcome: Complete aesthetic restoration achieving natural tooth symmetry, stabilized bite alignment, and lifelike ceramic translucency.</div>
+              <div class="portfolio-case-outcome">
+                <strong>Case Outcome:</strong> Balanced tooth symmetry, stabilized bite alignment, and natural ceramic light translucency.
+              </div>
             </div>
           </article>
 
-          <!-- Case 2: All-on-4 Immediate Zirconia Implants -->
-          <article class="portfolio-card reveal-on-scroll">
-            <div class="portfolio-img-box">
-              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80" alt="All on 4 Dental Implants Result" class="portfolio-img">
-              <div class="portfolio-floating-pill">Full Arch Monolithic Zirconia</div>
+          <!-- Case 2: All-on-4 Implants -->
+          <article class="portfolio-card">
+            <div class="ba-slider" role="slider" tabindex="0" aria-label="Before and After Comparison: Case 1192 All-on-4 Restoration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <div class="ba-image-layer ba-after-layer">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85" alt="Case 1192 After All on 4 Restoration" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge after-badge">After</span>
+              </div>
+              <div class="ba-image-layer ba-before-layer">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1000&q=85" alt="Case 1192 Before Simulation" class="before-filtered-img" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge before-badge">Before</span>
+              </div>
+              <div class="ba-divider-handle" aria-hidden="true">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-thumb">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>
+                  </svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <div class="ba-drag-hint" aria-hidden="true">
+                <span>⟵ Drag to compare ⟶</span>
+              </div>
             </div>
+
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
                 <span class="patient-id">Case #1192 • Full Arch All-on-4 (Beverly Hills, CA)</span>
               </div>
               <h3 class="portfolio-title">Same-Day All-on-4 Implant Bridge</h3>
               <p class="portfolio-desc">
-                Rehabilitated collapsed bite and failing historic bridge work. Anchored with 4 medical-grade titanium fixtures with permanent screw-retained zirconia teeth.
+                Rehabilitation of failing dentition and collapsed vertical dimension anchored on 4 surgical titanium fixtures with monolithic zirconia teeth.
               </p>
-              <div class="portfolio-quote">Case Outcome: Full-arch immediate load zirconia bridge providing immediate masticatory function and structural facial contour support.</div>
+              <div class="portfolio-case-outcome">
+                <strong>Case Outcome:</strong> Complete functional restoration providing full chewing capacity and balanced lip and facial profile support.
+              </div>
             </div>
           </article>
 
-          <!-- Case 3: Aligners & Brightening -->
-          <article class="portfolio-card reveal-on-scroll">
-            <div class="portfolio-img-box">
-              <img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=800&q=80" alt="Clear Aligners Result" class="portfolio-img">
-              <div class="portfolio-floating-pill">Clear Aligners + Laser Brightening</div>
+          <!-- Case 3: Clear Aligners & Whitening -->
+          <article class="portfolio-card">
+            <div class="ba-slider" role="slider" tabindex="0" aria-label="Before and After Comparison: Case 2405 Clear Aligners and Whitening" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <div class="ba-image-layer ba-after-layer">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85" alt="Case 2405 After Aligners and Brightening" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge after-badge">After</span>
+              </div>
+              <div class="ba-image-layer ba-before-layer">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1000&q=85" alt="Case 2405 Before Simulation" class="before-filtered-img" width="800" height="520" loading="lazy" decoding="async">
+                <span class="ba-badge before-badge">Before</span>
+              </div>
+              <div class="ba-divider-handle" aria-hidden="true">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-thumb">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>
+                  </svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <div class="ba-drag-hint" aria-hidden="true">
+                <span>⟵ Drag to compare ⟶</span>
+              </div>
             </div>
+
             <div class="portfolio-card-body">
               <div class="portfolio-meta">
                 <span class="patient-id">Case #2405 • Clear Aligners & Whitening (Los Angeles, CA)</span>
               </div>
               <h3 class="portfolio-title">Clear Aligner Alignment & Brightening</h3>
               <p class="portfolio-desc">
-                Resolved anterior crowding and deep overbite in 7 months using accelerated clear aligners, finished with an in-office laser brightening session.
+                Correction of anterior crowding and deep bite over a 7-month digitally guided aligner sequence, completed with laser enamel brightening.
               </p>
-              <div class="portfolio-quote">Case Outcome: Non-invasive alignment of anterior crowding combined with clinical laser brightening for a balanced, vibrant smile.</div>
+              <div class="portfolio-case-outcome">
+                <strong>Case Outcome:</strong> Non-invasive alignment of crowded margins combined with noticeable enamel brightening for a radiant smile.
+              </div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 7. Interactive Smile Investment & Financing Calculator (Exact Generic Text) -->
+    <!-- 7. Interactive Financing Calculator (Accurate Amortization Math) -->
     <section class="section calculator-section" id="investment">
       <div class="container">
-        <div class="section-badge-center reveal-on-scroll">
+        <div class="section-badge-center">
           <span class="badge-tag">TRANSPARENT VALUE</span>
         </div>
-        <h2 class="section-title text-center reveal-on-scroll">
-          Calculate Your Smile Investment. <br><span class="gradient-text-navy">Flexible 0% APR Financing.</span>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Calculate Your Smile Investment.</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">Flexible Financing Options.</span></span></span>
         </h2>
-        <p class="section-sub text-center reveal-on-scroll">
-          High-ticket dentistry shouldn't be shrouded in secrecy. Choose your desired transformation below to view estimated investment and monthly payment terms.
+        <div class="section-gold-line" aria-hidden="true"></div>
+        <p class="section-sub text-center">
+          Transparent, upfront fee structures. Select your procedure, down payment, and preferred term to review monthly illustrative financing estimates.
         </p>
 
-        <div class="calculator-wrapper reveal-on-scroll">
+        <div class="calculator-wrapper">
           <div class="calc-controls">
             <div class="calc-field">
               <label class="calc-label" for="calcTreatmentSelect">Choose Desired Transformation:</label>
               <select id="calcTreatmentSelect" class="form-control">
-                <option value="veneers" data-price="9600" data-months="24">Porcelain Veneers (Set of 6 Smile Makeover)</option>
-                <option value="implants" data-price="5700" data-months="24">Single Surgical Implant & Custom Zirconia Crown</option>
-                <option value="allon4" data-price="18500" data-months="24" selected>Full Arch All-on-4 Permanent Teeth-in-a-Day</option>
-                <option value="invisalign" data-price="4200" data-months="24">Comprehensive Clear Aligner Therapy</option>
+                <!-- Dynamically populated from TREATMENTS in script.js -->
               </select>
             </div>
 
             <div class="calc-field">
-              <label class="calc-label">Select Down Payment: <strong id="downPaymentDisplay">$1,500</strong></label>
-              <input type="range" id="downPaymentSlider" min="0" max="6000" step="500" value="1500" class="custom-range">
+              <label class="calc-label" for="downPaymentSlider">
+                Select Down Payment: <strong id="downPaymentDisplay">$1,500</strong>
+              </label>
+              <input type="range" id="downPaymentSlider" min="0" max="6000" step="250" value="1500" class="custom-range">
             </div>
 
             <div class="calc-field">
-              <label class="calc-label">Preferred Term:</label>
-              <div class="term-chips">
-                <button type="button" class="term-chip active" data-term="24">24 Mo (0% APR)</button>
-                <button type="button" class="term-chip" data-term="36">36 Months</button>
-                <button type="button" class="term-chip" data-term="48">48 Months</button>
+              <label class="calc-label">Preferred Term & APR:</label>
+              <div class="term-chips" role="radiogroup" aria-label="Financing term options">
+                <button type="button" class="term-chip active" data-term="24" data-apr="0" role="radio" aria-checked="true">24 Mo (0% APR)</button>
+                <button type="button" class="term-chip" data-term="36" data-apr="5.99" role="radio" aria-checked="false">36 Mo (5.99% APR)</button>
+                <button type="button" class="term-chip" data-term="48" data-apr="5.99" role="radio" aria-checked="false">48 Mo (5.99% APR)</button>
               </div>
             </div>
           </div>
 
           <div class="calc-result-box">
-            <div class="calc-result-tag">ESTIMATED INVESTMENT</div>
+            <div class="calc-result-tag">ILLUSTRATIVE ESTIMATE</div>
             <div class="calc-monthly-price">
               <span class="currency">$</span><span id="monthlyPaymentNumber">708</span><span class="mo-text">/mo</span>
             </div>
@@ -535,106 +607,197 @@
                 <strong id="calcTotalValue">$18,500</strong>
               </div>
               <div class="calc-row">
-                <span>Down Payment:</span>
+                <span>Down Payment Applied:</span>
                 <strong id="calcDownValue">$1,500</strong>
               </div>
               <div class="calc-row">
-                <span>Financing APR:</span>
-                <strong class="green-text">0% Available</strong>
+                <span>Applicable APR:</span>
+                <strong id="calcAprValue" class="green-text">0.00% APR</strong>
               </div>
             </div>
-            <button class="btn btn-luxury-primary btn-full open-booking-drawer">Lock In This Pre-Qualified Rate →</button>
-            <!-- Exact Clean Generic Text Requested -->
-            <p class="calc-note">Subject to credit approval. Flexible financing options available.</p>
+            <button class="btn btn-luxury-primary btn-full open-booking-drawer">Check My Eligibility</button>
+            <p class="calc-note">Subject to credit approval. Flexible financing options available. Illustrative estimate only.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. Meet Dr. Sterling (Modest, Credible, Realistic Language) -->
+    <!-- 8. Meet Dr. Sterling (Realistic, Modest & Credible) -->
     <section class="section specialists-section" id="specialist">
       <div class="container specialist-container">
-        <div class="specialist-image-column reveal-on-scroll">
+        <div class="specialist-image-column">
           <div class="doctor-photo-frame">
-            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=900&q=85" alt="Dr Julian Sterling DDS FICOI" class="doctor-photo">
+            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1000&q=85" alt="Dr. Julian Sterling, DDS, FICOI" class="doctor-photo" width="900" height="600" loading="lazy" decoding="async">
             <div class="doctor-credentials-badge">
               <span class="cred-year">15+</span>
-              <span class="cred-text">Years of Surgical Mastery in Beverly Hills</span>
+              <span class="cred-text">Years of Clinical Mastery in Beverly Hills</span>
             </div>
           </div>
         </div>
 
-        <div class="specialist-bio-column reveal-on-scroll">
+        <div class="specialist-bio-column">
           <div class="section-badge-left">
             <span class="badge-tag">THE ARTIST BEHIND THE SMILES</span>
           </div>
           <h2 class="section-title">
             Dr. Julian Sterling, <span class="doc-titles">DDS, FICOI</span>
           </h2>
-          <!-- Exact Modest Line Requested -->
           <div class="fellowship-banner">
             Fellow, International Congress of Oral Implantologists (ICOI) • Cedars-Sinai Surgical Residency
           </div>
-          
+
           <p class="bio-paragraph">
-            Recognized among California's dedicated practitioners in restorative implant reconstruction and cosmetic aesthetic dentistry, Dr. Sterling established Lumina to discard the cold, rushed atmosphere of conventional dental clinics.
+            Recognized among California's dedicated practitioners in restorative implant reconstruction and cosmetic dentistry, Dr. Sterling established Lumina to discard the cold, rushed atmosphere of conventional dental offices.
           </p>
 
           <p class="bio-paragraph">
-            With comprehensive postgraduate surgical residency training at Cedars-Sinai Medical Center, Dr. Sterling pairs meticulous precision with a compassionate bedside manner that instantly puts anxious patients at complete ease.
+            With extensive postgraduate surgical residency training at Cedars-Sinai Medical Center, Dr. Sterling pairs meticulous precision with an empathetic bedside manner that instantly puts anxious patients at complete ease.
           </p>
 
           <div class="credentials-grid">
             <div class="cred-item">
-              <div class="cred-icon">🏛️</div>
+              <div class="cred-icon" aria-hidden="true">🏛️</div>
               <div>
-                <h5>Cedars-Sinai Medical Center</h5>
+                <h4>Cedars-Sinai Medical Center</h4>
                 <p>Advanced Surgical & Implant Residency</p>
               </div>
             </div>
             <div class="cred-item">
-              <div class="cred-icon">🔬</div>
+              <div class="cred-icon" aria-hidden="true">🔬</div>
               <div>
-                <h5>Fellow, ICOI</h5>
+                <h4>Fellow, ICOI</h4>
                 <p>International Congress of Oral Implantologists</p>
               </div>
             </div>
             <div class="cred-item">
-              <div class="cred-icon">⭐</div>
+              <div class="cred-icon" aria-hidden="true">⭐</div>
               <div>
-                <h5>AACD Active Member</h5>
+                <h4>AACD Active Member</h4>
                 <p>American Academy of Cosmetic Dentistry</p>
               </div>
             </div>
             <div class="cred-item">
-              <div class="cred-icon">💎</div>
+              <div class="cred-icon" aria-hidden="true">💎</div>
               <div>
-                <h5>Biocompatible Focus</h5>
-                <p>Medical-Grade Titanium & Zirconia Systems</p>
+                <h4>Biocompatible Focus</h4>
+                <p>Premium Titanium & Zirconia Systems</p>
               </div>
             </div>
           </div>
 
           <div class="signature-block">
-            <div class="signature-text">Julian Sterling, DDS</div>
+            <div class="signature-text" aria-hidden="true">Julian Sterling, DDS</div>
             <button class="btn btn-luxury-primary open-booking-drawer">Schedule Private Consultation</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 9. Patient Reviews & Verified Testimonials (Generic Labels - No Personal Names) -->
+    <!-- 9. FAQ Section (Accordion with 6 Essential Questions) -->
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-badge-center">
+          <span class="badge-tag">FREQUENTLY ASKED QUESTIONS</span>
+        </div>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Clear Answers to Your</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">Clinical & Financial Questions.</span></span></span>
+        </h2>
+        <div class="section-gold-line" aria-hidden="true"></div>
+        <p class="section-sub text-center">
+          Everything you need to know about our comfort protocols, implant timelines, and private concierge admissions.
+        </p>
+
+        <div class="faq-accordion-wrapper">
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Is twilight IV sedation safe for complex dental procedures?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Twilight sedation is administered and continuously monitored by board-certified dental anesthesiologists using hospital-grade vital monitoring equipment. It provides profound relaxation and analgesia, and many patients recall very little of the procedure once completed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>What is the typical timeline for All-on-4 dental implants?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Using 3D computer-guided planning, temporary provisional teeth are frequently attached the same day of surgery, allowing you to leave with an immediate functional smile. Final monolithic zirconia bridges are placed after biological integration, typically 3 to 6 months later.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>What financing and payment options are available?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>We provide flexible healthcare financing options, including 0% APR plans for up to 24 months, as well as extended 36- and 48-month options for qualified applicants. All quotes are transparent with zero hidden clinical facility fees.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>How does Lumina accommodate severe dental anxiety or phobia?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Our studio was designed from the ground up to eradicate clinical fear. Private soundproof suites, noise-cancelling headphones, ceiling entertainment, gentle computerized local numbing, and twilight sleep sedation ensure an entirely stress-free visit.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>How long do handcrafted porcelain veneers last?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Crafted from medical-grade lithium disilicate or feldspathic porcelain by master ceramists, veneers routinely perform for 15 to 20 years or longer with conscientious oral hygiene and regular preventive cleanings.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" aria-expanded="false">
+              <span>Do you accept PPO dental insurance?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>We work with most major PPO dental plans as an out-of-network provider. Our concierge billing desk completes and files all claims directly on your behalf to help you maximize your allowable out-of-network benefits.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Patient Reviews & Verified Testimonials (No Personal Names) -->
     <section class="section reviews-section" id="reviews">
       <div class="container">
-        <div class="section-badge-center reveal-on-scroll">
+        <div class="section-badge-center">
           <span class="badge-tag">VERIFIED TESTIMONIALS</span>
         </div>
-        <h2 class="section-title text-center reveal-on-scroll">
-          Treasured by Patients Across <br><span class="gradient-text-navy">California and Beyond.</span>
+        <h2 class="section-title text-center masked-heading">
+          <span class="line-mask"><span class="line-inner">Treasured by Patients Across</span></span>
+          <span class="line-mask"><span class="line-inner"><span class="gradient-text-navy">California and Beyond.</span></span></span>
         </h2>
-        
-        <div class="google-rating-summary reveal-on-scroll">
-          <div class="g-logo">
+        <div class="section-gold-line" aria-hidden="true"></div>
+
+        <div class="google-rating-summary">
+          <div class="g-logo" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="26" height="26">
               <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.02h3.88c2.27-2.09 3.66-5.17 3.66-9.11z"/>
               <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.02c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.13C3.26 21.39 7.34 24 12 24z"/>
@@ -643,12 +806,12 @@
             </svg>
           </div>
           <div class="g-rating-text">
-            <strong>4.9 / 5.0 Rating</strong> • Verified Patient Experiences
+            <strong>4.9 / 5.0 Rating</strong> • 650+ Verified Reviews
           </div>
         </div>
 
         <div class="reviews-grid">
-          <div class="review-card reveal-on-scroll">
+          <div class="review-card">
             <div class="review-stars">★★★★★</div>
             <div class="review-badge-verified">✓ Clinical Outcome Verified</div>
             <p class="review-quote">
@@ -657,13 +820,12 @@
             <div class="reviewer-footer">
               <div class="reviewer-avatar">VP</div>
               <div>
-                <!-- Generic Label - No Personal Name -->
-                <h5 class="reviewer-name">Verified Patient • Full Arch Restoration (Beverly Hills, CA)</h5>
+                <h3 class="reviewer-name">Verified Patient • Full Arch Restoration (Beverly Hills, CA)</h3>
               </div>
             </div>
           </div>
 
-          <div class="review-card reveal-on-scroll">
+          <div class="review-card">
             <div class="review-stars">★★★★★</div>
             <div class="review-badge-verified">✓ Clinical Outcome Verified</div>
             <p class="review-quote">
@@ -672,23 +834,21 @@
             <div class="reviewer-footer">
               <div class="reviewer-avatar">VP</div>
               <div>
-                <!-- Generic Label - No Personal Name -->
-                <h5 class="reviewer-name">Verified Patient • Porcelain Veneers (Los Angeles, CA)</h5>
+                <h3 class="reviewer-name">Verified Patient • Porcelain Veneers (Los Angeles, CA)</h3>
               </div>
             </div>
           </div>
 
-          <div class="review-card reveal-on-scroll">
+          <div class="review-card">
             <div class="review-stars">★★★★★</div>
             <div class="review-badge-verified">✓ Clinical Outcome Verified</div>
             <p class="review-quote">
-              “Fractured a front tooth on a weekend evening before a major professional presentation. Lumina answered their emergency concierge line in 30 seconds. By late that night, my tooth was repaired with zero trace of trauma.”
+              “Fractured a front tooth on a weekend evening before a major professional presentation. Lumina answered their emergency line in 30 seconds. By late that night, my tooth was repaired with zero trace of trauma.”
             </p>
             <div class="reviewer-footer">
               <div class="reviewer-avatar">VP</div>
               <div>
-                <!-- Generic Label - No Personal Name -->
-                <h5 class="reviewer-name">Verified Patient • Emergency Dental Care (Beverly Hills, CA)</h5>
+                <h3 class="reviewer-name">Verified Patient • Emergency Dental Care (Beverly Hills, CA)</h3>
               </div>
             </div>
           </div>
@@ -697,12 +857,12 @@
     </section>
   </main>
 
-  <!-- 10. Luxury Footer (Generic Placeholder Addresses & Zero HIPAA Mentions) -->
+  <!-- 11. Luxury Footer (Generic Placeholder Addresses & Demo Label) -->
   <footer class="footer-section">
     <div class="container footer-grid">
       <div class="footer-col brand-col">
         <div class="brand-wordmark footer-wordmark">
-          <span class="brand-crest-dot">✦</span>
+          <span class="brand-crest-dot" aria-hidden="true">✦</span>
           <span class="brand-main brand-title-light">L U M I N A</span>
         </div>
         <p class="footer-tagline">
@@ -712,16 +872,14 @@
           <span class="badge-accred">ADA Member</span>
           <span class="badge-accred">ICOI Fellow</span>
           <span class="badge-accred">AACD Cosmetic</span>
-          <!-- Zero HIPAA badge -->
-          <span class="badge-accred">Sterilization Certified</span>
+          <span class="badge-accred">HIPAA-Compliant Practices</span>
         </div>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-heading">Practice Locations</h4>
-        <!-- Generic Placeholder Style Addresses -->
         <div class="office-location">
-          <strong>Beverly Hills Flagship:</strong>
+          <strong>Beverly Hills Atelier:</strong>
           <p>100 Studio Way, Suite 400<br>Beverly Hills, CA 90210</p>
         </div>
         <div class="office-location">
@@ -740,24 +898,27 @@
         </ul>
         <div class="footer-phone-box">
           <span>Immediate Dental Assistance:</span>
-          <a href="tel:5552347645" class="footer-phone">(555) 234-SMILE</a>
+          <a href="tel:+13105550142" class="footer-phone">(310) 555-0142</a>
         </div>
       </div>
 
       <div class="footer-col">
         <h4 class="footer-heading">Executive Concierge</h4>
         <p class="footer-concierge-desc">
-          Do you require private underground parking access, confidential non-disclosure documentation (NDA), or custom whole-smile weekend scheduling?
+          Do you require private underground parking access, confidential non-disclosure agreements (NDA), or custom whole-smile weekend scheduling?
         </p>
         <button class="btn btn-outline-cyan btn-full open-booking-drawer">Contact Private Concierge</button>
       </div>
     </div>
 
+    <!-- Required Demo Disclaimer & Legal Links -->
     <div class="container footer-bottom">
       <div class="footer-copyright">
-        © 2026 Lumina Dental Studio. Portfolio Prototype Designed by Shivam Web Agency.
+        © 2026 Lumina Dental Studio. All rights reserved.
+        <div class="demo-disclaimer-note">
+          Portfolio concept project. Lumina Dental Studio is a fictional clinic; all names, credentials, reviews and prices are illustrative.
+        </div>
       </div>
-      <!-- Zero HIPAA Link: Changed to Privacy Policy -->
       <div class="footer-legal-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Patient Confidentiality</a>
@@ -766,13 +927,13 @@
     </div>
   </footer>
 
-  <!-- 11. SLIDE-OVER VIP BOOKING MODAL DRAWER (Exact Requested Privacy Line) -->
-  <div class="vip-drawer-overlay" id="vipDrawerOverlay"></div>
-  <div class="vip-booking-drawer" id="vipBookingDrawer" aria-hidden="true">
+  <!-- 12. Working 3-Step VIP Booking Modal Drawer (Focus Trapped, Validation, Real Data Receipt) -->
+  <div class="vip-drawer-overlay" id="vipDrawerOverlay" tabindex="-1"></div>
+  <div class="vip-booking-drawer" id="vipBookingDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
     <div class="drawer-header">
       <div>
         <span class="drawer-badge">PRIVATE SUITE RESERVATION</span>
-        <h3 class="drawer-title">Reserve VIP Consultation</h3>
+        <h3 class="drawer-title" id="drawerTitle">Reserve VIP Consultation</h3>
       </div>
       <button class="drawer-close-btn" id="closeDrawerBtn" aria-label="Close Booking Drawer">✕</button>
     </div>
@@ -783,83 +944,56 @@
           <span class="step-num">1</span>
           <span class="step-name">Service</span>
         </div>
-        <div class="step-line"></div>
+        <div class="step-line" aria-hidden="true"></div>
         <div class="step-indicator" id="dStepIndicator2">
           <span class="step-num">2</span>
           <span class="step-name">Schedule</span>
         </div>
-        <div class="step-line"></div>
+        <div class="step-line" aria-hidden="true"></div>
         <div class="step-indicator" id="dStepIndicator3">
           <span class="step-num">3</span>
           <span class="step-name">Confirm</span>
         </div>
       </div>
 
-      <form id="drawerBookingForm" onsubmit="return false;">
+      <form id="drawerBookingForm" novalidate>
+        <!-- STEP 1: Treatment -->
         <div class="wizard-step active" id="dStep1">
           <h4 class="step-heading">Select Clinical Objective</h4>
-          <div class="treatment-select-grid">
-            <label class="custom-radio-card">
-              <input type="radio" name="d_treatment_goal" value="All-on-4 & Single Dental Implants" checked>
-              <div class="radio-content">
-                <span class="radio-title">Dental Implants</span>
-                <span class="radio-sub">Single, multi or All-on-4 permanent teeth</span>
-              </div>
-            </label>
-
-            <label class="custom-radio-card">
-              <input type="radio" name="d_treatment_goal" value="Handcrafted Porcelain Veneers">
-              <div class="radio-content">
-                <span class="radio-title">Porcelain Veneers</span>
-                <span class="radio-sub">Bespoke cosmetic smile redesign</span>
-              </div>
-            </label>
-
-            <label class="custom-radio-card">
-              <input type="radio" name="d_treatment_goal" value="Clear Orthodontic Aligners">
-              <div class="radio-content">
-                <span class="radio-title">Clear Aligners</span>
-                <span class="radio-sub">Discreet orthodontics & whitening</span>
-              </div>
-            </label>
-
-            <label class="custom-radio-card">
-              <input type="radio" name="d_treatment_goal" value="Emergency Pain or Broken Tooth">
-              <div class="radio-content">
-                <span class="radio-title">Urgent Emergency</span>
-                <span class="radio-sub">Immediate pain relief & trauma care</span>
-              </div>
-            </label>
+          <div class="treatment-select-grid" id="modalTreatmentGrid">
+            <!-- Populated dynamically / pre-checked from TREATMENTS -->
           </div>
 
           <button type="button" class="btn btn-luxury-primary btn-full" id="dBtnToStep2">Continue to Schedule →</button>
         </div>
 
+        <!-- STEP 2: Date & Sedation -->
         <div class="wizard-step" id="dStep2">
           <h4 class="step-heading">Preferred Appointment Window</h4>
-          
+
           <div class="form-group">
             <label class="form-label" for="dBookingDate">Select Date:</label>
             <input type="date" id="dBookingDate" class="form-control" required>
+            <span class="field-error" id="dateError" aria-live="polite"></span>
           </div>
 
           <div class="form-group">
             <label class="form-label">Preferred Time Slot:</label>
-            <div class="time-chips-grid">
-              <button type="button" class="time-chip active" data-time="Morning (8:30 AM)">Morning (8:30 AM)</button>
-              <button type="button" class="time-chip" data-time="Afternoon (1:00 PM)">Afternoon (1:00 PM)</button>
-              <button type="button" class="time-chip" data-time="Late (4:00 PM)">Late (4:00 PM)</button>
+            <div class="time-chips-grid" role="radiogroup" aria-label="Appointment time slot">
+              <button type="button" class="time-chip active" data-time="Morning (8:30 AM)" role="radio" aria-checked="true">Morning (8:30 AM)</button>
+              <button type="button" class="time-chip" data-time="Afternoon (1:00 PM)" role="radio" aria-checked="false">Afternoon (1:00 PM)</button>
+              <button type="button" class="time-chip" data-time="Late (4:00 PM)" role="radio" aria-checked="false">Late (4:00 PM)</button>
             </div>
             <input type="hidden" id="dSelectedTimeSlot" value="Morning (8:30 AM)">
           </div>
 
           <div class="form-group">
-            <label class="form-label">Sedation Dentistry Preference:</label>
+            <label class="form-label" for="dSedationPreference">Sedation Dentistry Preference:</label>
             <select id="dSedationPreference" class="form-control">
-              <option value="Standard Gentle Local Numbing">Gentle Painless Local Numbing (No Extra Sedation)</option>
-              <option value="Nitrous Oxide Laughing Gas">Nitrous Oxide (Light relaxation, drive yourself home)</option>
-              <option value="Oral Conscious Twilight Sleep">Twilight Sedation (Relaxed sleep state)</option>
-              <option value="Full Board-Certified IV Anesthesia">Full Hospital IV Sedation (Wake up with completed smile)</option>
+              <option value="Gentle Painless Local Numbing">Gentle Painless Local Numbing (No Extra Sedation)</option>
+              <option value="Nitrous Oxide Relaxation">Nitrous Oxide (Light relaxation, drive yourself home)</option>
+              <option value="Twilight Sleep Sedation">Twilight Sleep Sedation (Deep calm state)</option>
+              <option value="Full Hospital IV Sedation">Full Hospital IV Sedation (Complete sleep throughout)</option>
             </select>
           </div>
 
@@ -869,67 +1003,89 @@
           </div>
         </div>
 
+        <!-- STEP 3: Contact Info & Validation -->
         <div class="wizard-step" id="dStep3">
           <h4 class="step-heading">Patient Details</h4>
-          
+
           <div class="form-row-2">
             <div class="form-group">
               <label class="form-label" for="dPatientFirstName">First Name *</label>
-              <input type="text" id="dPatientFirstName" class="form-control" placeholder="William" required>
+              <input type="text" id="dPatientFirstName" class="form-control" placeholder="William" required autocomplete="given-name">
+              <span class="field-error" id="firstNameError" aria-live="polite"></span>
             </div>
             <div class="form-group">
               <label class="form-label" for="dPatientLastName">Last Name *</label>
-              <input type="text" id="dPatientLastName" class="form-control" placeholder="Vance" required>
+              <input type="text" id="dPatientLastName" class="form-control" placeholder="Vance" required autocomplete="family-name">
+              <span class="field-error" id="lastNameError" aria-live="polite"></span>
             </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-group">
               <label class="form-label" for="dPatientPhone">Mobile Phone *</label>
-              <input type="tel" id="dPatientPhone" class="form-control" placeholder="(555) 000-0000" required>
+              <input type="tel" id="dPatientPhone" class="form-control" placeholder="(310) 555-0199" required autocomplete="tel">
+              <span class="field-error" id="phoneError" aria-live="polite"></span>
             </div>
             <div class="form-group">
               <label class="form-label" for="dPatientEmail">Email Address *</label>
-              <input type="email" id="dPatientEmail" class="form-control" placeholder="william@vance.com" required>
+              <input type="email" id="dPatientEmail" class="form-control" placeholder="william@luxurymail.com" required autocomplete="email">
+              <span class="field-error" id="emailError" aria-live="polite"></span>
             </div>
           </div>
 
-          <!-- Exact Line Requested: Replaced HIPAA with Confidential Patient Privacy -->
-          <div class="hipaa-notice">
+          <!-- Safe, Credible Privacy Note -->
+          <div class="privacy-notice-box">
             🔒 Confidential Patient Privacy • 256-Bit SSL Encrypted
+          </div>
+
+          <div class="form-alert-error" id="formSubmissionError" style="display:none;" role="alert">
+            Unable to submit request. Please check your connection and try again.
           </div>
 
           <div class="wizard-nav-btns">
             <button type="button" class="btn btn-glass" id="dBtnBackToStep2">← Back</button>
-            <button type="submit" class="btn btn-luxury-primary" id="dBtnConfirm">Confirm VIP Reservation ➔</button>
+            <button type="submit" class="btn btn-luxury-primary" id="dBtnConfirm">
+              <span class="btn-text">Confirm VIP Reservation ➔</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
 
-        <div class="wizard-step" id="dStepSuccess">
+        <!-- SUCCESS STATE (Shows REAL user-entered data) -->
+        <div class="wizard-step" id="dStepSuccess" tabindex="-1">
           <div class="success-box">
-            <div class="success-checkmark">✓</div>
+            <div class="success-checkmark-svg" aria-hidden="true">
+              <svg viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14 27l8 8 16-16"/>
+              </svg>
+            </div>
             <h3 class="success-title">VIP Suite Reserved!</h3>
             <p class="success-text">
               Thank you, <span id="dConfirmedName">Valued Patient</span>. Your private consultation request is confirmed.
             </p>
-            
+
             <div class="confirmed-summary-receipt">
               <div class="receipt-row">
                 <span>Treatment:</span>
-                <strong id="dReceiptTreatment">All-on-4 Implants</strong>
+                <strong id="dReceiptTreatment">All-on-4 & Permanent Implants</strong>
               </div>
               <div class="receipt-row">
                 <span>Date & Window:</span>
-                <strong id="dReceiptDate">Tomorrow</strong>
+                <strong id="dReceiptDate">October 15, 2026 (Morning 8:30 AM)</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Sedation Protocol:</span>
+                <strong id="dReceiptSedation">Gentle Painless Local Numbing</strong>
               </div>
               <div class="receipt-row">
                 <span>Location:</span>
-                <strong>Beverly Hills Suite #701</strong>
+                <strong>Beverly Hills Suite #400</strong>
               </div>
             </div>
 
             <p class="sms-note">
-              📱 An SMS confirmation with digital intake forms and directions has been dispatched.
+              Our concierge will contact you shortly to confirm.
             </p>
 
             <button type="button" class="btn btn-glass btn-full" id="dBtnReset">Book Another Consultation</button>
@@ -940,14 +1096,14 @@
   </div>
 
   <!-- Toast Notification Container -->
-  <div class="toast-notification" id="toastNotification"></div>
+  <div class="toast-notification" id="toastNotification" role="status" aria-live="polite"></div>
 
-  <!-- JavaScript -->
+  <!-- Master JavaScript -->
   <script src="script.js"></script>
 
   <!-- ==============================================================
-       YAHAN APNA ALWAYSON ASSISTANT SCRIPT TAG RAKHNA:
+       ALWAYSON ASSISTANT CHAT WIDGET MOUNT (Fixed bottom-right clear)
        ============================================================== -->
-  
+
 </body>
 </html>
