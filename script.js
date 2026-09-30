@@ -2,7 +2,7 @@
  * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER SCRIPT)
  * Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
  * Single Source of Truth: TREATMENTS Data Object
- * Working 3-Step Booking Modal Engine + Keyboard/Touch Before-After Sliders
+ * Zero-Stutter Sticky Glass Navbar • Accessible Macro Teeth Sliders
  */
 
 // Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
@@ -12,6 +12,16 @@ const BOOKING_ENDPOINT = "";
    PART A1: TREATMENTS DATA OBJECT (SINGLE SOURCE OF TRUTH)
    ========================================================================== */
 const TREATMENTS = {
+  allon4: {
+    id: "allon4",
+    name: "All-on-4 & Permanent Implants",
+    cardPriceText: "From $18,500 / arch",
+    calcOptionName: "Full Arch All-on-4 Teeth-in-a-Day ($18,500)",
+    unitPrice: 18500,
+    calcTotal: 18500,
+    category: "Restorative Surgery",
+    summary: "Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Warranty-backed restorations (terms apply)."
+  },
   veneers: {
     id: "veneers",
     name: "Handcrafted Porcelain Veneers",
@@ -31,16 +41,6 @@ const TREATMENTS = {
     calcTotal: 4200,
     category: "Restorative Surgery",
     summary: "Biocompatible surgical titanium fixture paired with a custom monolithic zirconia crown for permanent single-tooth replacement that blends seamlessly."
-  },
-  allon4: {
-    id: "allon4",
-    name: "All-on-4 & Permanent Implants",
-    cardPriceText: "From $18,500 / arch",
-    calcOptionName: "Full Arch All-on-4 Teeth-in-a-Day ($18,500)",
-    unitPrice: 18500,
-    calcTotal: 18500,
-    category: "Restorative Surgery",
-    summary: "Permanently replace broken, missing, or decayed teeth with biocompatible titanium posts. Warranty-backed restorations (terms apply)."
   },
   invisalign: {
     id: "invisalign",
@@ -121,30 +121,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C3: NAVBAR (Fade pseudo-element on scroll & hide/show on scroll direction)
+     C3: ZERO-STUTTER STABLE STICKY NAVBAR & TOP STRIP COLLAPSE (Laptop Lag Cured)
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
-  let lastScrollY = window.scrollY;
+  const topStrip = document.getElementById('topAnnouncementStrip');
 
-  window.addEventListener('scroll', () => {
+  const handleNavbarScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // Background fade on scroll
+    // Stable background transition without rapid transform jitter
     if (currentScrollY > 20) {
-      mainHeader.classList.add('navbar-scrolled');
+      if (mainHeader) mainHeader.classList.add('navbar-scrolled');
+      if (topStrip) topStrip.classList.add('strip-scrolled');
     } else {
-      mainHeader.classList.remove('navbar-scrolled');
+      if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
+      if (topStrip) topStrip.classList.remove('strip-scrolled');
     }
+  };
 
-    // Hide on scroll down, show on scroll up
-    if (currentScrollY > 140 && currentScrollY > lastScrollY && !document.body.classList.contains('modal-open')) {
-      mainHeader.classList.add('nav-hidden');
-    } else {
-      mainHeader.classList.remove('nav-hidden');
-    }
-
-    lastScrollY = currentScrollY;
-  }, { passive: true });
+  window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+  handleNavbarScroll(); // Initial check on page load
 
   /* ==========================================================================
      C4, C5, C6: GSAP ANIMATIONS & STAT COUNTERS
@@ -274,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
           function updateCounter(now) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Expo-out easing
             const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
             const currentVal = easeProgress * targetVal;
             el.textContent = currentVal.toFixed(decimals);
@@ -304,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        // Max 8px spring
         const moveX = Math.max(-8, Math.min(8, x * 0.2));
         const moveY = Math.max(-8, Math.min(8, y * 0.2));
         btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
@@ -317,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     PART B1: ACCESSIBLE BEFORE/AFTER COMPARISON SLIDERS (Touch + Mouse + Key)
+     PART B1: ACCESSIBLE DIRECT MACRO TEETH COMPARISON SLIDERS (120fps)
      ========================================================================== */
   const sliders = document.querySelectorAll('.ba-slider');
 
@@ -342,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setPosition(pct);
     };
 
-    // Mouse & Touch Pointer Events
+    // Pointer Events for Mouse and Touch
     slider.addEventListener('pointerdown', (e) => {
       isDragging = true;
       slider.setPointerCapture(e.pointerId);
@@ -398,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downValueEl = document.getElementById('calcDownValue');
   const aprValueEl = document.getElementById('calcAprValue');
 
-  // Populate Calculator Select from TREATMENTS
+  // Populate Calculator Select from TREATMENTS Single Source of Truth
   if (calcSelect) {
     calcSelect.innerHTML = `
       <option value="allon4" selected>${TREATMENTS.allon4.calcOptionName}</option>
@@ -431,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCost = treatment.calcTotal;
     let downPayment = parseFloat(downSlider.value) || 0;
 
-    // Clamp down payment so it can never exceed total cost
+    // Clamp down payment so it never exceeds total cost
     if (downPayment >= totalCost) {
       downPayment = Math.max(0, totalCost - 500);
       downSlider.value = downPayment;
@@ -484,7 +478,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     PART B3: FAQ ACCORDION (Only one open at a time)
+     PART B3: FAQ ACCORDION (One open at a time)
      ========================================================================== */
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -515,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     PART B2: WORKING 3-STEP VIP BOOKING DRAWER (Validation & Error Handling)
+     PART B2: WORKING 3-STEP VIP BOOKING DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
