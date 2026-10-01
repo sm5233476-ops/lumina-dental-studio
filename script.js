@@ -1,26 +1,26 @@
 /**
- * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER SCRIPT)
- * Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
- * Single Source of Truth: TREATMENTS Data Object
- * Exact Amortization Math (Formula in code comments)
- * Working 3-Step Booking Modal Engine + Accessible Macro Teeth Sliders
+ * LUMINA DENTAL STUDIO — BEVERLY HILLS ATELIER (MASTER ENGINE)
+ * - Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
+ * - Single Source of Truth: TREATMENTS Data Object
+ * - Exact Banking Amortization Math (0% & 5.99% APR)
+ * - Accessible 120fps Macro Before/After Slider System
+ * - XSS-Protected 3-Step VIP Booking Drawer
  */
 
 // Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
 const BOOKING_ENDPOINT = "";
 
-// Canonical Clinic Address Constant (A12)
+// Canonical Single Clinic Address Constant
 const CLINIC_ADDRESS = {
   name: "Lumina Dental Studio",
   suite: "Penthouse Suite 701",
-  beverlyHills: "8920 Wilshire Blvd, Penthouse Suite 701, Beverly Hills, CA 90211",
-  austin: "500 W 2nd St, Suite 1900, Austin, TX 78701",
+  address: "8920 Wilshire Blvd, Penthouse Suite 701, Beverly Hills, CA 90211",
   phoneDisplay: "(310) 555-0142",
   phoneTel: "+13105550142"
 };
 
 /* ==========================================================================
-   PART A1: TREATMENTS DATA OBJECT (SINGLE SOURCE OF TRUTH)
+   TREATMENTS DATA OBJECT (SINGLE SOURCE OF TRUTH)
    ========================================================================== */
 const TREATMENTS = {
   allon4: {
@@ -53,7 +53,7 @@ const TREATMENTS = {
     cardPrice: "From $1,600 / tooth",
     calcOptionName: "Porcelain Veneers (Set of 6 Smile Makeover = $9,600)",
     unitPrice: 1600,
-    calcTotal: 9600, // 6 * 1600
+    calcTotal: 9600, // 6 teeth * $1,600
     category: "Cosmetic Artistry",
     summary: "Ultra-thin, micro-layered feldspathic and e.max veneers custom-shaded by master ceramists to correct gaps, chips, discoloration, and uneven tooth shapes.",
     points: [
@@ -153,17 +153,18 @@ const TREATMENTS = {
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
   /* ==========================================================================
-     C1: LENIS SMOOTH SCROLL ENGINE (Paused while modal is open)
+     1. LENIS SMOOTH SCROLL (Native scroll retained on touch devices)
      ========================================================================== */
   let lenis = null;
-  if (!prefersReducedMotion && typeof Lenis !== 'undefined') {
+  if (!prefersReducedMotion && !isTouchDevice && typeof Lenis !== 'undefined') {
     lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      touchMultiplier: 1.5,
+      touchMultiplier: 1.0,
       infinite: false,
     });
 
@@ -173,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(raf);
 
-    // Sync Lenis with GSAP ScrollTrigger
     if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => {
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C2: TOP SCROLL PROGRESS BAR (ScaleX Only)
+     2. TOP SCROLL PROGRESS BAR (ScaleX Only on Compositor)
      ========================================================================== */
   const scrollProgressBar = document.getElementById('scrollProgressBar');
   if (scrollProgressBar && !prefersReducedMotion) {
@@ -197,16 +197,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C3: ZERO-STUTTER STICKY GLASS NAVBAR
+     3. SMART AUTO-HIDING NAVBAR (Hides Down, Shows Up)
      ========================================================================== */
   const mainHeader = document.getElementById('main-header');
+  let lastScrollY = window.scrollY;
+  let scrollThreshold = 10;
+
   const handleNavbarScroll = () => {
     const currentScrollY = window.scrollY;
 
+    // Background blur styling
     if (currentScrollY > 20) {
-      if (mainHeader) mainHeader.classList.add('navbar-scrolled');
+      mainHeader.classList.add('navbar-scrolled');
     } else {
-      if (mainHeader) mainHeader.classList.remove('navbar-scrolled');
+      mainHeader.classList.remove('navbar-scrolled');
+    }
+
+    // Directional hide/show behavior
+    if (Math.abs(currentScrollY - lastScrollY) > scrollThreshold) {
+      if (currentScrollY > lastScrollY && currentScrollY > 120) {
+        // Scrolling Down: Hide Navbar
+        mainHeader.classList.add('navbar-hidden');
+      } else {
+        // Scrolling Up: Show Navbar
+        mainHeader.classList.remove('navbar-hidden');
+      }
+      lastScrollY = currentScrollY;
     }
   };
 
@@ -214,17 +230,17 @@ document.addEventListener('DOMContentLoaded', () => {
   handleNavbarScroll();
 
   /* ==========================================================================
-     C4, C5, C6, C7: GSAP ANIMATIONS & STAT COUNTERS
+     4. GSAP MOTION & DIFFERENTIATED SECTION REVEALS
      ========================================================================== */
   if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // C4: Hero Masked Line-by-Line Reveal
+    // Hero: Masked Line-by-Line Reveal Sequence
     const heroTl = gsap.timeline({ defaults: { ease: "expo.out" } });
 
     heroTl.from(".hero-title .line-inner", {
       y: "115%",
-      duration: 1.1,
+      duration: 1.05,
       stagger: 0.12,
       delay: 0.1
     })
@@ -248,9 +264,15 @@ document.addEventListener('DOMContentLoaded', () => {
       opacity: 0,
       y: 16,
       duration: 0.7
-    }, "-=0.5");
+    }, "-=0.5")
+    .from(".hero-visual", {
+      opacity: 0,
+      y: 28,
+      scale: 0.98,
+      duration: 0.9
+    }, "-=0.8");
 
-    // C5: Parallax on Hero Image and Doctor Portrait (Max 8% transform only)
+    // Parallax on Hero Visual and Doctor Portrait (Max 8% transform only)
     gsap.to(".hero-main-img", {
       yPercent: 8,
       ease: "none",
@@ -273,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // C6: Masked Section Headings Reveal & Gold Line ScaleX
+    // Masked Section Headings & Gold Accent Lines
     document.querySelectorAll('.masked-heading').forEach((heading) => {
       const lines = heading.querySelectorAll('.line-inner');
       const section = heading.closest('section');
@@ -294,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (goldLine) {
         gsap.to(goldLine, {
           scaleX: 1,
-          duration: 0.8,
+          duration: 0.85,
           ease: "expo.out",
           scrollTrigger: {
             trigger: heading,
@@ -305,24 +327,67 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // C7: Staggered Reveals for Cards
-    ScrollTrigger.batch(".comfort-card, .treatment-card, .portfolio-card, .review-card", {
-      start: "top 85%",
-      once: true,
-      onEnter: (batch) => {
-        gsap.from(batch, {
-          opacity: 0,
-          y: 32,
-          scale: 0.97,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: "expo.out"
-        });
+    // Differentiated Card Reveals (Different styles per section)
+    // 1. Spa Cards: Soft Scale-Up & Fade
+    gsap.from(".comfort-card", {
+      opacity: 0,
+      y: 26,
+      scale: 0.96,
+      duration: 0.85,
+      stagger: 0.08,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: ".comfort-grid",
+        start: "top 85%",
+        once: true
+      }
+    });
+
+    // 2. Procedures Cards: Subtle Horizontal Drift + Vertical Lift
+    gsap.from(".treatment-card", {
+      opacity: 0,
+      y: 34,
+      x: (index) => (index % 2 === 0 ? -10 : 10),
+      duration: 0.9,
+      stagger: 0.09,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: ".treatments-grid",
+        start: "top 85%",
+        once: true
+      }
+    });
+
+    // 3. Portfolio Cards: Depth Lift
+    gsap.from(".portfolio-card", {
+      opacity: 0,
+      y: 38,
+      duration: 0.95,
+      stagger: 0.12,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: ".smile-portfolio-grid",
+        start: "top 85%",
+        once: true
+      }
+    });
+
+    // 4. Testimonials: Staggered Upward Float
+    gsap.from(".review-card", {
+      opacity: 0,
+      y: 30,
+      duration: 0.85,
+      stagger: 0.1,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: ".reviews-grid",
+        start: "top 85%",
+        once: true
       }
     });
   }
 
-  // C4: Stat Numbers Count-Up Animation (rAF with expo-out)
+  // Stat Numbers Count-Up Animation (rAF with expo-out)
   const counterElements = document.querySelectorAll('.counter-number');
   if ('IntersectionObserver' in window && !prefersReducedMotion) {
     const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -358,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     C8: MAGNETIC BUTTONS (Desktop fine pointers only)
+     5. MAGNETIC BUTTONS (Desktop fine pointers only)
      ========================================================================== */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !prefersReducedMotion) {
     document.querySelectorAll('.magnetic-btn').forEach((btn) => {
@@ -378,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     PART B1: ACCESSIBLE DIRECT MACRO TEETH COMPARISON SLIDERS (120fps)
+     6. ACCESSIBLE DIRECT MACRO TEETH COMPARISON SLIDERS (120fps)
      ========================================================================== */
   const sliders = document.querySelectorAll('.ba-slider');
 
@@ -447,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     PART A1, A3 & C9: FINANCING CALCULATOR (Amortization Math & Smooth Tween)
+     7. FINANCING CALCULATOR (Exact Banking Amortization Math)
      ========================================================================== */
   const calcSelect = document.getElementById('calcTreatmentSelect');
   const downSlider = document.getElementById('downPaymentSlider');
@@ -458,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downValueEl = document.getElementById('calcDownValue');
   const aprValueEl = document.getElementById('calcAprValue');
 
-  // Populate Calculator Select options from TREATMENTS single source of truth
+  // Populate Calculator Select from single source of truth
   if (calcSelect) {
     calcSelect.innerHTML = `
       <option value="allon4" selected>${TREATMENTS.allon4.calcOptionName}</option>
@@ -479,6 +544,11 @@ document.addEventListener('DOMContentLoaded', () => {
    * For APR > 0%:
    *   r = (Annual APR % / 100) / 12
    *   Monthly = Principal * (r * (1 + r)^n) / ((1 + r)^n - 1)
+   *
+   * Example: All-on-4 ($18,500 total, $1,500 down => $17,000 principal):
+   *   24 Months @ 0%    => $17,000 / 24 = $708/mo
+   *   36 Months @ 5.99% => $17,000 * (r*(1+r)^36) / ((1+r)^36 - 1) = $517/mo
+   *   48 Months @ 5.99% => $17,000 * (r*(1+r)^48) / ((1+r)^48 - 1) = $399/mo
    */
   function calculateMonthly(principal, months, annualAprPct) {
     if (principal <= 0) return 0;
@@ -498,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCost = treatment.calcTotal;
     let downPayment = parseFloat(downSlider.value) || 0;
 
-    // Clamp down payment: down payment can NEVER exceed total cost
+    // Down payment cannot exceed total cost
     if (downPayment >= totalCost) {
       downPayment = Math.max(0, totalCost - 500);
       downSlider.value = downPayment;
@@ -512,7 +582,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const principal = Math.max(0, totalCost - downPayment);
     const targetMonthly = calculateMonthly(principal, currentTermMonths, currentApr);
 
-    // C9: Smooth Tween of Monthly Payment value (~500ms)
+    // Smooth Tween of Monthly Payment value (~500ms)
     if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
       const obj = { val: lastMonthlyPayment };
       gsap.to(obj, {
@@ -551,7 +621,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCalculator();
 
   /* ==========================================================================
-     PART B3 & C11: FAQ ACCORDION (One Item Open at a Time)
+     8. FAQ ACCORDION (One Item Open at a Time)
      ========================================================================== */
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -580,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     PART B2: WORKING 3-STEP VIP BOOKING DRAWER
+     9. WORKING 3-STEP VIP BOOKING DRAWER
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
@@ -595,7 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <input type="radio" name="d_treatment_goal" value="allon4" checked>
         <div class="radio-content">
           <span class="radio-title">${TREATMENTS.allon4.name}</span>
-          <span class="radio-sub">Full Arch immediate permanent teeth</span>
+          <span class="radio-sub">Full arch immediate functional teeth</span>
         </div>
       </label>
       <label class="custom-radio-card">
@@ -644,10 +714,9 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.add('active');
     vipDrawer.classList.add('open');
     vipDrawer.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
-    // Pause Lenis smooth scroll while modal is open (C1)
+    // Pause Lenis smooth scroll while modal is open
     if (lenis) lenis.stop();
 
     setTimeout(() => {
@@ -661,10 +730,9 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.remove('active');
     vipDrawer.classList.remove('open');
     vipDrawer.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
 
-    // Resume Lenis smooth scroll (C1)
+    // Resume Lenis smooth scroll
     if (lenis) lenis.start();
 
     if (previouslyFocusedElement) previouslyFocusedElement.focus();
@@ -802,7 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Step 3: Form Validation & Submission
+  // Step 3: Form Validation & Submission (XSS-Safe Injection via textContent)
   if (dBookingForm) {
     dBookingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -863,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const appointmentDate = dBookingDate.value;
       const timeSlot = dSelectedTimeSlot ? dSelectedTimeSlot.value : 'Morning (8:30 AM)';
       const sedationSelect = document.getElementById('dSedationPreference');
-      const sedationName = sedationSelect ? sedationSelect.value : 'Gentle Painless Local Numbing';
+      const sedationName = sedationSelect ? sedationSelect.value : 'Gentle Local Numbing';
 
       const payload = {
         patientName: `${fName} ${lName}`,
@@ -873,7 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
         date: appointmentDate,
         timeSlot: timeSlot,
         sedation: sedationName,
-        suiteLocation: CLINIC_ADDRESS.suite,
+        suiteLocation: CLINIC_ADDRESS.address,
         timestamp: new Date().toISOString()
       };
 
@@ -887,15 +955,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (!response.ok) throw new Error("Submission network failure");
         } else {
-          // Instant Demo Mode: Simulate 1.2s network roundtrip
+          // Instant Demo Mode: Simulate realistic 1.2s network roundtrip
           await new Promise(res => setTimeout(res, 1200));
         }
 
-        // Render ACTUAL User-Entered Data into Confirmation Screen
+        // Render ACTUAL User-Entered Data into Confirmation Screen (XSS-Safe)
         document.getElementById('dConfirmedName').textContent = `${fName} ${lName}`;
         document.getElementById('dReceiptTreatment').textContent = treatmentName;
 
-        // Clean Date Formatting without double brackets
+        // Clean Date Formatting
         try {
           const dObj = new Date(appointmentDate + 'T00:00:00');
           const formattedDate = dObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
@@ -906,7 +974,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         document.getElementById('dReceiptSedation').textContent = sedationName;
-        document.getElementById('dReceiptLocation').textContent = CLINIC_ADDRESS.suite;
+        document.getElementById('dReceiptLocation').textContent = CLINIC_ADDRESS.address;
 
         // Switch to Confirmation Step
         dStep3.classList.remove('active');
@@ -919,13 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         if (formAlertError) {
           formAlertError.style.display = 'block';
-          formAlertError.innerHTML = 'Unable to submit request. <button type="button" id="btnRetrySubmit" style="text-decoration:underline;font-weight:700;margin-left:6px;cursor:pointer;">Retry</button>';
-          const retryBtn = document.getElementById('btnRetrySubmit');
-          if (retryBtn) {
-            retryBtn.addEventListener('click', () => {
-              submitBtn.click();
-            });
-          }
+          formAlertError.textContent = 'Unable to submit request. Please check your connection and try again.';
         }
       } finally {
         submitBtn.classList.remove('is-loading');
@@ -950,7 +1012,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     MOBILE DRAWER TOGGLE
+     10. MOBILE DRAWER TOGGLE
      ========================================================================== */
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
@@ -970,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     TOAST NOTIFICATION HELPER
+     11. TOAST NOTIFICATION HELPER
      ========================================================================== */
   function showToast(message) {
     const toast = document.getElementById('toastNotification');
@@ -983,7 +1045,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     SMOOTH ANCHOR LINK ROUTING WITH STICKY NAVBAR OFFSET (Lenis Compatible)
+     12. SMOOTH ANCHOR LINK ROUTING WITH STICKY NAVBAR OFFSET
      ========================================================================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
