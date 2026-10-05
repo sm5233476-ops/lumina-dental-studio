@@ -4,6 +4,7 @@
    - GPU-Composited Transitions (transform & opacity only)
    - Zero Box-Shadow / Padding / Geometry Transitions (D1 Architecture)
    - Hardware-Accelerated Glass & Line-Mask Overflow Systems
+   - Interactive Click/Tap Spring Micro-Interactions
    ========================================================================== */
 
 /* --- CSS Root Variables --- */
@@ -30,12 +31,13 @@
   --font-body:      'Plus Jakarta Sans', -apple-system, sans-serif;
 
   --ease-expo-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
   --radius-sm:      8px;
   --radius-md:      16px;
   --radius-lg:      24px;
   --radius-full:    9999px;
 
-  --transition-fast:   0.25s var(--ease-expo-out);
+  --transition-fast:   0.22s var(--ease-expo-out);
   --transition-smooth: 0.38s var(--ease-expo-out);
 }
 
@@ -118,6 +120,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  touch-action: manipulation;
 }
 
 /* --- Scroll Progress Bar (ScaleX Only on Compositor) --- */
@@ -243,7 +246,7 @@ h1, h2, h3, h4, h5 {
   -webkit-text-fill-color: transparent;
 }
 
-/* --- Buttons (GPU-Composited Elevation & Fill) --- */
+/* --- Buttons (GPU-Composited Elevation, Fill & Tap Feedback) --- */
 .btn {
   position: relative;
   display: inline-flex;
@@ -260,6 +263,11 @@ h1, h2, h3, h4, h5 {
   will-change: transform;
 }
 
+/* Tactile Click / Tap Spring Feedback */
+.btn:active {
+  transform: scale(0.96) !important;
+}
+
 .btn-large {
   padding: 15px 32px;
   font-size: 0.98rem;
@@ -272,7 +280,7 @@ h1, h2, h3, h4, h5 {
   z-index: 1;
 }
 
-/* Button Elevation via ::after opacity fade (NO box-shadow transition) */
+/* Button Elevation via ::after opacity fade */
 .btn-luxury-primary::after {
   content: '';
   position: absolute;
@@ -1110,7 +1118,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* ==========================================================================
-   5. BEFORE/AFTER COMPARISON SLIDERS (Hardware Clip-Path Only)
+   5. BEFORE/AFTER COMPARISON SLIDERS (2-CASE BALANCED GRID)
    ========================================================================== */
 .portfolio-section {
   background-color: var(--bg-frost);
@@ -1135,11 +1143,12 @@ h1, h2, h3, h4, h5 {
   flex-shrink: 0;
 }
 
-.smile-portfolio-grid {
+/* 2-Case Balanced Grid */
+.smile-portfolio-grid.two-case-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-  max-width: 1140px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 980px;
   margin: 0 auto;
 }
 
@@ -1212,11 +1221,6 @@ h1, h2, h3, h4, h5 {
   will-change: clip-path;
 }
 
-/* Filter simulation for clinical wear before restoration */
-.before-filtered-img {
-  filter: saturate(0.6) sepia(0.35) brightness(0.85) contrast(0.95);
-}
-
 /* Badges */
 .ba-badge {
   position: absolute;
@@ -1245,7 +1249,7 @@ h1, h2, h3, h4, h5 {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Circular Gold Draggable Handle */
+/* Circular Gold Draggable Handle with Breathing Ambient Glow */
 .ba-divider-handle {
   position: absolute;
   top: 0;
@@ -1270,16 +1274,29 @@ h1, h2, h3, h4, h5 {
 }
 
 .ba-handle-thumb {
-  width: 36px;
-  height: 36px;
-  background: var(--gold-accent);
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
   color: var(--bg-deep);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.45);
   border: 2px solid #FFFFFF;
+  animation: handleBreathing 2.8s ease-in-out infinite alternate;
+  transition: transform var(--transition-fast);
+}
+
+/* Dragging active state */
+.ba-slider:active .ba-handle-thumb {
+  transform: scale(1.12);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.7);
+}
+
+@keyframes handleBreathing {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.45); }
+  70% { box-shadow: 0 0 0 9px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
 }
 
 .ba-drag-hint {
@@ -1401,6 +1418,10 @@ h1, h2, h3, h4, h5 {
   color: var(--text-dark);
   transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
   will-change: transform;
+}
+
+.term-chip:active {
+  transform: scale(0.95);
 }
 
 .term-chip.active {
@@ -1725,15 +1746,7 @@ h1, h2, h3, h4, h5 {
   color: var(--gold-accent);
   font-size: 1.1rem;
   letter-spacing: 2px;
-  margin-bottom: 6px;
-}
-
-.review-badge-verified {
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: #10B981;
-  margin-bottom: 12px;
-  letter-spacing: 0.04em;
+  margin-bottom: 10px;
 }
 
 .review-quote {
@@ -1887,29 +1900,20 @@ h1, h2, h3, h4, h5 {
   margin-top: 4px;
 }
 
-.footer-legal-links {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-legal-links a:hover {
-  color: #FFFFFF;
-}
-
 /* ==========================================================================
    11. WORKING 3-STEP VIP BOOKING DRAWER
    ========================================================================== */
 .vip-drawer-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(10, 17, 40, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: radial-gradient(circle at center, rgba(10, 17, 40, 0.65) 0%, rgba(5, 11, 27, 0.88) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1040;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition: opacity 0.38s ease, visibility 0.38s ease;
 }
 
 .vip-drawer-overlay.active {
@@ -1927,13 +1931,13 @@ h1, h2, h3, h4, h5 {
   height: 100vh;
   background: #FFFFFF;
   z-index: 1050;
-  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.25);
+  box-shadow: -15px 0 50px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   transform: translateX(100%);
   visibility: hidden;
   pointer-events: none;
-  transition: transform 0.45s var(--ease-expo-out), visibility 0.45s ease;
+  transition: transform 0.48s var(--ease-expo-out), visibility 0.48s ease;
   will-change: transform;
 }
 
@@ -1971,10 +1975,16 @@ h1, h2, h3, h4, h5 {
   color: #94A3B8;
   font-size: 1.4rem;
   padding: 4px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .drawer-close-btn:hover {
   color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.drawer-close-btn:active {
+  transform: scale(0.92);
 }
 
 .drawer-body {
@@ -2069,7 +2079,12 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--radius-md);
   padding: 12px;
   cursor: pointer;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), transform var(--transition-fast);
+  touch-action: manipulation;
+}
+
+.custom-radio-card:active {
+  transform: scale(0.97);
 }
 
 .custom-radio-card input {
@@ -2123,12 +2138,13 @@ h1, h2, h3, h4, h5 {
   font-weight: 600;
   background: #FFFFFF;
   color: var(--text-dark);
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-control:focus {
   outline: none;
   border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
 .form-control.is-invalid {
@@ -2175,7 +2191,11 @@ h1, h2, h3, h4, h5 {
   font-weight: 700;
   color: var(--text-dark);
   text-align: center;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.time-chip:active {
+  transform: scale(0.95);
 }
 
 .time-chip.active {
@@ -2429,7 +2449,7 @@ h1, h2, h3, h4, h5 {
     grid-template-columns: 1fr;
   }
 
-  .smile-portfolio-grid {
+  .smile-portfolio-grid.two-case-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2509,5 +2529,9 @@ h1, h2, h3, h4, h5 {
 
   .navbar-wrapper {
     transform: none !important;
+  }
+
+  .ba-handle-thumb {
+    animation: none !important;
   }
 }
