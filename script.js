@@ -3,8 +3,8 @@
  * - Motion Architecture: GSAP + ScrollTrigger + Lenis Smooth Scroll
  * - Single Source of Truth: TREATMENTS Data Object
  * - Exact Banking Amortization Math (0% & 5.99% APR)
- * - Accessible 120fps Macro Before/After Slider System
- * - XSS-Protected 3-Step VIP Booking Drawer
+ * - Accessible 120fps Macro Before/After Slider System (2 Real Cases)
+ * - Next-Level Cascading Modal Transitions & XSS-Protected Booking Drawer
  */
 
 // Define Formspree or Custom API Endpoint here. If left empty, runs in instant client-side demo mode.
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Differentiated Card Reveals (Different styles per section)
+    // Differentiated Card Reveals
     // 1. Spa Cards: Soft Scale-Up & Fade
     gsap.from(".comfort-card", {
       opacity: 0,
@@ -358,12 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // 3. Portfolio Cards: Depth Lift
-    gsap.from(".portfolio-card", {
+    // 3. Portfolio Cards: 2-Card Depth Lift
+    gsap.from(".smile-portfolio-grid .portfolio-card", {
       opacity: 0,
       y: 38,
       duration: 0.95,
-      stagger: 0.12,
+      stagger: 0.14,
       ease: "expo.out",
       scrollTrigger: {
         trigger: ".smile-portfolio-grid",
@@ -431,8 +431,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        const moveX = Math.max(-8, Math.min(8, x * 0.2));
-        const moveY = Math.max(-8, Math.min(8, y * 0.2));
+        const moveX = Math.max(-10, Math.min(10, x * 0.22));
+        const moveY = Math.max(-10, Math.min(10, y * 0.22));
         btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
       });
 
@@ -544,11 +544,6 @@ document.addEventListener('DOMContentLoaded', () => {
    * For APR > 0%:
    *   r = (Annual APR % / 100) / 12
    *   Monthly = Principal * (r * (1 + r)^n) / ((1 + r)^n - 1)
-   *
-   * Example: All-on-4 ($18,500 total, $1,500 down => $17,000 principal):
-   *   24 Months @ 0%    => $17,000 / 24 = $708/mo
-   *   36 Months @ 5.99% => $17,000 * (r*(1+r)^36) / ((1+r)^36 - 1) = $517/mo
-   *   48 Months @ 5.99% => $17,000 * (r*(1+r)^48) / ((1+r)^48 - 1) = $399/mo
    */
   function calculateMonthly(principal, months, annualAprPct) {
     if (principal <= 0) return 0;
@@ -650,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ==========================================================================
-     9. WORKING 3-STEP VIP BOOKING DRAWER
+     9. WORKING 3-STEP VIP BOOKING DRAWER (With Cascading Luxury Open Animations)
      ========================================================================== */
   const vipDrawer = document.getElementById('vipBookingDrawer');
   const vipOverlay = document.getElementById('vipDrawerOverlay');
@@ -714,14 +709,24 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.add('active');
     vipDrawer.classList.add('open');
     vipDrawer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
 
     // Pause Lenis smooth scroll while modal is open
     if (lenis) lenis.stop();
 
+    // Cascading entrance animation for modal elements
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      gsap.fromTo(
+        vipDrawer.querySelectorAll('.drawer-header, .wizard-stepper, .step-heading, .custom-radio-card, #dBtnToStep2'),
+        { y: 22, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.04, ease: "expo.out", delay: 0.1 }
+      );
+    }
+
     setTimeout(() => {
       closeDrawerBtn.focus();
-    }, 100);
+    }, 120);
   };
 
   const closeDrawer = () => {
@@ -730,6 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
     vipOverlay.classList.remove('active');
     vipDrawer.classList.remove('open');
     vipDrawer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
 
     // Resume Lenis smooth scroll
@@ -820,6 +826,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Helper for smooth step entrance
+  function animateStepIn(stepEl) {
+    if (typeof gsap !== 'undefined' && !prefersReducedMotion) {
+      gsap.fromTo(
+        stepEl.children,
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.45, stagger: 0.05, ease: "expo.out" }
+      );
+    }
+  }
+
   // Step 1 -> 2
   if (dBtnToStep2) {
     dBtnToStep2.addEventListener('click', () => {
@@ -828,6 +845,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dInd1.classList.add('active');
       dInd1.querySelector('.step-num').textContent = '✓';
       dInd2.classList.add('active');
+      animateStepIn(dStep2);
     });
   }
 
@@ -838,6 +856,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dStep1.classList.add('active');
       dInd1.querySelector('.step-num').textContent = '1';
       dInd2.classList.remove('active');
+      animateStepIn(dStep1);
     });
   }
 
@@ -857,6 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dStep3.classList.add('active');
       dInd2.querySelector('.step-num').textContent = '✓';
       dInd3.classList.add('active');
+      animateStepIn(dStep3);
     });
   }
 
@@ -867,6 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dStep2.classList.add('active');
       dInd2.querySelector('.step-num').textContent = '2';
       dInd3.classList.remove('active');
+      animateStepIn(dStep2);
     });
   }
 
@@ -955,7 +976,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (!response.ok) throw new Error("Submission network failure");
         } else {
-          // Instant Demo Mode: Simulate realistic 1.2s network roundtrip
+          // Instant Demo Mode: Realistic 1.2s network roundtrip
           await new Promise(res => setTimeout(res, 1200));
         }
 
@@ -981,6 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dStepSuccess.classList.add('active');
         dInd3.querySelector('.step-num').textContent = '✓';
         dStepSuccess.focus();
+        animateStepIn(dStepSuccess);
 
         showToast(`VIP Suite Request Received for ${fName}!`);
 
@@ -1008,6 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
       dInd2.classList.remove('active');
       dInd3.classList.remove('active');
       dInd1.classList.add('active');
+      animateStepIn(dStep1);
     });
   }
 
